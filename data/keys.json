@@ -1,0 +1,10 @@
+{
+  "subscribeUrl": "https://example.com/alpaca/subscribe",
+  "keys": [
+    {
+      "id": "archivist-demo-2026",
+      "key": "ARCHIVIST-2026",
+      "grants": ["video", "archive"]
+    }
+  ]
+}

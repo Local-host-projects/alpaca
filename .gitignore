@@ -1,0 +1,14 @@
+# Backups
+*.bak
+
+# Legacy build scripts (the current generator is js/_gen_data.js)
+js/_build7.js
+js/_build8.js
+js/_build9.js
+
+# OS / editor cruft
+.DS_Store
+Thumbs.db
+*.swp
+.idea/
+.vscode/
