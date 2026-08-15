@@ -3004,6 +3004,1204 @@ statusText("The matrix shows years each side serves. The partner's choice is alr
     return { destroy() { S.destroy(); } };
   }
 
+  /* ------------------------- place value & zero ------------------------- */
+
+  function placeValueSim(shellEl, statusEl) {
+    const S = simCanvas(shellEl, statusEl);
+    const ctx = S.ctx;
+    let n = 365;
+    const controls = simControls(shellEl,
+      '<label class="sim-slider">number<input data-a="n" type="range" min="0" max="999" step="1" value="365" aria-label="number to represent"><output data-o="n">365</output></label>' +
+      '<button class="btn" data-a="reset">Reset</button><span class="sim-hint">columns, not strokes — and the empty column needs a zero</span>');
+    const nEl = controls.querySelector('[data-a="n"]');
+    const oN = controls.querySelector('[data-o="n"]');
+    nEl.addEventListener('input', () => { n = parseInt(nEl.value); oN.value = n; draw(); });
+    controls.querySelector('[data-a="reset"]').addEventListener('click', () => { n = 365; nEl.value = 365; oN.value = 365; draw(); });
+    function draw() {
+      const w = S.w(), h = S.h();
+      ctx.fillStyle = '#120D0A'; ctx.fillRect(0, 0, w, h);
+      // tally panel
+      const tx = 20;
+      ctx.fillStyle = '#E6DAC4'; ctx.font = '10px IBM Plex Mono, monospace'; ctx.textAlign = 'left';
+      ctx.fillText('tally marks — ' + n + ' strokes', tx, 22);
+      ctx.strokeStyle = 'rgba(201,154,87,0.8)'; ctx.lineWidth = 1.6;
+      const shown = Math.min(n, 320);
+      for (let i = 0; i < shown; i++) {
+        const col = Math.floor(i / 4);
+        const r = i % 4;
+        const x = tx + (col % 6) * 14 + 8;
+        const y = 34 + Math.floor(col / 6) * 13 + r * 3 + 2;
+        ctx.beginPath(); ctx.moveTo(x, y + 8); ctx.lineTo(x, y); ctx.stroke();
+        if (r === 3) { ctx.beginPath(); ctx.moveTo(x - 9, y + 1); ctx.lineTo(x + 6, y + 1); ctx.stroke(); }
+      }
+      ctx.fillStyle = 'rgba(237,228,214,0.5)';
+      ctx.fillText(shown < n ? '… plus ' + (n - shown) + ' more' : '', tx, 154);
+      // columns panel
+      const cx0 = w * 0.42, cy = h * 0.36;
+      ctx.fillStyle = '#E6DAC4'; ctx.font = '10px IBM Plex Mono, monospace';
+      ctx.fillText('place-value columns', cx0, cy - 46);
+      const cols = [Math.floor(n / 100) % 10, Math.floor(n / 10) % 10, n % 10];
+      const colLabels = ['hundreds', 'tens', 'ones'];
+      for (let i = 0; i < 3; i++) {
+        const x = cx0 + i * 74;
+        ctx.fillStyle = 'rgba(127,168,201,0.1)';
+        ctx.fillRect(x, cy, 60, 44);
+        ctx.strokeStyle = 'rgba(127,168,201,0.4)'; ctx.strokeRect(x, cy, 60, 44);
+        ctx.fillStyle = '#7FA8C9';
+        ctx.fillText(colLabels[i], x + (60 - ctx.measureText(colLabels[i]).width) / 2, cy + 16);
+        ctx.fillStyle = cols[i] === 0 ? '#D97A46' : '#F6D76F';
+        ctx.font = '22px IBM Plex Mono, monospace';
+        ctx.fillText(String(cols[i]), x + 26 - (cols[i] < 10 ? 6 : 0), cy + 40);
+      }
+      if (cols[1] === 0 || cols[0] === 0) {
+        ctx.fillStyle = '#D97A46';
+        ctx.fillText('without the 0, ' + n + ' would read as ' + (n === 0 ? '""' : String(n).replace(/0/g, '')) + ' — the zero holds the column open', cx0, cy + 70);
+      } else {
+        ctx.fillStyle = 'rgba(237,228,214,0.5)';
+        ctx.fillText(n + ' = ' + cols[0] + '×100 + ' + cols[1] + '×10 + ' + cols[2], cx0, cy + 70);
+      }
+      simStatus(statusEl, 'Tally marks counted fine for a shepherd, but at ' + n + ' they are unreadable at a glance — tallies have no structure. The numeral system that won the world gives every digit a home, hundreds, tens, ones, and pins its meaning to position. And the position must stay marked when it is empty: that is the whole job of zero, which let 105 avoid becoming 15. It was not a number at first; it was a placeholder that made place value honest.');
+    }
+    draw();
+    return { destroy() { S.destroy(); } };
+  }
+
+  /* ------------------------- sieve of eratosthenes ------------------------- */
+
+  function sieveSim(shellEl, statusEl) {
+    const S = simCanvas(shellEl, statusEl);
+    const ctx = S.ctx;
+    const MAX = 200, COLS = 10;
+    const nums = [];
+    for (let i = 2; i <= MAX; i++) nums.push({ v: i, state: 'open' }); // open, struck, prime
+    let idx = 0; // next candidate index to sieve
+    let running = false, raf = null;
+    const controls = simControls(shellEl,
+      '<button class="btn btn-accent" data-a="step">Strike next</button>' +
+      '<button class="btn" data-a="run">Run</button>' +
+      '<button class="btn" data-a="reset">Reset</button><span class="sim-hint">cross out every multiple of the next open number</span>');
+    function step() {
+      while (idx < nums.length && nums[idx].state === 'struck') idx++;
+      if (idx >= nums.length) { running = false; if (raf) clearTimeout(raf); return; }
+      const p = nums[idx];
+      p.state = 'prime';
+      idx++;
+      for (let i = idx; i < nums.length; i++) {
+        if (nums[i].state === 'open' && nums[i].v % p.v === 0) nums[i].state = 'struck';
+      }
+      draw();
+    }
+    function loop() { if (!running) return; step(); setTimeout(loop, 30); }
+    controls.querySelector('[data-a="step"]').addEventListener('click', step);
+    controls.querySelector('[data-a="run"]').addEventListener('click', () => { running = !running; if (running) loop(); });
+    controls.querySelector('[data-a="reset"]').addEventListener('click', () => {
+      running = false; idx = 0;
+      for (const g of nums) g.state = 'open';
+      draw();
+    });
+    function draw() {
+      const w = S.w(), h = S.h();
+      ctx.fillStyle = '#120D0A'; ctx.fillRect(0, 0, w, h);
+      const cell = Math.min(22, (h - 40) / (nums.length / COLS));
+      for (let i = 0; i < nums.length; i++) {
+        const x = 10 + (i % COLS) * 44;
+        const y = 16 + Math.floor(i / COLS) * (cell + 3);
+        const g = nums[i];
+        if (g.state === 'struck') {
+          ctx.fillStyle = 'rgba(237,228,214,0.18)';
+          ctx.fillText(String(g.v), x, y + 9);
+          ctx.strokeStyle = 'rgba(217,122,70,0.7)';
+          ctx.beginPath(); ctx.moveTo(x - 6, y + 4); ctx.lineTo(x + 22, y + 12); ctx.stroke();
+        } else if (g.state === 'prime') {
+          ctx.fillStyle = '#F6D76F';
+          ctx.fillText(String(g.v), x, y + 9);
+        } else {
+          ctx.fillStyle = '#C99A57';
+          ctx.fillText(String(g.v), x, y + 9);
+        }
+      }
+      const primes = nums.filter(g => g.state === 'prime').length;
+      const next = nums[idx];
+      simStatus(statusEl, next
+        ? 'The lowest open number is ' + next.v + ' — so it cannot have been struck by anything smaller, which makes it prime. Striking its multiples clears the composites out of its way. Keep going and the survivors are precisely the primes below ' + (MAX + 1) + '. Eratosthenes, c. 240 BC, did exactly this with a sheet of papyrus, and Euclid had already proved the column never ends: there is no last prime.'
+        : 'Done — all ' + primes.length + ' primes below ' + (MAX + 1) + ' survive. Every composite was crossed out as the multiple of some smaller prime, so nothing left is divisible by anything but itself and 1. Sieve a billion and the gaps between primes still keep opening up.');
+    }
+    draw();
+    return { destroy() { S.destroy(); } };
+  }
+
+  /* ------------------------- pythagorean visual ------------------------- */
+
+  function pythagoreanVisualSim(shellEl, statusEl) {
+    const S = simCanvas(shellEl, statusEl);
+    const ctx = S.ctx;
+    let a = 3, b = 4, dissect = false;
+    const controls = simControls(shellEl,
+      '<label class="sim-slider">leg a<input data-a="a" type="range" min="2" max="8" step="0.1" value="3" aria-label="leg a"></label>' +
+      '<label class="sim-slider">leg b<input data-a="b" type="range" min="2" max="8" step="0.1" value="4" aria-label="leg b"></label>' +
+      '<label class="sim-check"><input data-a="d" type="checkbox"> split the hypotenuse square</label>' +
+      '<button class="btn" data-a="reset">Reset</button>');
+    const aEl = controls.querySelector('[data-a="a"]');
+    const bEl = controls.querySelector('[data-a="b"]');
+    const dEl = controls.querySelector('[data-a="d"]');
+    aEl.addEventListener('input', () => { a = parseFloat(aEl.value); draw(); });
+    bEl.addEventListener('input', () => { b = parseFloat(bEl.value); draw(); });
+    dEl.addEventListener('change', () => { dissect = dEl.checked; draw(); });
+    controls.querySelector('[data-a="reset"]').addEventListener('click', () => { a = 3; b = 4; aEl.value = 3; bEl.value = 4; dEl.checked = false; dissect = false; draw(); });
+    function draw() {
+      const w = S.w(), h = S.h();
+      ctx.fillStyle = '#120D0A'; ctx.fillRect(0, 0, w, h);
+      const c = Math.hypot(a, b);
+      // triangle at bottom-left
+      const ox = 90, oy = h * 0.62;
+      const u = Math.min(34, (h * 0.4) / c);
+      const A = { x: ox, y: oy };
+      const C = { x: ox + b * u, y: oy };
+      const B = { x: ox, y: oy - a * u };
+      ctx.strokeStyle = '#E6DAC4'; ctx.lineWidth = 2;
+      ctx.beginPath(); ctx.moveTo(A.x, A.y); ctx.lineTo(B.x, B.y); ctx.lineTo(C.x, C.y); ctx.closePath(); ctx.stroke();
+      ctx.fillStyle = 'rgba(237,228,214,0.06)'; ctx.fill();
+      // squares
+      const sq = (px, py, size, color) => {
+        ctx.strokeStyle = color; ctx.lineWidth = 2;
+        ctx.fillStyle = color; ctx.globalAlpha = 0.16;
+        ctx.fillRect(px, py - size, size, size);
+        ctx.globalAlpha = 1;
+        ctx.strokeRect(px, py - size, size, size);
+        ctx.fillStyle = color; ctx.font = '10px IBM Plex Mono, monospace'; ctx.textAlign = 'center';
+        ctx.fillText((size / u).toFixed(1) + '\u00B2', px + size / 2, py - size / 2 + 4);
+      };
+      sq(B.x - b * u, oy - a * u, b * u, '#7FA8C9');  // on b leg
+      sq(A.x - a * u, C.y, a * u, '#93A884');
+      // hypotenuse square (drawn outside along c)
+      const dx = C.x, dy = B.y;
+      ctx.strokeStyle = '#F6D76F'; ctx.lineWidth = 2;
+      const lx = dx, ly = dy;
+      const s = c * u;
+      // place c square to the right of the hypotenuse (parallelogram to square orientation)
+      const hx = C.x + (B.x - A.x), hy = B.y;
+      ctx.strokeRect(hx, hy, 0, 0);
+      // draw correctly: square with side c along hypotenuse, oriented outward
+      const ang = Math.atan2(B.y - C.y, B.x - C.x); // direction of hypotenuse
+      ctx.beginPath();
+      const p0 = { x: C.x, y: C.y };
+      const p1 = { x: B.x, y: B.y };
+      const npx = -(B.y - C.y) / s, npy = (B.x - C.x) / s;
+      const p3 = { x: p0.x + npx * s, y: p0.y + npy * s };
+      const p2 = { x: p1.x + npx * s, y: p1.y + npy * s };
+      ctx.moveTo(p0.x, p0.y); ctx.lineTo(p3.x, p3.y); ctx.lineTo(p2.x, p2.y); ctx.lineTo(p1.x, p1.y); ctx.closePath();
+      ctx.fillStyle = 'rgba(246,215,111,0.16)'; ctx.fill();
+      ctx.strokeStyle = '#F6D76F'; ctx.stroke();
+      // split visualization: overlay a & b squares as pieces of c area (label counts)
+      const areaC = c * c, areaA = a * a, areaB = b * b;
+      ctx.fillStyle = 'rgba(239,228,214,0.6)'; ctx.font = '12px IBM Plex Mono, monospace'; ctx.textAlign = 'left';
+      ctx.fillText('a\u00B2 = ' + areaA.toFixed(1) + '   b\u00B2 = ' + areaB.toFixed(1), w * 0.52, h * 0.18);
+      ctx.fillStyle = '#F6D76F';
+      ctx.fillText('c\u00B2 = ' + areaC.toFixed(1), w * 0.52, h * 0.18 + 18);
+      if (dissect) {
+        const eq = Math.abs(areaA + areaB - areaC) < 0.01;
+        ctx.fillStyle = eq ? '#93A884' : '#D97A46';
+        ctx.fillText(eq ? 'a\u00B2 + b\u00B2 = c\u00B2' : areaA.toFixed(1) + ' + ' + areaB.toFixed(1) + ' ≠ ' + areaC.toFixed(1), w * 0.52, h * 0.18 + 36);
+      }
+      simStatus(statusEl, 'Euclid\u2019s proposition 47: on the hypotenuse, the square of side c is split so it exactly re-packs into the squares on a and b — no gap, no overlap. Flip the checkbox to see a\u00B2 + b\u00B2 tally against c\u00B2 (here ' + areaA.toFixed(1) + ' + ' + areaB.toFixed(1) + ' = ' + areaC.toFixed(1) + '). Babylonian tablets already listed triples like (3, 4, 5) fifteen centuries earlier; the theorem itself became the first thing every school of geometry proves.');
+    }
+    draw();
+    return { destroy() { S.destroy(); } };
+  }
+
+  /* ------------------------- al-jabr balance scale ------------------------- */
+
+  function balanceScaleSim(shellEl, statusEl) {
+    const S = simCanvas(shellEl, statusEl);
+    const ctx = S.ctx;
+    // equation: 2x + 5 = 17
+    let step = 0;
+    const STEPS = [
+      { text: '2x + 5 = 17', boxes: 2, loose: 5, rhs: 17, note: 'A scale in balance: the pans weigh the same, so the equation is true.' },
+      { text: 'remove 5 from BOTH sides', boxes: 2, loose: 0, rhs: 12, note: 'Take the same 5 off both pans — the balance is preserved and now 2x = 12.' },
+      { text: 'halve both sides', boxes: 1, loose: 0, rhs: 6, note: 'Split each pan in two — balance again. Now a single box weighs 6, so x = 6.' }
+    ];
+    const controls = simControls(shellEl,
+      '<button class="btn btn-accent" data-a="next">Next move</button>' +
+      '<button class="btn" data-a="reset">Reset</button><span class="sim-hint">whatever you do to one side, do to the other</span>');
+    controls.querySelector('[data-a="next"]').addEventListener('click', () => { if (step < STEPS.length - 1) { step++; draw(); } });
+    controls.querySelector('[data-a="reset"]').addEventListener('click', () => { step = 0; draw(); });
+    function draw() {
+      const w = S.w(), h = S.h();
+      ctx.fillStyle = '#120D0A'; ctx.fillRect(0, 0, w, h);
+      const s = STEPS[step];
+      const cx = w / 2, pivotY = h * 0.22;
+      // beam
+      ctx.strokeStyle = '#D97A46'; ctx.lineWidth = 4;
+      ctx.beginPath(); ctx.moveTo(cx - 120, pivotY); ctx.lineTo(cx + 120, pivotY); ctx.stroke();
+      ctx.fillStyle = '#8A7C68';
+      ctx.beginPath(); ctx.moveTo(cx - 6, pivotY - 8); ctx.lineTo(cx + 6, pivotY - 8); ctx.lineTo(cx, pivotY + 6); ctx.closePath(); ctx.fill();
+      // pan strings + pans
+      const lx = cx - 120, rx = cx + 120;
+      for (const x of [lx, rx]) {
+        ctx.strokeStyle = 'rgba(237,228,214,0.4)'; ctx.lineWidth = 1;
+        ctx.beginPath(); ctx.moveTo(x, pivotY); ctx.lineTo(x - 18, pivotY + 42); ctx.stroke();
+        ctx.beginPath(); ctx.moveTo(x, pivotY); ctx.lineTo(x + 18, pivotY + 42); ctx.stroke();
+        ctx.beginPath(); ctx.ellipse(x, pivotY + 42, 22, 8, 0, 0, Math.PI * 2); ctx.stroke();
+      }
+      // left: boxes (unknown x) + loose weights
+      let lxw = lx - 60;
+      ctx.fillStyle = '#7FA8C9';
+      for (let i = 0; i < s.boxes; i++) {
+        ctx.fillRect(lxw, pivotY + 52, 24, 18);
+        ctx.strokeStyle = '#7FA8C9'; ctx.strokeRect(lxw, pivotY + 52, 24, 18);
+        ctx.fillStyle = '#E6DAC4'; ctx.font = '9px IBM Plex Mono, monospace'; ctx.textAlign = 'center';
+        ctx.fillText('x', lxw + 12, pivotY + 65);
+        ctx.fillStyle = '#7FA8C9';
+        lxw += 30;
+      }
+      ctx.fillStyle = '#93A884';
+      for (let i = 0; i < s.loose; i++) {
+        ctx.beginPath(); ctx.arc(lxw + 8, pivotY + 61, 7, 0, Math.PI * 2); ctx.fill();
+        ctx.strokeStyle = '#93A884'; ctx.stroke();
+        lxw += 16;
+      }
+      // right: rhs weights
+      let rxw = rx - 55;
+      ctx.fillStyle = '#C99A57';
+      for (let i = 0; i < s.rhs; i++) {
+        ctx.fillRect(rxw, pivotY + 54, 6, 16);
+        rxw += 12;
+      }
+      ctx.fillStyle = '#E6DAC4'; ctx.font = '12px IBM Plex Mono, monospace'; ctx.textAlign = 'center';
+      ctx.fillText(s.text, w / 2, h * 0.7);
+      ctx.fillStyle = 'rgba(237,228,214,0.7)'; ctx.font = '10px IBM Plex Mono, monospace';
+      ctx.fillText(s.note, w / 2, h * 0.7 + 18);
+      simStatus(statusEl, 'Al-Khwarizmi\u2019s al-jabr means restoration: sweeping away what the algebra does not want. Watch the moves — each one keeps the scale honest — and 2x + 5 = 17 resolves to x = 6. Do to one pan exactly what you do to the other, and the unknown surrenders its value without a single guess.');
+    }
+    draw();
+    return { destroy() { S.destroy(); } };
+  }
+
+  /* ------------------------- logic gates ------------------------- */
+
+  function logicGatesSim(shellEl, statusEl) {
+    const S = simCanvas(shellEl, statusEl);
+    const ctx = S.ctx;
+    let A = 1, B = 0;
+    const GATES = {
+      AND: (a, b) => a && b, OR: (a, b) => a || b, NAND: (a, b) => !(a && b),
+      NOR: (a, b) => !(a || b), XOR: (a, b) => (a ? !b : b)
+    };
+    let gate = 'AND';
+    const TRIATH = { AND: [[0,0,0],[0,1,0],[1,0,0],[1,1,1]], OR: [[0,0,0],[0,1,1],[1,0,1],[1,1,1]], NAND: [[0,0,1],[0,1,1],[1,0,1],[1,1,0]], NOR: [[0,0,1],[0,1,0],[1,0,0],[1,1,0]], XOR: [[0,0,0],[0,1,1],[1,0,1],[1,1,0]] };
+    const controls = simControls(shellEl,
+      '<button class="btn" data-a="a">Flip A</button>' +
+      '<button class="btn" data-a="b">Flip B</button>' +
+      '<label class="sim-select">gate<select data-a="g"><option>AND</option><option>OR</option><option>NAND</option><option>NOR</option><option>XOR</option></select></label>' +
+      '<button class="btn" data-a="reset">Reset</button>');
+    const gEl = controls.querySelector('[data-a="g"]');
+    gEl.addEventListener('change', () => { gate = gEl.value; draw(); });
+    controls.querySelector('[data-a="a"]').addEventListener('click', () => { A = A ? 0 : 1; draw(); });
+    controls.querySelector('[data-a="b"]').addEventListener('click', () => { B = B ? 0 : 1; draw(); });
+    controls.querySelector('[data-a="reset"]').addEventListener('click', () => { A = 1; B = 0; gate = 'AND'; gEl.value = 'AND'; draw(); });
+    function draw() {
+      const w = S.w(), h = S.h();
+      ctx.fillStyle = '#120D0A'; ctx.fillRect(0, 0, w, h);
+      const out = GATES[gate](A, B) ? 1 : 0;
+      // inputs
+      ctx.fillStyle = '#E6DAC4'; ctx.font = '12px IBM Plex Mono, monospace'; ctx.textAlign = 'left';
+      ctx.fillText('A', 20, h * 0.3);
+      ctx.fillText('B', 20, h * 0.5);
+      const pin = (y, v) => {
+        ctx.fillStyle = v ? '#93A884' : '#5A4F3C';
+        ctx.beginPath(); ctx.arc(40, y, 9, 0, Math.PI * 2); ctx.fill();
+        ctx.fillStyle = v ? '#120D0A' : 'rgba(237,228,214,0.5)';
+        ctx.fillText(v ? '1' : '0', 40, y + 5);
+      };
+      pin(h * 0.3, A); pin(h * 0.5, B);
+      // gate body
+      const gx = w * 0.42, gy = h * 0.36;
+      ctx.strokeStyle = '#C99A57'; ctx.lineWidth = 2;
+      ctx.beginPath(); ctx.moveTo(gx - 40, gy); ctx.lineTo(gx, gy); ctx.lineTo(gx, gy + h * 0.28); ctx.lineTo(gx - 40, gy + h * 0.28); ctx.closePath(); ctx.stroke();
+      ctx.fillStyle = '#C99A57'; ctx.font = '16px IBM Plex Mono, monospace'; ctx.textAlign = 'center';
+      ctx.fillText(gate, gx - 20, gy + h * 0.14 + 6);
+      // output
+      ctx.fillStyle = '#E6DAC4'; ctx.font = '12px IBM Plex Mono, monospace'; ctx.textAlign = 'left';
+      ctx.fillText('out', w * 0.9, h * 0.4);
+      ctx.fillStyle = out ? '#93A884' : '#5A4F3C';
+      ctx.beginPath(); ctx.arc(w * 0.88, h * 0.42, 9, 0, Math.PI * 2); ctx.fill();
+      ctx.fillStyle = out ? '#120D0A' : 'rgba(237,228,214,0.5)';
+      ctx.fillText(out ? '1' : '0', w * 0.88, h * 0.42 + 5);
+      // truth table
+      const tx = w * 0.1, ty = h * 0.62;
+      ctx.fillStyle = '#E6DAC4'; ctx.font = '10px IBM Plex Mono, monospace'; ctx.textAlign = 'left';
+      ctx.fillText('truth table for ' + gate, tx, ty - 8);
+      const rows = TRIATH[gate];
+      rows.forEach((r, i) => {
+        const active = r[0] === A && r[1] === B;
+        if (active) { ctx.fillStyle = 'rgba(246,215,111,0.2)'; ctx.fillRect(tx - 4, ty + i * 22 - 12, 150, 20); }
+        ctx.fillStyle = active ? '#F6D76F' : 'rgba(237,228,214,0.6)';
+        ctx.fillText(r[0] + '  ' + r[1] + '  →  ' + r[2], tx, ty + i * 22 + 4);
+      });
+      simStatus(statusEl, 'Two switches, one rule, one light. ' + gate + ': with inputs ' + A + ', ' + B + ' the output is ' + out + '. George Boole, 1854, showed every such rule is algebra in a two-value world, and Claude Shannon, 1938, wired the algebra into relays and vacuum tubes. A single gate is trivial — stacked a thousand deep they add, compare, and remember, which is exactly what a computer is.');
+    }
+    draw();
+    return { destroy() { S.destroy(); } };
+  }
+
+  /* ------------------------- function machine ------------------------- */
+
+  function functionMachineSim(shellEl, statusEl) {
+    const S = simCanvas(shellEl, statusEl);
+    const ctx = S.ctx;
+    let x = 2;
+    const RULES = {
+      'x + 2': v => v + 2, '2x': v => 2 * v, 'x²': v => v * v,
+      '-x': v => -v, '1/x': v => (v === 0 ? Infinity : 1 / v), 'sin(x)': v => Math.sin(v)
+    };
+    let rule = 'x + 2';
+    const trace = [];
+    const controls = simControls(shellEl,
+      '<label class="sim-slider">input x<input data-a="x" type="range" min="-5" max="5" step="0.1" value="2" aria-label="function input"></label>' +
+      '<label class="sim-select">rule<select data-a="r"><option>x + 2</option><option>2x</option><option>x²</option><option>-x</option><option>1/x</option><option>sin(x)</option></select></label>' +
+      '<button class="btn" data-a="reset">Reset</button>');
+    const xEl = controls.querySelector('[data-a="x"]');
+    const rEl = controls.querySelector('[data-a="r"]');
+    xEl.addEventListener('input', () => { x = parseFloat(xEl.value); trace.push({ x: +x, y: +RULES[rule](x) }); if (trace.length > 12) trace.shift(); draw(); });
+    rEl.addEventListener('change', () => { rule = rEl.value; trace.length = 0; draw(); });
+    controls.querySelector('[data-a="reset"]').addEventListener('click', () => { x = 2; xEl.value = 2; trace.length = 0; draw(); });
+    function draw() {
+      const w = S.w(), h = S.h();
+      ctx.fillStyle = '#120D0A'; ctx.fillRect(0, 0, w, h);
+      const y = RULES[rule](x);
+      // machine
+      ctx.strokeStyle = '#7FA8C9'; ctx.lineWidth = 3;
+      const mx = w / 2 - 80, my = h / 2 - 32, mw = 160, mh = 64;
+      ctx.strokeRect(mx, my, mw, mh);
+      ctx.fillStyle = '#7FA8C9'; ctx.font = '14px IBM Plex Mono, monospace'; ctx.textAlign = 'center';
+      ctx.fillText(rule, mx + mw / 2, my + mh / 2 + 5);
+      // input arrow
+      ctx.strokeStyle = '#F6D76F'; ctx.lineWidth = 2.5;
+      ctx.beginPath(); ctx.moveTo(50, h / 2); ctx.lineTo(mx - 12, h / 2); ctx.stroke();
+      ctx.fillStyle = '#F6D76F'; ctx.font = '16px IBM Plex Mono, monospace'; ctx.textAlign = 'left';
+      ctx.fillText('x = ' + x.toFixed(1), 12, h / 2 - 12);
+      // output arrow
+      ctx.beginPath(); ctx.moveTo(mx + mw + 12, h / 2); ctx.lineTo(w - 40, h / 2); ctx.stroke();
+      ctx.fillStyle = '#93A884'; ctx.font = '16px IBM Plex Mono, monospace';
+      ctx.fillText('f(x) = ' + (isFinite(y) ? y.toFixed(2) : '∞'), w - 150, h / 2 - 12);
+      ctx.fillRect(w - 40, h / 2 - 3, 6, 6);
+      // trace dots
+      ctx.fillStyle = 'rgba(246,215,111,0.5)'; ctx.font = '10px IBM Plex Mono, monospace'; ctx.textAlign = 'left';
+      ctx.fillText('recent mappings', 12, h * 0.6);
+      trace.forEach((t, i) => ctx.fillText('f(' + t.x.toFixed(1) + ') = ' + (isFinite(t.y) ? t.y.toFixed(2) : '∞'), 12, h * 0.6 + 16 + i * 13));
+      simStatus(statusEl, 'One funnel, one spout: feed an x in and exactly one number comes out. It may repeat itself or wander wildly — but a function never splits one input into two. Mathematics only half existed as an object this concrete until someone asked what the machine itself was. Change the rule and the whole machine changes; the input is the argument, the output is the value.');
+    }
+    draw();
+    return { destroy() { S.destroy(); } };
+  }
+
+  /* ------------------------- complexity growth ------------------------- */
+
+  function complexityGrowthSim(shellEl, statusEl) {
+    const S = simCanvas(shellEl, statusEl);
+    const ctx = S.ctx;
+    let n = 10, running = false, raf = null;
+    const controls = simControls(shellEl,
+      '<label class="sim-slider">input size n<input data-a="n" type="range" min="1" max="40" step="1" value="10" aria-label="input size"></label>' +
+      '<button class="btn btn-accent" data-a="run">Run / pause growth</button>' +
+      '<button class="btn" data-a="reset">Reset</button>');
+    const nEl = controls.querySelector('[data-a="n"]');
+    nEl.addEventListener('input', () => { n = parseInt(nEl.value); draw(); });
+    controls.querySelector('[data-a="run"]').addEventListener('click', () => {
+      running = !running;
+      if (running) loop(); else if (raf) cancelAnimationFrame(raf);
+    });
+    controls.querySelector('[data-a="reset"]').addEventListener('click', () => { running = false; if (raf) cancelAnimationFrame(raf); raf = null; n = 10; nEl.value = 10; draw(); });
+    function loop() { if (!running) return; n = Math.min(40, n + 1); draw(); raf = setTimeout(loop, 120); }
+    function draw() {
+      const w = S.w(), h = S.h();
+      ctx.fillStyle = '#120D0A'; ctx.fillRect(0, 0, w, h);
+      const mX = 50, mY = h - 30;
+      const dim = Math.min(w - mX - 20, mY - 30);
+      const ymax = Math.pow(40, 3); // allow n^3 headroom
+      const PX = t => mX + t * dim;
+      const PY = v => mY - (Math.min(v, ymax) / ymax) * dim;
+      ctx.strokeStyle = 'rgba(237,228,214,0.25)'; ctx.lineWidth = 1;
+      ctx.beginPath(); ctx.moveTo(mX, mY); ctx.lineTo(mX + dim, mY); ctx.moveTo(mX, mY); ctx.lineTo(mX, mY - dim); ctx.stroke();
+      ctx.fillStyle = '#E6DAC4'; ctx.font = '9px IBM Plex Mono, monospace'; ctx.textAlign = 'left';
+      ctx.fillText('n', mX + dim, mY + 12);
+      ctx.fillText('steps (work)', 4, 14);
+      const fns = [
+        { name: 'n', color: '#93A884', fn: v => v },
+        { name: 'n log n', color: '#7FA8C9', fn: v => v * Math.log2(v) },
+        { name: 'n²', color: '#C99A57', fn: v => v * v },
+        { name: '2ⁿ', color: '#D97A46', fn: v => Math.pow(2, v) }
+      ];
+      fns.forEach(f => {
+        ctx.strokeStyle = f.color; ctx.lineWidth = 2;
+        ctx.beginPath();
+        for (let v = 1; v <= 40; v++) {
+          const fx = PX((v - 1) / 39), fy = PY(f.fn(v));
+          v === 1 ? ctx.moveTo(fx, fy) : ctx.lineTo(fx, fy);
+        }
+        ctx.stroke();
+        ctx.fillStyle = f.color;
+        ctx.fillText(f.name, PX(0.05), PY(f.fn(6)));
+      });
+      // current position
+      ctx.strokeStyle = 'rgba(246,215,111,0.5)'; ctx.setLineDash([3, 3]); ctx.lineWidth = 1;
+      ctx.beginPath(); ctx.moveTo(PX((n - 1) / 39), mY); ctx.lineTo(PX((n - 1) / 39), mY - dim); ctx.stroke();
+      ctx.setLineDash([]);
+      const steps = fns.map(f => ({ name: f.name, v: f.fn(n), color: f.color }));
+      ctx.fillStyle = 'rgba(237,228,214,0.6)'; ctx.font = '10px IBM Plex Mono, monospace'; ctx.textAlign = 'left';
+      ctx.fillText('at n = ' + n + ':', mX + 8, 34);
+      steps.forEach((s, i) => {
+        ctx.fillStyle = s.color;
+        ctx.fillText(s.name + ' → ' + (s.v > 1e9 ? s.v.toExponential(1) : s.v.toFixed(0)) + ' steps', mX + 8, 34 + (i + 1) * 14);
+      });
+      const expTime = Math.pow(2, 40) / 1e9;
+      simStatus(statusEl, 'Double n and watch each curve\u2019s work multiply: n doubles, n log n slightly more than doubles, n² quadruples, and 2ⁿ does not merely grow — it explodes. At n = ' + n + ' the exponential curve is already doing ' + (Math.pow(2, n) > 1e9 ? Math.pow(2, n).toExponential(1) : Math.pow(2, n).toFixed(0)) + ' steps; at n = 40 that would take ' + expTime.toExponential(1) + ' seconds even at a billion steps per second. When the input gets bigger, the algorithm — not the machine — decides whether the world ends first.');
+    }
+    draw();
+    return { destroy() { S.destroy(); if (raf) clearTimeout(raf); } };
+  }
+
+  /* ------------------------- turing machine ------------------------- */
+
+  function turingMachineSim(shellEl, statusEl) {
+    const S = simCanvas(shellEl, statusEl);
+    const ctx = S.ctx;
+    // binary increment: 101 -> 110
+    let tape = ['1', '0', '1', '', ''];   // '' = blank
+    let head = 0, state = 'S', steps = 0, halted = false, running = false, raf = null;
+    // S: scan right for blank; I: increment with carry; H: halt
+    const RULES = {
+      S: { '0': { w: '0', m: 'R', n: 'S' }, '1': { w: '1', m: 'R', n: 'S' }, '': { w: '', m: 'L', n: 'I' } },
+      I: { '0': { w: '1', m: 'L', n: 'H' }, '1': { w: '0', m: 'L', n: 'I' }, '': { w: '1', m: 'L', n: 'H' } }
+    };
+    const controls = simControls(shellEl,
+      '<button class="btn btn-accent" data-a="step">Step</button>' +
+      '<button class="btn" data-a="run">Run</button>' +
+      '<button class="btn" data-a="reset">Reset</button><span class="sim-hint">a binary number on the tape — the machine adds one</span>');
+    function stepOnce() {
+      if (halted) return;
+      const r = RULES[state][tape[head] || ''];
+      if (!r) { halted = true; return; }
+      tape[head] = r.w;
+      head += r.m === 'R' ? 1 : -1;
+      if (head < 0) { tape.unshift(''); head = 0; }
+      if (head >= tape.length) tape.push('');
+      state = r.n;
+      if (state === 'H') halted = true;
+      steps++;
+      draw();
+    }
+    function loop() { if (!running || halted) return; stepOnce(); if (!halted) raf = setTimeout(loop, 500); }
+    controls.querySelector('[data-a="step"]').addEventListener('click', stepOnce);
+    controls.querySelector('[data-a="run"]').addEventListener('click', () => { running = !running; if (running) loop(); else if (raf) clearTimeout(raf); });
+    controls.querySelector('[data-a="reset"]').addEventListener('click', () => { running = false; if (raf) clearTimeout(raf); raf = null; tape = ['1', '0', '1', '', '']; head = 0; state = 'S'; steps = 0; halted = false; draw(); });
+    function draw() {
+      const w = S.w(), h = S.h();
+      ctx.fillStyle = '#120D0A'; ctx.fillRect(0, 0, w, h);
+      // tape
+      const cell = 52;
+      const c0 = w / 2 - 3 * cell - 26;
+      for (let i = 0; i < tape.length; i++) {
+        const x = c0 + i * cell;
+        ctx.fillStyle = i === head ? 'rgba(246,215,111,0.18)' : 'rgba(237,228,214,0.05)';
+        ctx.fillRect(x, h * 0.32, cell, cell - 6);
+        ctx.strokeStyle = i === head ? '#F6D76F' : 'rgba(237,228,214,0.35)';
+        ctx.lineWidth = i === head ? 2 : 1;
+        ctx.strokeRect(x, h * 0.32, cell, cell - 6);
+        ctx.fillStyle = '#E6DAC4'; ctx.font = '26px IBM Plex Mono, monospace'; ctx.textAlign = 'center';
+        ctx.fillText(tape[i] || '□', x + cell / 2, h * 0.32 + cell - 14);
+      }
+      // head arrow
+      ctx.strokeStyle = '#D97A46'; ctx.lineWidth = 3;
+      const hx = c0 + head * cell + cell / 2;
+      ctx.beginPath(); ctx.moveTo(hx, h * 0.32 + cell - 2); ctx.lineTo(hx, h * 0.32 + cell + 22); ctx.lineTo(hx - 8, h * 0.32 + cell + 14); ctx.moveTo(hx, h * 0.32 + cell + 22); ctx.lineTo(hx + 8, h * 0.32 + cell + 14); ctx.stroke();
+      // state + program
+      ctx.fillStyle = '#7FA8C9'; ctx.font = '14px IBM Plex Mono, monospace'; ctx.textAlign = 'left';
+      ctx.fillText('state: ' + (halted ? 'HALT' : state), 14, 24);
+      ctx.fillText('steps: ' + steps, 14, 44);
+      ctx.fillStyle = '#E6DAC4'; ctx.font = '10px IBM Plex Mono, monospace';
+      ctx.fillText('program: scan right to the end, then add 1 with carry, writing leftward', 14, h - 16);
+      simStatus(statusEl, halted
+        ? 'The machine halted. It started on 101 (binary 5) and the tape now holds ' + tape.filter(t => t !== '').join('') + ' — binary 6. Every step was one read, one write, one move, chosen from the tiny table by the state and the symbol under the head. Turing, 1936, showed that a machine this mindless could compute anything any method can — the proof that some problems no machine can ever solve.' 
+        : 'One read, one write, one move — that is the whole instruction set. The head is in state ' + state + ' over ' + (tape[head] || '□') + ', so the table says what to print, which way to slide, and what state comes next. Step through: the head races right to the end, then walks left flipping 1s to 0s until it finds a 0 to turn into a 1. Watch it turn 101 into 110.');
+    }
+    draw();
+    return { destroy() { S.destroy(); if (raf) clearTimeout(raf); } };
+  }
+
+  /* ------------------------- double auction (Vernon Smith) ------------------------- */
+
+  function doubleAuctionSim(shellEl, statusEl) {
+    const S = simCanvas(shellEl, statusEl);
+    const ctx = S.ctx;
+    let buyers = [], sellers = [], buy = [], sell = [], trades = [], allDone = false;
+    const controls = simControls(shellEl,
+      '<button class="btn btn-accent" data-a="trade">Trade one match</button>' +
+      '<button class="btn" data-a="run">Clear the market</button>' +
+      '<button class="btn" data-a="reset">New market</button><span class="sim-hint">the highest bid meets the lowest ask</span>');
+    function fresh() {
+      buyers = []; sellers = [];
+      for (let i = 0; i < 20; i++) buyers.push(30 + Math.round(Math.random() * 50));
+      for (let i = 0; i < 20; i++) sellers.push(30 + Math.round(Math.random() * 50));
+      buy = buyers.slice().sort((a, b) => b - a);
+      sell = sellers.slice().sort((a, b) => a - b);
+      trades = [];
+      allDone = false;
+      draw();
+    }
+    function matchOne() {
+      if (allDone) return;
+      if (buy.length && sell.length && buy[0] >= sell[0]) {
+        const price = Math.round((buy.shift() + sell.shift()) / 2);
+        trades.push(price);
+      } else allDone = true;
+      draw();
+    }
+    function clearAll() {
+      while (!allDone) matchOne();
+    }
+    controls.querySelector('[data-a="trade"]').addEventListener('click', matchOne);
+    controls.querySelector('[data-a="run"]').addEventListener('click', clearAll);
+    controls.querySelector('[data-a="reset"]').addEventListener('click', fresh);
+    function draw() {
+      const w = S.w(), h = S.h();
+      ctx.fillStyle = '#120D0A'; ctx.fillRect(0, 0, w, h);
+      const mX = 46, mY = h * 0.66;
+      const dimX = w - mX - 24, dimY = mY - 26;
+      // supply and demand curves
+      const up = (arr) => arr.slice().sort((a, b) => a - b);
+      const down = (arr) => arr.slice().sort((a, b) => b - a);
+      const d = down(buyers), su = up(sellers);
+      const maxP = 90;
+      const PX = q => mX + (q / 40) * dimX;
+      const PY = p => mY - (p / maxP) * dimY;
+      // eq line
+      let vol = 0;
+      while (vol < Math.min(d.length, su.length) && d[vol] >= su[vol]) vol++;
+      const eq = vol ? (d[vol - 1] + su[vol - 1]) / 2 : 40;
+      ctx.strokeStyle = 'rgba(93,168,132,0.8)'; ctx.lineWidth = 1.4; ctx.setLineDash([4, 4]);
+      ctx.beginPath(); ctx.moveTo(mX, PY(eq)); ctx.lineTo(mX + dimX, PY(eq)); ctx.stroke(); ctx.setLineDash([]);
+      ctx.fillStyle = 'rgba(147,168,132,0.9)'; ctx.font = '9px IBM Plex Mono, monospace'; ctx.textAlign = 'left';
+      ctx.fillText('equilibrium · ' + eq.toFixed(0), mX + 4, PY(eq) - 4);
+      // demand step
+      ctx.strokeStyle = '#7FA8C9'; ctx.lineWidth = 2;
+      ctx.beginPath(); ctx.moveTo(PX(0), PY(0));
+      d.forEach((v, i) => { ctx.lineTo(PX(i), PY(v)); });
+      ctx.lineTo(PX(d.length), PY(0)); ctx.stroke();
+      ctx.fillStyle = 'rgba(127,168,201,0.16)';
+      ctx.beginPath(); ctx.moveTo(PX(0), PY(0));
+      d.forEach((v, i) => ctx.lineTo(PX(i), PY(v)));
+      ctx.lineTo(PX(d.length), PY(0)); ctx.closePath(); ctx.fill();
+      ctx.fillStyle = '#7FA8C9';
+      ctx.fillText('demand (buyers\u2019 max)', mX + 4, 18);
+      // supply step
+      ctx.strokeStyle = '#C99A57'; ctx.lineWidth = 2;
+      ctx.beginPath(); ctx.moveTo(PX(0), PY(0));
+      su.forEach((v, i) => { ctx.lineTo(PX(i), PY(v)); });
+      ctx.lineTo(PX(su.length), PY(0)); ctx.stroke();
+      ctx.fillStyle = '#C99A57'; ctx.font = '9px IBM Plex Mono, monospace';
+      ctx.fillText('supply (sellers\u2019 min)', mX + 90, 18);
+      // transactions
+      trades.forEach((p, i) => {
+        ctx.fillStyle = '#F6D76F';
+        ctx.beginPath(); ctx.arc(mX + (i / 20) * dimX, PY(p), 3, 0, Math.PI * 2); ctx.fill();
+      });
+      ctx.fillText('trades: ' + trades.length, mX + 4, mY + 16);
+      ctx.fillText('bid ' + (buy[0] ?? '-') + '  /  ask ' + (sell[0] ?? '-'), mX + 4, mY + 30);
+      simStatus(statusEl, allDone
+        ? 'The market cleared: ' + trades.length + ' deals, prices huddled around ' + eq.toFixed(0) + ' — the point where the curves cross. No single person saw the whole picture: every trader only knew their own lowest acceptable price. Vernon Smith ran exactly this double auction in 1962 and watched strangers converge on the textbook equilibrium in minutes; it earned him the Nobel. This is the invisible hand, measured in a lab.'
+        : 'Every buyer carries a maximum price, every seller a minimum. Trade: the highest bid faces the lowest ask; if it clears, they deal at the midpoint and the price lands near the dashed equilibrium. Nobody sees the curves — yet the trades keep seeking the crossing.');
+    }
+    fresh();
+    return { destroy() { S.destroy(); } };
+  }
+
+  /* ------------------------- fractional reserve banking ------------------------- */
+
+  function fractionalReserveSim(shellEl, statusEl) {
+    const S = simCanvas(shellEl, statusEl);
+    const ctx = S.ctx;
+    let r = 0.1, rounds = [], maxRounds = 7, runMode = false, raf = null, panic = false;
+    const controls = simControls(shellEl,
+      '<label class="sim-slider">reserve ratio<input data-a="r" type="range" min="0.05" max="0.5" step="0.05" value="0.1" aria-label="reserve ratio"><output data-o="r">10%</output></label>' +
+      '<button class="btn btn-accent" data-a="run">Create money</button>' +
+      '<button class="btn" data-a="panic">Bank run!</button>' +
+      '<button class="btn" data-a="reset">Reset</button>');
+    const rEl = controls.querySelector('[data-a="r"]');
+    const oR = controls.querySelector('[data-o="r"]');
+    rEl.addEventListener('input', () => { r = parseFloat(rEl.value); oR.value = Math.round(r * 100) + '%'; if (!runMode && !panic) rebuild(); });
+    function rebuild() {
+      rounds = []; runMode = false; panic = false;
+      if (raf) cancelAnimationFrame(raf);
+      raf = null;
+      draw();
+    }
+    function loop() {
+      if (!runMode) return;
+      const prev = rounds.length ? rounds[rounds.length - 1] : { deposit: 1000, reserve: 1000 * r, loan: 1000 * (1 - r) };
+      const dep = prev.loan;
+      if (dep < 0.5 || rounds.length >= maxRounds) { runMode = false; draw(); return; }
+      rounds.push({ deposit: +dep.toFixed(2), reserve: +(dep * r).toFixed(2), loan: +(dep * (1 - r)).toFixed(2) });
+      draw();
+      raf = setTimeout(loop, 500);
+    }
+    controls.querySelector('[data-a="run"]').addEventListener('click', () => { runMode = !runMode; if (runMode) loop(); else if (raf) clearTimeout(raf); });
+    controls.querySelector('[data-a="panic"]').addEventListener('click', () => { panic = true; runMode = false; if (raf) clearTimeout(raf); draw(); });
+    controls.querySelector('[data-a="reset"]').addEventListener('click', rebuild);
+    function draw() {
+      const w = S.w(), h = S.h();
+      ctx.fillStyle = '#120D0A'; ctx.fillRect(0, 0, w, h);
+      let totalDep = 1000;
+      let totalRes = rounds.reduce((a, x) => a + x.reserve, 0) + 1000 * r;
+      let totalLoan = rounds.reduce((a, x) => a + x.loan, 0);
+      const all = [{ deposit: 1000, reserve: 1000 * r, loan: 1000 * (1 - r) }].concat(rounds);
+      all.forEach(x => totalDep += x.deposit);
+      const tx = 20, ty = 34, cw = 74, ch = 26;
+      // vault
+      ctx.fillStyle = '#E6DAC4'; ctx.font = '10px IBM Plex Mono, monospace'; ctx.textAlign = 'left';
+      ctx.fillText('the vault (reserves)', tx, 22);
+      ctx.strokeStyle = '#8A7C68'; ctx.lineWidth = 2;
+      ctx.strokeRect(tx, ty, 180, ch);
+      const rMax = 3000;
+      ctx.fillStyle = panic ? '#D97A46' : '#93A884';
+      ctx.fillRect(tx + 2, ty + 2, 176 * Math.min(1, totalRes / rMax), ch - 4);
+      ctx.fillStyle = 'rgba(237,228,214,0.8)';
+      ctx.fillText('reserves £' + totalRes.toFixed(0), tx + 5, ty + 16);
+      // loans owed to the bank
+      ctx.fillStyle = '#E6DAC4';
+      ctx.fillText('loans outstanding', tx, ty + 50);
+      ctx.strokeRect(tx, ty + 56, 180, ch);
+      ctx.fillStyle = '#C99A57';
+      ctx.fillRect(tx + 2, ty + 58, 176 * Math.min(1, totalLoan / rMax), ch - 4);
+      ctx.fillStyle = 'rgba(237,228,214,0.8)';
+      ctx.fillText('£' + totalLoan.toFixed(0), tx + 5, ty + 72);
+      // rounds table
+      const rx = w * 0.45;
+      ctx.fillStyle = '#E6DAC4'; ctx.font = '10px IBM Plex Mono, monospace'; ctx.textAlign = 'left';
+      ctx.fillText('money creation chain (each loan becomes the next deposit)', rx, 22);
+      ctx.fillStyle = 'rgba(237,228,214,0.5)'; ctx.font = '9px IBM Plex Mono, monospace';
+      ctx.fillText('deposit   reserve(10%)   loan', rx, 36);
+      all.forEach((x, i) => {
+        const y = 46 + i * 30;
+        ctx.fillStyle = 'rgba(237,228,214,0.8)'; ctx.font = '10px IBM Plex Mono, monospace';
+        ctx.fillText('£' + x.deposit.toFixed(1).padStart(8) + '  £' + x.reserve.toFixed(1).padStart(7) + '   £' + x.loan.toFixed(1).padStart(7), rx, y);
+      });
+      const mult = 1 / r;
+      ctx.fillStyle = '#F6D76F';
+      ctx.fillText('total money = deposit-chain ≈ £' + (totalDep).toFixed(0) + '  (multiplier 1/r = ' + mult.toFixed(1) + ')', rx, 46 + all.length * 30 + 8);
+      if (panic) {
+        ctx.fillStyle = '#D97A46';
+        ctx.fillText('PANIC: depositors want £' + (totalDep * 0.3).toFixed(0) + ' back NOW — the vault holds only £' + totalRes.toFixed(0) + ' in cash.', rx, 46 + all.length * 30 + 26);
+      }
+      simStatus(statusEl, panic
+        ? 'The bank run has hit. Everyone wants their deposits in hand at once, but the vault holds only a fraction of ' + (100 - r * 100).toFixed(0) + '% of the money out on loan. A bank is liquid by fiction and rich by trust — the run turns the fiction to nothing. Diamond and Dybvig showed why every modern lender of last resort exists.'
+        : 'The first depositor brings £1000. Under a ' + Math.round(r * 100) + '% reserve ratio the bank keeps ' + (r * 100).toFixed(0) + '% and lends the other ' + (100 - r * 100).toFixed(0) + '%, which the borrower deposits elsewhere — and the process repeats. Every round adds a smaller deposit, and the chain sums to the original times 1/r = ' + mult.toFixed(1) + '. That created money is the quietest force in macroeconomics.');
+    }
+    rebuild();
+    return { destroy() { S.destroy(); if (raf) clearTimeout(raf); } };
+  }
+
+  /* ------------------------- printing money / inflation ------------------------- */
+
+  function moneyPrintingSim(shellEl, statusEl) {
+    const S = simCanvas(shellEl, statusEl);
+    const ctx = S.ctx;
+    let M = 1, P = 1, rounds = 0, running = false, raf = null;
+    const controls = simControls(shellEl,
+      '<button class="btn btn-accent" data-a="print">Print money ×2</button>' +
+      '<button class="btn" data-a="auto">Auto-print</button>' +
+      '<button class="btn" data-a="reset">Reset economy</button><span class="sim-hint">more money, same goods — prices must rise</span>');
+    function printMoney() {
+      M *= 2; P = M; rounds++;
+      draw();
+      simStatus(statusEl, rounds <= 1
+        ? 'Twice the money but the same factories, farms and hours of work. Households do not want more bread, they just have more notes chasing the same amount — so the price of bread doubles, and your savings buy half. Friedman\u2019s summary: inflation is always and everywhere a monetary phenomenon.'
+        : 'Print again. The money supply is now ×' + M + ', and the price level follows it ×' + P + '. Your £100 saved at the start now buys £' + (100 / P).toFixed(1) + ' of real goods. Hyperinflation is this loop running for years — Germany\u2019s 1923 loaf went from a mark to 200 billion marks; Zimbabwe\u2019s 2008 trillion-dollar note could not buy a bus ride.');
+    }
+    function loop() { if (!running) return; printMoney(); raf = setTimeout(loop, 700); }
+    controls.querySelector('[data-a="print"]').addEventListener('click', printMoney);
+    controls.querySelector('[data-a="auto"]').addEventListener('click', () => { running = !running; if (running) loop(); else if (raf) clearTimeout(raf); });
+    controls.querySelector('[data-a="reset"]').addEventListener('click', () => { running = false; if (raf) clearTimeout(raf); raf = null; M = 1; P = 1; rounds = 0; draw(); });
+    function draw() {
+      const w = S.w(), h = S.h();
+      ctx.fillStyle = '#120D0A'; ctx.fillRect(0, 0, w, h);
+      // economy drawing: loaves + notes
+      ctx.fillStyle = '#E6DAC4'; ctx.font = '10px IBM Plex Mono, monospace'; ctx.textAlign = 'left';
+      ctx.fillText('loaves in the market: 12', 20, 22);
+      ctx.fillStyle = '#C99A57';
+      for (let i = 0; i < 12; i++) {
+        const x = 24 + (i % 6) * 26, y = 30 + Math.floor(i / 6) * 22;
+        ctx.beginPath(); ctx.arc(x, y, 8, 0, Math.PI * 2); ctx.fill();
+        ctx.fillStyle = '#F6D76F'; ctx.font = '8px IBM Plex Mono, monospace'; ctx.textAlign = 'center';
+        ctx.fillText('bread', x, y + 3);
+        ctx.fillStyle = '#C99A57';
+      }
+      // money notes stack
+      ctx.fillStyle = '#E6DAC4'; ctx.font = '10px IBM Plex Mono, monospace'; ctx.textAlign = 'left';
+      ctx.fillText('money in circulation  (×' + M + ')', w * 0.26, 22);
+      const notes = Math.min(9, Math.log2(M) + 1);
+      ctx.fillStyle = '#7FA56B';
+      for (let i = 0; i < notes; i++) ctx.fillRect(w * 0.26 + i * 6, 58 - i * 3 - 8, 40, 18);
+      // price tag
+      ctx.fillStyle = '#F6D76F'; ctx.font = '18px IBM Plex Mono, monospace'; ctx.textAlign = 'center';
+      ctx.fillText('price of a loaf:', w * 0.62, h * 0.24);
+      ctx.fillStyle = '#F6D76F'; ctx.font = '30px IBM Plex Mono, monospace';
+      ctx.fillText('£' + P.toFixed(P >= 8 ? 0 : 1), w * 0.62, h * 0.38);
+      // savings erosion
+      ctx.fillStyle = '#E6DAC4'; ctx.font = '12px IBM Plex Mono, monospace'; ctx.textAlign = 'left';
+      ctx.fillText('your savings: £100 at the start', w * 0.08, h * 0.6);
+      ctx.fillStyle = '#D97A46';
+      ctx.fillText('now worth £' + (100 / P).toFixed(1) + ' in bread', w * 0.08, h * 0.68);
+      ctx.fillStyle = 'rgba(237,228,214,0.5)'; ctx.font = '10px IBM Plex Mono, monospace';
+      ctx.fillText('prints: ' + rounds + '   money ×' + M.toFixed(0) + '   price ×' + P.toFixed(1), 20, h - 16);
+      simStatus(statusEl, 'The shelves hold twelve loaves today and will hold twelve next year; only the notes multiply. With ' + M.toFixed(0) + '× the money and the same real output, each note is worth a ' + (1 / P).toFixed(2) + 'th as much — the price tag is just the note count divided by the loaves. Every central bank that printed its way out of debt discovered the fixed point: prices catch up, and savers absorb the loss.');
+    }
+    draw();
+    return { destroy() { S.destroy(); if (raf) clearTimeout(raf); } };
+  }
+
+  /* ------------------------- keynesian multiplier ------------------------- */
+
+  function keynesianMultiplierSim(shellEl, statusEl) {
+    const S = simCanvas(shellEl, statusEl);
+    const ctx = S.ctx;
+    let s = 0.2, G = 50, spent = [], done = false;
+    const controls = simControls(shellEl,
+      '<label class="sim-slider">savings rate<input data-a="s" type="range" min="0.1" max="0.5" step="0.05" value="0.2" aria-label="household savings rate"><output data-o="s">20%</output></label>' +
+      '<label class="sim-slider">spending (£bn)<input data-a="g" type="range" min="10" max="200" step="10" value="50" aria-label="government spending"></label>' +
+      '<button class="btn btn-accent" data-a="spend">Spend and watch the rounds</button>' +
+      '<button class="btn" data-a="reset">Reset</button>');
+    const sEl = controls.querySelector('[data-a="s"]');
+    const oS = controls.querySelector('[data-o="s"]');
+    const gEl = controls.querySelector('[data-a="g"]');
+    sEl.addEventListener('input', () => { s = parseFloat(sEl.value); oS.value = Math.round(s * 100) + '%'; if (!done) draw(); });
+    gEl.addEventListener('input', () => { G = parseInt(gEl.value); if (!done) draw(); });
+    function spend() {
+      spent = [];
+      let amount = G;
+      for (let i = 0; i < 14; i++) {
+        spent.push(amount);
+        amount *= (1 - s);
+        if (amount < 0.5) break;
+      }
+      const total = spent.reduce((a, b) => a + b, 0);
+      done = true;
+      draw();
+      simStatus(statusEl, 'The first pound is income; part of it is saved, and the rest is spent again, becoming someone else\u2019s income — each round a little smaller. Over ' + spent.length + ' rounds the spending adds to £' + total.toFixed(0) + 'bn, which is ' + G + 'bn ÷ ' + (s * 100).toFixed(0) + '% = a multiplier of ' + (1 / s).toFixed(1) + '. Keynes, 1936: this is why a small push can move a whole economy, and why saving more when everyone saves more (the paradox of thrift) can shrink output for all.');
+    }
+    controls.querySelector('[data-a="spend"]').addEventListener('click', spend);
+    controls.querySelector('[data-a="reset"]').addEventListener('click', () => { spent = []; done = false; draw(); });
+    function draw() {
+      const w = S.w(), h = S.h();
+      ctx.fillStyle = '#120D0A'; ctx.fillRect(0, 0, w, h);
+      const mX = 46, mY = h - 26;
+      const dimY = mY - 24, dimX = w - mX - 30;
+      const total = spent.reduce((a, b) => a + b, 0);
+      const maxBar = Math.max(G, total);
+      ctx.strokeStyle = 'rgba(237,228,214,0.25)'; ctx.lineWidth = 1;
+      ctx.beginPath(); ctx.moveTo(mX, mY); ctx.lineTo(mX + dimX, mY); ctx.moveTo(mX, mY); ctx.lineTo(mX, mY - dimY); ctx.stroke();
+      ctx.fillStyle = '#E6DAC4'; ctx.font = '9px IBM Plex Mono, monospace'; ctx.textAlign = 'left';
+      ctx.fillText('£bn', 4, 14);
+      ctx.fillText('rounds of spending', mX + 10, mY + 12);
+      spent.forEach((v, i) => {
+        const bh = (v / maxBar) * dimY;
+        ctx.fillStyle = i === 0 ? '#93A884' : '#7FA8C9';
+        ctx.fillRect(mX + i * 18 + 2, mY - bh, 12, bh);
+        if (i % 2 === 0) {
+          ctx.fillStyle = 'rgba(237,228,214,0.5)'; ctx.font = '8px IBM Plex Mono, monospace'; ctx.textAlign = 'center';
+          ctx.fillText(v.toFixed(0), mX + i * 18 + 8, mY - bh - 3);
+        }
+      });
+      if (done) {
+        ctx.fillStyle = '#93A884';
+        ctx.fillText('total output added: £' + total.toFixed(0) + 'bn', mX + 4, 24);
+        ctx.fillStyle = '#D97A46';
+        ctx.fillText('original injection: £' + G + 'bn (round 0)', mX + 4, 38);
+      }
+      simStatus(statusEl, done
+        ? 'Each later round keeps a constant fraction — the savings rate — out of circulation, so the series is G + G(1−s) + G(1−s)² + … and the sum is G/s. With s = ' + (s * 100).toFixed(0) + '%, the multiplier is ' + (1 / s).toFixed(1) + ': the whole chain adds £' + total.toFixed(0) + 'bn.'
+        : 'Choose a savings rate and an injection of government spending, then run it. Households spend their income minus what they save; the spent fraction becomes the next round\u2019s income. The bars show how the payment ripples outward, shrinking by the same ratio each time.');
+    }
+    draw();
+    return { destroy() { S.destroy(); } };
+  }
+
+  /* ------------------------- opportunity cost ------------------------- */
+
+  function opportunityCostSim(shellEl, statusEl) {
+    const S = simCanvas(shellEl, statusEl);
+    const ctx = S.ctx;
+    const opts = [
+      { id: 'Job A', v: 90, color: '#7FA8C9' },
+      { id: 'Job B', v: 70, color: '#93A884' },
+      { id: 'Start a business', v: 60, color: '#C99A57' }
+    ];
+    let chosen = null;
+    const controls = simControls(shellEl,
+      '<label class="sim-slider">Job A (£k)<input data-a="a" type="range" min="0" max="120" step="5" value="90"></label>' +
+      '<label class="sim-slider">Job B (£k)<input data-a="b" type="range" min="0" max="120" step="5" value="70"></label>' +
+      '<label class="sim-slider">Start a business (£k)<input data-a="c" type="range" min="0" max="120" step="5" value="60"></label>' +
+      '<button class="btn btn-accent" data-a="reset">Undo decision</button><span class="sim-hint">the cost of choosing is the best road not taken</span>');
+    const els = [controls.querySelector('[data-a="a"]'), controls.querySelector('[data-a="b"]'), controls.querySelector('[data-a="c"]')];
+    els.forEach((el, i) => el.addEventListener('input', () => { opts[i].v = parseInt(el.value); draw(); }));
+    controls.querySelector('[data-a="reset"]').addEventListener('click', () => { chosen = null; draw(); });
+    S.canvas.addEventListener('click', (e) => {
+      const rect = S.canvas.getBoundingClientRect();
+      const mx = e.clientX - rect.left;
+      const w = S.w(), h = S.h();
+      const bw = 100, gap = (w - 3 * bw) / 4;
+      for (let i = 0; i < 3; i++) {
+        const x = gap + i * (bw + gap);
+        if (mx >= x && mx <= x + bw) { chosen = i; draw(); }
+      }
+    });
+    function draw() {
+      const w = S.w(), h = S.h();
+      ctx.fillStyle = '#120D0A'; ctx.fillRect(0, 0, w, h);
+      const bw = 100, gap = (w - 3 * bw) / 4;
+      const maxV = Math.max(...opts.map(o => o.v), 1);
+      const others = opts.filter((_, i) => i !== chosen);
+      const bestAlt = chosen !== null ? Math.max(...others.map(o => o.v)) : 0;
+      const cost = chosen !== null ? bestAlt : null;
+      const baseY = h * 0.62, topY = h * 0.12;
+      ctx.fillStyle = 'rgba(237,228,214,0.6)'; ctx.font = '10px IBM Plex Mono, monospace'; ctx.textAlign = 'center';
+      ctx.fillText('click a path to take it', w / 2, 16);
+      for (let i = 0; i < 3; i++) {
+        const x = gap + i * (bw + gap);
+        const o = opts[i];
+        const bh = (o.v / maxV) * (baseY - topY);
+        ctx.fillStyle = o.color;
+        if (i === chosen) {
+          ctx.strokeStyle = '#F6D76F'; ctx.lineWidth = 3;
+          ctx.strokeRect(x - 4, topY - 6, bw + 8, (baseY - topY) + 12);
+        } else if (chosen !== null && o.v === bestAlt) {
+          ctx.strokeStyle = '#D97A46'; ctx.lineWidth = 2; ctx.setLineDash([4, 3]);
+          ctx.strokeRect(x - 4, topY - 6, bw + 8, (baseY - topY) + 12);
+          ctx.setLineDash([]);
+        }
+        ctx.fillRect(x, baseY - bh, bw, bh);
+        ctx.strokeStyle = 'rgba(237,228,214,0.25)';
+        ctx.strokeRect(x, baseY - bh, bw, bh);
+        ctx.fillStyle = '#E6DAC4'; ctx.font = '11px IBM Plex Mono, monospace';
+        ctx.fillText(o.id, x + bw / 2, baseY + 14);
+        ctx.fillStyle = '#F6D76F'; ctx.font = '12px IBM Plex Mono, monospace';
+        ctx.fillText('£' + o.v + 'k', x + bw / 2, baseY - bh - 8);
+      }
+      if (chosen !== null) {
+        ctx.textAlign = 'left'; ctx.font = '12px IBM Plex Mono, monospace';
+        ctx.fillStyle = '#F6D76F';
+        ctx.fillText('chosen: ' + opts[chosen].id + ' at £' + opts[chosen].v + 'k  →  you forgo £' + cost + 'k', 20, h - 16);
+        ctx.fillStyle = 'rgba(237,228,214,0.7)';
+        ctx.fillText('opportunity cost = ' + cost + 'k — the best alternative, not the average of all of them.', 20, h - 4);
+      }
+      simStatus(statusEl, chosen === null
+        ? 'Every choice is made in the presence of alternatives. Take one option and the true price you pay is the best one you left behind — the job at £' + opts.reduce((m, o) => Math.max(m, o.v), 0) + 'k becomes the cost of choosing anything less. Economists call it opportunity cost, and it is the first thing scarcity teaches.'
+        : 'You took ' + opts[chosen].id + '. The dashed column is the best alternative at £' + cost + 'k — that forgone value, ' + cost + 'k, is your opportunity cost. Note what it excludes: you do not lose all three other roads, only the best single one. Choosing a career, a flight, a date, everything is priced in the road not taken.');
+    }
+    draw();
+    return { destroy() { S.destroy(); } };
+  }
+
+  /* ------------------------- least squares regression ------------------------- */
+
+  function leastSquaresSim(shellEl, statusEl) {
+    const S = simCanvas(shellEl, statusEl);
+    const ctx = S.ctx;
+    // deterministic pseudo-random points around y = 0.8x + 1
+    let seed = 7;
+    const rnd = () => { seed = (seed * 1103515245 + 12345) & 0x7fffffff; return seed / 0x7fffffff; };
+    const pts = [];
+    for (let i = 0; i < 14; i++) {
+      const x = 0.5 + (i / 13) * 8;
+      const y = 0.8 * x + 1 + (rnd() - 0.5) * 3;
+      pts.push({ x, y });
+    }
+    let m = 0.4, c = 2, fitted = false;
+    const controls = simControls(shellEl,
+      '<label class="sim-slider">slope<input data-a="m" type="range" min="-1" max="2.5" step="0.02" value="0.4" aria-label="slope"></label>' +
+      '<label class="sim-slider">intercept<input data-a="c" type="range" min="-3" max="6" step="0.1" value="2" aria-label="intercept"></label>' +
+      '<button class="btn btn-accent" data-a="fit">Best fit (least squares)</button>' +
+      '<button class="btn" data-a="reset">Reset</button>');
+    const mEl = controls.querySelector('[data-a="m"]');
+    const cEl = controls.querySelector('[data-a="c"]');
+    mEl.addEventListener('input', () => { m = parseFloat(mEl.value); fitted = false; draw(); });
+    cEl.addEventListener('input', () => { c = parseFloat(cEl.value); fitted = false; draw(); });
+    controls.querySelector('[data-a="fit"]').addEventListener('click', () => {
+      const n = pts.length;
+      let sx = 0, sy = 0, sxx = 0, sxy = 0;
+      pts.forEach(p => { sx += p.x; sy += p.y; sxx += p.x * p.x; sxy += p.x * p.y; });
+      const meanX = sx / n, meanY = sy / n;
+      m = (sxy - n * meanX * meanY) / (sxx - n * meanX * meanX);
+      c = meanY - m * meanX;
+      mEl.value = m.toFixed(2); cEl.value = c.toFixed(1);
+      fitted = true;
+      draw();
+    });
+    controls.querySelector('[data-a="reset"]').addEventListener('click', () => { m = 0.4; c = 2; mEl.value = 0.4; cEl.value = 2; fitted = false; draw(); });
+    function sse() { return pts.reduce((a, p) => a + Math.pow(p.y - (m * p.x + c), 2), 0); }
+    function draw() {
+      const w = S.w(), h = S.h();
+      ctx.fillStyle = '#120D0A'; ctx.fillRect(0, 0, w, h);
+      const mX = 46, mY = h - 34;
+      const dim = Math.min(w - mX - 24, mY - 30);
+      const x0 = 0, x1 = 9, y0 = -3, y1 = 9;
+      const PX = x => mX + ((x - x0) / (x1 - x0)) * dim;
+      const PY = y => mY - ((y - y0) / (y1 - y0)) * dim;
+      ctx.strokeStyle = 'rgba(237,228,214,0.25)'; ctx.lineWidth = 1;
+      ctx.beginPath(); ctx.moveTo(mX, mY); ctx.lineTo(mX + dim, mY); ctx.moveTo(mX, mY); ctx.lineTo(mX, mY - dim); ctx.stroke();
+      // line
+      ctx.strokeStyle = '#F6D76F'; ctx.lineWidth = 2;
+      ctx.beginPath();
+      ctx.moveTo(PX(x0), PY(m * x0 + c)); ctx.lineTo(PX(x1), PY(m * x1 + c)); ctx.stroke();
+      ctx.fillStyle = '#F6D76F'; ctx.font = '10px IBM Plex Mono, monospace'; ctx.textAlign = 'left';
+      ctx.fillText('y = ' + m.toFixed(2) + 'x + ' + c.toFixed(1), mX + 6, 16);
+      // residuals
+      for (const p of pts) {
+        const px = PX(p.x), py = PY(p.y), ly = PY(m * p.x + c);
+        ctx.strokeStyle = 'rgba(217,122,70,0.55)'; ctx.lineWidth = 1;
+        ctx.beginPath(); ctx.moveTo(px, py); ctx.lineTo(px, ly); ctx.stroke();
+        ctx.fillStyle = '#C99A57';
+        ctx.beginPath(); ctx.arc(px, py, 3.4, 0, Math.PI * 2); ctx.fill();
+      }
+      const S2 = sse();
+      ctx.fillStyle = '#93A884'; ctx.font = '12px IBM Plex Mono, monospace';
+      ctx.fillText('sum of squared residuals = ' + S2.toFixed(2), mX + 6, 34);
+      if (fitted) {
+        ctx.fillStyle = '#D97A46';
+        ctx.fillText('this is the minimum — no line fits better', mX + 6, 52);
+      }
+      simStatus(statusEl, 'The orange spikes are the vertical errors, one per point. Squaring them punishes big misses and turns the fit into one number: sum of squared residuals (now ' + S2.toFixed(2) + '). Drag slope and intercept to make it shrink — then press Best fit. That mechanical minimisation, least squares, is Legendre\u2019s 1805 contribution; Gauss used it to recover the tiny asteroid Ceres; today it is the engine under every regression line in econometrics.');
+    }
+    draw();
+    return { destroy() { S.destroy(); } };
+  }
+
+  /* ------------------------- speculative bubble ------------------------- */
+
+  function bubbleCrashSim(shellEl, statusEl) {
+    const S = simCanvas(shellEl, statusEl);
+    const ctx = S.ctx;
+    let t = 0, P = 100, F = 100, frenzy = 1, history = [], running = false, raf = null;
+    const controls = simControls(shellEl,
+      '<label class="sim-slider">speculative frenzy<input data-a="f" type="range" min="0" max="3" step="0.1" value="1" aria-label="speculative intensity"><output data-o="f">1</output></label>' +
+      '<button class="btn btn-accent" data-a="run">Run the market</button>' +
+      '<button class="btn" data-a="pop">Pop it now</button>' +
+      '<button class="btn" data-a="reset">Reset</button><span class="sim-hint">price chases itself until the gap to value snaps</span>');
+    const fEl = controls.querySelector('[data-a="f"]');
+    const oF = controls.querySelector('[data-o="f"]');
+    fEl.addEventListener('input', () => { frenzy = parseFloat(fEl.value); oF.value = frenzy; });
+    function tick() {
+      t++;
+      F *= 1.002;
+      const momentum = history.length ? (P / history[history.length - 1].P) - 1 : 0;
+      P *= 1.002 + frenzy * Math.max(0, momentum * 2) + frenzy * 0.004 * (Math.random());
+      if (P / F > 3.2 + frenzy * 0.5) { P *= 0.45; }
+      history.push({ P: +P.toFixed(1), F: +F.toFixed(1) });
+      draw();
+    }
+    function loop() { if (!running) return; tick(); raf = setTimeout(loop, 90); }
+    controls.querySelector('[data-a="run"]').addEventListener('click', () => { running = !running; if (running) loop(); else if (raf) clearTimeout(raf); });
+    controls.querySelector('[data-a="pop"]').addEventListener('click', () => { P *= 0.45; });
+    controls.querySelector('[data-a="reset"]').addEventListener('click', () => { running = false; if (raf) clearTimeout(raf); raf = null; t = 0; P = 100; F = 100; history = []; draw(); });
+    function draw() {
+      const w = S.w(), h = S.h();
+      ctx.fillStyle = '#120D0A'; ctx.fillRect(0, 0, w, h);
+      const mX = 46, mY = h - 34;
+      const dimX = w - mX - 24, dimY = mY - 34;
+      const maxV = Math.max(100, ...history.map(hh => hh.P));
+      const PX = t => mX + (t / 200) * dimX;
+      const PY = v => mY - (v / maxV) * dimY;
+      ctx.strokeStyle = 'rgba(237,228,214,0.25)'; ctx.lineWidth = 1;
+      ctx.beginPath(); ctx.moveTo(mX, mY); ctx.lineTo(mX + dimX, mY); ctx.moveTo(mX, mY); ctx.lineTo(mX, mY - dimY); ctx.stroke();
+      ctx.fillStyle = '#E6DAC4'; ctx.font = '9px IBM Plex Mono, monospace'; ctx.textAlign = 'left';
+      ctx.fillText('price / fundamental value', 4, 14);
+      // fundamentals line
+      ctx.strokeStyle = '#93A884'; ctx.lineWidth = 1.4;
+      ctx.beginPath();
+      history.forEach((hh, i) => { const x = PX(i), y = PY(hh.F); i === 0 ? ctx.moveTo(x, y) : ctx.lineTo(x, y); });
+      ctx.stroke();
+      ctx.fillStyle = '#93A884'; ctx.fillText('fundamental value', mX + 8, 34);
+      // price line
+      ctx.strokeStyle = '#F6D76F'; ctx.lineWidth = 2.2;
+      ctx.beginPath();
+      history.forEach((hh, i) => { const x = PX(i), y = PY(hh.P); i === 0 ? ctx.moveTo(x, y) : ctx.lineTo(x, y); });
+      ctx.stroke();
+      ctx.fillStyle = '#F6D76F'; ctx.fillText('price', mX + 150, 34);
+      const ratio = history.length ? history[history.length - 1].P / history[history.length - 1].F : 1;
+      ctx.fillStyle = ratio > 2.5 ? '#D97A46' : '#F6D76F';
+      ctx.font = '12px IBM Plex Mono, monospace';
+      ctx.fillText('price–value ratio: ' + ratio.toFixed(1) + '×', mX + 8, mY + 12);
+      ctx.fillStyle = 'rgba(237,228,214,0.5)'; ctx.font = '9px IBM Plex Mono, monospace';
+      ctx.fillText('tulips 1637 · South Sea 1720 · Wall Street 1929 · dotcom 2000 · housing 2008', mX + 8, mY + 26);
+      simStatus(statusEl, t === 0
+        ? 'Fundamental value (green) creeps up with real profits. Speculation adds its own fuel: the more prices rose yesterday, the more buyers expect tomorrow, so the gold line feeds on itself and pulls away from the green. At some multiple of value it snaps. Run it with light and heavy frenzy, and read the crash back off the chart.'
+        : 'After ' + t + ' ticks the price–value ratio is ' + ratio.toFixed(1) + '× and the gold line has ' + (P > F ? 'detached from' : 'returned to') + ' the green. Pull the frenzy slider: gentler momentum bends the loop, strong momentum builds a taller tower that must fall. Every historical mania — 1637 tulips to 2008 housing — is this same feedback with different scenery; Shiller\u2019s CAPE ratio is the ruler that measures the detach.');
+    }
+    draw();
+    return { destroy() { S.destroy(); if (raf) clearTimeout(raf); } };
+  }
+
+  /* ------------------------- ultimatum game ------------------------- */
+
+  function ultimatumGameSim(shellEl, statusEl) {
+    const S = simCanvas(shellEl, statusEl);
+    const ctx = S.ctx;
+    let offer = 4, rounds = 0, accepted = 0, myTotal = 0, otherTotal = 0, lastMsg = null;
+    const controls = simControls(shellEl,
+      '<label class="sim-slider">your offer (£)<input data-a="o" type="range" min="0" max="10" step="1" value="4" aria-label="offer to the responder"><output data-o="o">4</output></label>' +
+      '<button class="btn btn-accent" data-a="send">Send offer</button>' +
+      '<button class="btn" data-a="reset">Reset game</button><span class="sim-hint">it is £10, you decide the split, they may say no</span>');
+    const oEl = controls.querySelector('[data-a="o"]');
+    const outEl = controls.querySelector('[data-o="o"]');
+    oEl.addEventListener('input', () => { offer = parseInt(oEl.value); outEl.value = offer; });
+    controls.querySelector('[data-a="send"]').addEventListener('click', () => {
+      const threshold = 2 + Math.floor(Math.random() * 4); // 2..5
+      const ok = offer >= threshold;
+      if (ok) {
+        accepted++;
+        myTotal += 10 - offer;
+        otherTotal += offer;
+        lastMsg = 'Offered £' + offer + ', they wanted at least £' + threshold + ' — accepted. You keep £' + (10 - offer) + '.';
+      } else {
+        lastMsg = 'Offered £' + offer + ', they wanted at least £' + threshold + ' — rejected. To punish you, they burned their own share too: both sides get nothing.';
+      }
+      rounds++;
+      draw();
+    });
+    controls.querySelector('[data-a="reset"]').addEventListener('click', () => { rounds = 0; accepted = 0; myTotal = 0; otherTotal = 0; lastMsg = null; offer = 4; oEl.value = 4; outEl.value = 4; draw(); });
+    function draw() {
+      const w = S.w(), h = S.h();
+      ctx.fillStyle = '#120D0A'; ctx.fillRect(0, 0, w, h);
+      // the pot
+      ctx.fillStyle = '#E6DAC4'; ctx.font = '11px IBM Plex Mono, monospace'; ctx.textAlign = 'left';
+      ctx.fillText('the pot: £10', w / 2 - 30, 22);
+      // two players
+      const drawPile = (x, y, value, color, label) => {
+        ctx.fillStyle = color;
+        ctx.fillRect(x, y, 16, 8);
+        ctx.fillStyle = '#E6DAC4'; ctx.font = '12px IBM Plex Mono, monospace'; ctx.textAlign = 'center';
+        ctx.fillText(label, x + 8, y - 8);
+        ctx.fillStyle = '#F6D76F';
+        ctx.fillText('£' + value.toFixed(0), x + 8, y + 26);
+      };
+      drawPile(w * 0.28, h * 0.34, lastMsg === null ? 10 - offer : (myTotal), '#7FA8C9', 'you (proposer)');
+      drawPile(w * 0.62, h * 0.34, lastMsg === null ? offer : (otherTotal), '#93A884', 'they (responder)');
+      ctx.fillStyle = 'rgba(237,228,214,0.7)'; ctx.font = '10px IBM Plex Mono, monospace'; ctx.textAlign = 'center';
+      ctx.fillText('this round: you keep ' + (10 - offer) + ', they get ' + offer, w / 2, h * 0.5);
+      ctx.fillStyle = 'rgba(127,168,201,0.8)';
+      ctx.fillText('rounds ' + rounds + ' · accepted ' + accepted + ' · you £' + myTotal + ' · them £' + otherTotal, w / 2, h * 0.58);
+      if (lastMsg) {
+        ctx.fillStyle = '#D97A46';
+        ctx.fillText(lastMsg, w / 2, h * 0.7);
+      }
+      ctx.fillStyle = 'rgba(237,228,214,0.5)'; ctx.font = '9px IBM Plex Mono, monospace'; ctx.textAlign = 'left';
+      ctx.fillText('a purely rational responder should accept even £1 — money is money.', 16, h - 16);
+      simStatus(statusEl, lastMsg
+        ? 'That was a real ultimatum: if they refuse, you both lose the whole pot — so a rational, strictly money-maximising partner should say yes to any positive offer. Real people routinely say no. In Guth\u2019s 1982 lab and hundreds of replications since (from Germany to foraging tribes), most proposers split roughly 40–50% and most responders burn money to reject slights. Fairness is part of the utility function.'
+        : 'You divide £10; they accept or reject. Rejection gives you both zero, so the \u201Crational\u201D play is to offer £1 and expect it taken. Send a few offers — including a stingy one — and watch what happens to the split.');
+    }
+    draw();
+    return { destroy() { S.destroy(); } };
+  }
+
+  /* ------------------------- audit & trial balance ------------------------- */
+
+  function auditStatementSim(shellEl, statusEl) {
+    const S = simCanvas(shellEl, statusEl);
+    const ctx = S.ctx;
+    // account rows: normal side is debit or credit; one row has entries swapped
+    const ACCTS = [
+      { name: 'Cash', d: 500, c: 0 },
+      { name: 'Receivables', d: 300, c: 0 },
+      { name: 'Inventory', d: 200, c: 0 },
+      { name: 'Equipment', d: 400, c: 0 },
+      { name: 'Payables', c: 250, d: 0 },
+      { name: 'Loan', c: 600, d: 0 },
+      { name: 'Equity', c: 450, d: 0 },
+      { name: 'Revenue', c: 100, d: 0 }
+    ];
+    const badIdx = 3 + Math.floor(Math.random() * 4); // one of the 4 credit-side... actually pick any account and flip
+    let bad = Math.floor(Math.random() * ACCTS.length);
+    let checked = new Array(ACCTS.length).fill(false);
+    let testedCount = 0, found = false;
+    // the misposting: entries on wrong side
+    const wrong = ACCTS.map((a, i) => i === bad ? { name: a.name, d: a.c + a.d, c: (a.d ? a.d : a.c) - (a.d ? 0 : 0) } : a);
+    const controls = simControls(shellEl,
+      '<button class="btn" data-a="test">Test the books (recompute the chosen row)</button>' +
+      '<button class="btn btn-accent" data-a="found">Flag the error</button>' +
+      '<button class="btn" data-a="new">New books</button><span class="sim-hint">one posting sits on the wrong side — find it</span>');
+    let selected = null;
+    let selEl = null;
+    S.canvas.addEventListener('click', (e) => {
+      const rect = S.canvas.getBoundingClientRect();
+      const mx = e.clientX - rect.left, my = e.clientY - rect.top;
+      const y0 = 64, rh = 22;
+      const idx = Math.floor((my - y0) / rh);
+      if (idx >= 0 && idx < ACCTS.length) { selected = idx; draw(); }
+    });
+    controls.querySelector('[data-a="test"]').addEventListener('click', () => {
+      if (selected === null || found) return;
+      checked[selected] = true;
+      testedCount++;
+      draw();
+    });
+    controls.querySelector('[data-a="found"]').addEventListener('click', () => {
+      if (selected === null) return;
+      if (selected === bad) { found = true; draw(); }
+      else { testedCount++; draw(); simStatus(statusEl, 'Not there. In the trial balance the misposting is the row whose debit and credit are out of balance of definition — test rows and watch the totals.'); return; }
+    });
+    controls.querySelector('[data-a="new"]').addEventListener('click', () => { bad = Math.floor(Math.random() * ACCTS.length); checked = new Array(ACCTS.length).fill(false); testedCount = 0; found = false; selected = null; draw(); });
+    function totals() {
+      let d = 0, c = 0;
+      ACCTS.forEach((a, i) => {
+        if (i === bad) { d += Math.max(a.d, a.c); c += Math.max(a.d, a.c); } // stays hidden: books foot
+        else { d += a.d; c += a.c; }
+      });
+      return { d, c };
+    }
+    function draw() {
+      const w = S.w(), h = S.h();
+      ctx.fillStyle = '#120D0A'; ctx.fillRect(0, 0, w, h);
+      ctx.fillStyle = '#E6DAC4'; ctx.font = '10px IBM Plex Mono, monospace'; ctx.textAlign = 'left';
+      ctx.fillText('ledger · one posting sits on the wrong side', 14, 18);
+      ctx.fillStyle = 'rgba(237,228,214,0.5)'; ctx.font = '9px IBM Plex Mono, monospace';
+      ctx.fillText('account              debit   credit   (click a row then test)', 14, 50);
+      const y0 = 64, rh = 22;
+      ACCTS.forEach((a, i) => {
+        const y = y0 + i * rh;
+        if (selected === i) { ctx.fillStyle = 'rgba(127,168,201,0.2)'; ctx.fillRect(12, y - 14, w - 150, rh); }
+        if (checked[i]) { ctx.fillStyle = 'rgba(93,168,132,0.15)'; ctx.fillRect(12, y - 14, w - 150, rh); }
+        ctx.fillStyle = i === bad && found ? '#F6D76F' : '#C99A57';
+        ctx.fillText(a.name.padEnd(18), 16, y + 4);
+        const shownD = i === bad ? Math.max(a.d, a.c) : a.d;
+        const shownC = i === bad ? Math.max(a.d, a.c) : a.c;
+        ctx.fillStyle = found && i === bad ? '#F6D76F' : '#E6DAC4';
+        ctx.fillText(String(shownD).padStart(7), 150, y + 4);
+        ctx.fillText(String(shownC).padStart(9), 220, y + 4);
+        if (checked[i] && i !== bad) {
+          ctx.fillStyle = '#93A884';
+          ctx.fillText('✓ checks out', 300, y + 4);
+        }
+      });
+      const t = totals();
+      ctx.fillStyle = '#E6DAC4'; ctx.font = '10px IBM Plex Mono, monospace';
+      ctx.fillText('trial balance:  debit £' + t.d + '   =   credit £' + t.c, 14, y0 + ACCTS.length * rh + 10);
+      if (found) {
+        ctx.fillStyle = '#F6D76F'; ctx.font = '12px IBM Plex Mono, monospace';
+        ctx.fillText('FOUND in ' + testedCount + ' tests: ' + ACCTS[bad].name + ' was posted to the wrong side.', 14, y0 + ACCTS.length * rh + 34);
+      } else {
+        ctx.fillStyle = 'rgba(237,228,214,0.7)'; ctx.font = '10px IBM Plex Mono, monospace';
+        ctx.fillText('tests so far: ' + testedCount, 14, y0 + ACCTS.length * rh + 34);
+      }
+      simStatus(statusEl, found
+        ? 'Caught it in ' + testedCount + ' tests: ' + ACCTS[bad].name + ' was entered on the wrong side, and because the value appeared on BOTH sides it still footed — the trial balance equaled by accident. Auditors hunt exactly this: an arithmetically balanced set of books can still tell a lie, which is why Enron\u2019s carefully-balanced special-purpose vehicles only fell apart when someone finally inspected the underlying paperwork.'
+        : 'Every entry keeps the books in balance, yet somewhere a posting sits on the wrong side and the equity hides it. That is the whole game of a trial balance and of forensic accounting, Enron, 2001, built its deception precisely here: off-balance-sheet vehicles that existed to make the total still foot. Click rows, test them, and flag the culprit.');
+    }
+    draw();
+    return { destroy() { S.destroy(); } };
+  }
+
   /* ------------------------- dispatcher ------------------------- */
 
   function run(kind, shellEl, statusEl) {
@@ -3040,6 +4238,23 @@ statusText("The matrix shows years each side serves. The partner's choice is alr
       case 'peppered-moth': return pepperedMothSim(shellEl, statusEl);
       case 'galton-board': return galtonBoardSim(shellEl, statusEl);
       case 'x-ray-diffraction': return xRayDiffractionSim(shellEl, statusEl);
+      case 'place-value': return placeValueSim(shellEl, statusEl);
+      case 'sieve': return sieveSim(shellEl, statusEl);
+      case 'pythagorean-visual': return pythagoreanVisualSim(shellEl, statusEl);
+      case 'balance-scale': return balanceScaleSim(shellEl, statusEl);
+      case 'logic-gates': return logicGatesSim(shellEl, statusEl);
+      case 'function-machine': return functionMachineSim(shellEl, statusEl);
+      case 'complexity-growth': return complexityGrowthSim(shellEl, statusEl);
+      case 'turing-machine': return turingMachineSim(shellEl, statusEl);
+      case 'double-auction': return doubleAuctionSim(shellEl, statusEl);
+      case 'fractional-reserve': return fractionalReserveSim(shellEl, statusEl);
+      case 'money-printing': return moneyPrintingSim(shellEl, statusEl);
+      case 'keynesian-multiplier': return keynesianMultiplierSim(shellEl, statusEl);
+      case 'opportunity-cost': return opportunityCostSim(shellEl, statusEl);
+      case 'least-squares': return leastSquaresSim(shellEl, statusEl);
+      case 'bubble-crash': return bubbleCrashSim(shellEl, statusEl);
+      case 'ultimatum-game': return ultimatumGameSim(shellEl, statusEl);
+      case 'audit-statement': return auditStatementSim(shellEl, statusEl);
       default: return startSimulation(shellEl, statusEl);
     }
   }

@@ -4054,7 +4054,12 @@
           "by": "Arthur Levitt, SEC Chairman",
           "year": "1998"
         }
-      ]
+      ],
+      "sim": {
+        "id": "audit-statement",
+        "label": "Simulation · the audit",
+        "caption": "A ledger can look balanced and still be lying — audit the entries."
+      }
     },
     {
       "id": "cost-accounting",
@@ -4780,7 +4785,12 @@
           "by": "Adam Smith",
           "year": "1776"
         }
-      ]
+      ],
+      "sim": {
+        "id": "opportunity-cost",
+        "label": "Simulation · the road not taken",
+        "caption": "Every hour has an alternative; the true cost is the best one forgone."
+      }
     },
     {
       "id": "supply-and-demand",
@@ -4976,7 +4986,12 @@
           "by": "Adam Smith",
           "year": "1776"
         }
-      ]
+      ],
+      "sim": {
+        "id": "double-auction",
+        "label": "Simulation · bids and asks",
+        "caption": "Buyers and sellers shout prices until a cross clears the book."
+      }
     },
     {
       "id": "money-and-banking",
@@ -5100,7 +5115,12 @@
           "by": "Niall Ferguson",
           "year": "2008"
         }
-      ]
+      ],
+      "sim": {
+        "id": "fractional-reserve",
+        "label": "Simulation · the fractional reserve",
+        "caption": "A bank keeps a sliver and lends the rest; the money multiplies."
+      }
     },
     {
       "id": "inflation",
@@ -5223,7 +5243,12 @@
           "by": "Costantino Bresciani-Turroni",
           "year": "1937"
         }
-      ]
+      ],
+      "sim": {
+        "id": "money-printing",
+        "label": "Simulation · printing money",
+        "caption": "Print notes faster than the economy grows and each note buys less."
+      }
     },
     {
       "id": "macroeconomics",
@@ -5467,7 +5492,12 @@
           "by": "Axel Leijonhufvud",
           "year": "1968"
         }
-      ]
+      ],
+      "sim": {
+        "id": "keynesian-multiplier",
+        "label": "Simulation · the multiplier",
+        "caption": "One dollar spent becomes more than one dollar of income."
+      }
     },
     {
       "id": "game-theory",
@@ -5661,7 +5691,12 @@
           "by": "Richard H. Thaler",
           "year": "2015"
         }
-      ]
+      ],
+      "sim": {
+        "id": "ultimatum-game",
+        "label": "Simulation · the ultimatum game",
+        "caption": "Split £10 with a stranger; they can punish a greedy offer by refusing."
+      }
     },
     {
       "id": "econometrics",
@@ -5792,7 +5827,12 @@
           "by": "Joshua D. Angrist and Jorn-Steffen Pischke",
           "year": "2009"
         }
-      ]
+      ],
+      "sim": {
+        "id": "least-squares",
+        "label": "Simulation · the least-squares line",
+        "caption": "Drag the line until the squared gaps are as small as math allows."
+      }
     },
     {
       "id": "adam-smith",
@@ -6381,7 +6421,12 @@
           "by": "Charles P. Kindleberger",
           "year": "1978"
         }
-      ]
+      ],
+      "sim": {
+        "id": "bubble-crash",
+        "label": "Simulation · the bubble that bursts",
+        "caption": "Price chases itself until the gap to value snaps."
+      }
     },
     {
       "id": "boolean-algebra",
@@ -6621,7 +6666,12 @@
           "by": "Herman H. Goldstine",
           "year": "1972"
         }
-      ]
+      ],
+      "sim": {
+        "id": "logic-gates",
+        "label": "Simulation · wires that think",
+        "caption": "Booleans in, booleans out: AND, OR and NOT are the whole of computing."
+      }
     },
     {
       "id": "the-transistor",
@@ -8033,7 +8083,12 @@
       },
       "story": "Alan Turing was born in London on 23 June 1912, the second son of a colonial civil servant. He showed mathematical precocity early but was no model scholar, and at Sherborne School his reports suggested he was wasting his time on science. He had already, at fifteen, worked out for himself the arctangent series. During his last year he formed a deep friendship with a Kings Scholar, Christopher Morcom, who died suddenly in 1930; for the rest of Turing's life he spoke of Morcom with an un-Victorian openness, and the loss helped shape his matter-of-fact atheism.\n\nHe went to Kings College, Cambridge in 1931 and was elected a Fellow in 1935. The next year he published his great paper, On Computable Numbers, with an Application to the Entscheidungsproblem, which invented the machine that bears his name, solved Hilbert's decision problem in the negative, and proved the halting problem undecidable. In it he also described a universal machine able to imitate any other machine once it is given the appropriate instructions on tape — the seed of the stored program and, so his neighbour the-stored-program-computer argues, the blueprint of every computer. He spent 1936-38 in Princeton taking a doctorate under Alonzo Church.\n\nWar, and secrecy, followed. From 1939 he worked at Bletchley Park, where he led Hut 8 against naval Enigma, built the Bombe machines with Gordon Welchman, devised statistical methods for reading traffic, and designed secure speech encryption. Estimates that this work shortened the war by years are indeed only the better-documented estimates; what is certain is that almost all of it was buried until the 1970s. After 1945 he designed the ACE computer for the National Physical Laboratory — a stored-program design rivalling the EDVAC lineage of John von Neumann — but the project was throttled by committees, so Turing moved to Manchester, where the modern machine finally took shape, and where the 1950 paper Computing Machinery and Intelligence asked, by way of the imitation game, what it would mean for a machine to think.\n\nHe was elected Fellow of the Royal Society in 1951. In 1952 he published The Chemical Basis of Morphogenesis, founding mathematical biology with a paper about spots and stripes. That year he was also prosecuted for homosexual acts, offered the choice of prison or chemical castration, and chose the injections; he lost his security clearance and was forced into a domestic routine of oestrogen and chess. He died on 7 June 1954, aged 41, of cyanide poisoning; the coroner recorded suicide, though some have always doubted it. The reckoning has been slow and public: Gordon Brown's official apology of 2009, the royal pardon of 2013, and in 2021 Turing's face on the fifty-pound note, next to the small diagram of his universal machine. He was, in the phrase of his great biographer Andrew Hodges, the enigma.",
       "mechanism": "A Turing machine is faith in simplicity. Imagine an endless tape divided into squares, each holding one symbol, and a head that can read a square, write a symbol, move one square left or right, and change its own state. Everything else is a finite table of instructions: in state q, if the head reads symbol s, write symbol t, move a direction, enter state q'. That is all there is, and that is enough to define the boundary of computation.\n\nTuring's point was that this absurdly minimal device is as powerful as any mechanism for manipulating symbols that anyone has since proposed, and that computations beyond it are simply not computable at all. The universal machine was the masterstroke: since the machine's behaviour is itself described by symbols on tape, one machine can take another machine's description as input and imitate it. This is the theoretical ancestor of the stored-program computer — instructions and data sharing one memory — and of software itself. He proved there is no general procedure for deciding whether an arbitrary machine will halt, by diagonal argument: some questions are not merely hard, they are mechanically unanswerable. Every programmed condition in the algorithms his work made possible is a footnote to that 1936 ribbon of tape.",
-      "significance": "Turing gave computer science its concept of computability and its proof that the concept has edges. The Church-Turing thesis, his formulation with Alonzo Church, equates computation with what a Turing machine can do, and no counterexample has survived eighty years. When you write code, compile it against the ancestor of the-stored-program-computer, or worry whether your interface is buggy, you stand on the halting problem's shoulders.\n\nIn 1950 he outfitted his legacy for the future: Computing Machinery and Intelligence framed the question of machine thought as a behaviour test, invented what we now call the Turing test and modern artificial intelligence in one paper, and made a prediction — that within fifty years an average interrogator would be fooled thirty per cent of the time in five minutes of conversation. That prediction proved startlingly close. The war work he could not speak about, and the laws that indicted him for being himself, turned his life into the field's most painful origin story. The Turing Award, the annual \"Nobel of computing,\" carries his name; the apology, the pardon, and the banknote carry his admonition that governments, like machines, can be taught to correct themselves."
+      "significance": "Turing gave computer science its concept of computability and its proof that the concept has edges. The Church-Turing thesis, his formulation with Alonzo Church, equates computation with what a Turing machine can do, and no counterexample has survived eighty years. When you write code, compile it against the ancestor of the-stored-program-computer, or worry whether your interface is buggy, you stand on the halting problem's shoulders.\n\nIn 1950 he outfitted his legacy for the future: Computing Machinery and Intelligence framed the question of machine thought as a behaviour test, invented what we now call the Turing test and modern artificial intelligence in one paper, and made a prediction — that within fifty years an average interrogator would be fooled thirty per cent of the time in five minutes of conversation. That prediction proved startlingly close. The war work he could not speak about, and the laws that indicted him for being himself, turned his life into the field's most painful origin story. The Turing Award, the annual \"Nobel of computing,\" carries his name; the apology, the pardon, and the banknote carry his admonition that governments, like machines, can be taught to correct themselves.",
+      "sim": {
+        "id": "turing-machine",
+        "label": "Simulation · Turing's machine",
+        "caption": "One read, one write, one move — the tiny machine that computes anything."
+      }
     },
     {
       "id": "grace-hopper",
@@ -9859,7 +9914,12 @@
           "by": "Karl Menninger",
           "year": "1969"
         }
-      ]
+      ],
+      "sim": {
+        "id": "place-value",
+        "label": "Simulation · the value of a place",
+        "caption": "Push a digit one column left and it multiplies by ten — the position is the power."
+      }
     },
     {
       "id": "zero",
@@ -10135,7 +10195,12 @@
           "by": "Jean-Pierre Tignol",
           "year": "2001"
         }
-      ]
+      ],
+      "sim": {
+        "id": "balance-scale",
+        "label": "Simulation · the balance both sides",
+        "caption": "Whatever you do to one pan, do to the other — that is every equation."
+      }
     },
     {
       "id": "geometry",
@@ -11271,7 +11336,12 @@
           "by": "G. H. Hardy and E. M. Wright",
           "year": "1938"
         }
-      ]
+      ],
+      "sim": {
+        "id": "sieve",
+        "label": "Simulation · the sieve of Eratosthenes",
+        "caption": "Cross out every multiple of the next open number and only the primes survive."
+      }
     },
     {
       "id": "complexity-theory",
@@ -11385,7 +11455,12 @@
           "by": "Lance Fortnow",
           "year": "2013"
         }
-      ]
+      ],
+      "sim": {
+        "id": "complexity-growth",
+        "label": "Simulation · how fast it grows",
+        "caption": "n, n log n, n², 2ⁿ — which algorithms survive when n grows huge?"
+      }
     },
     {
       "id": "euclid",
@@ -20643,7 +20718,12 @@
           "by": "Christoph Riedweg",
           "year": "2005"
         }
-      ]
+      ],
+      "sim": {
+        "id": "pythagorean-visual",
+        "label": "Simulation · the square on the hypotenuse",
+        "caption": "Two little squares pour their area into the big one: a ² + b ² = c ²."
+      }
     },
     {
       "id": "limits",
@@ -21096,7 +21176,12 @@
           "by": "Joao Pedro Ponte, The Mathematics Educator",
           "year": "1992"
         }
-      ]
+      ],
+      "sim": {
+        "id": "function-machine",
+        "label": "Simulation · the function machine",
+        "caption": "Feed x in, the rule fires, y comes out — functions turn inputs into outputs."
+      }
     },
     {
       "id": "etymology-trigonometry",
