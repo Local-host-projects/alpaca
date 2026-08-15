@@ -1787,6 +1787,211 @@ statusText("The matrix shows years each side serves. The partner's choice is alr
     return { destroy() { S.destroy(); } };
   }
 
+  /* ------------------------- unit circle (trigonometry) ------------------------- */
+
+  function unitCircleSim(shellEl, statusEl) {
+    const S = simCanvas(shellEl, statusEl);
+    const ctx = S.ctx;
+    let ang = 0.6, dragging = false;
+    const controls = simControls(shellEl, '<button class="btn" data-a="reset">Reset angle</button><span class="sim-hint">drag the point around the circle</span>');
+    controls.querySelector('[data-a="reset"]').addEventListener('click', () => { ang = 0.6; draw(); });
+    S.canvas.addEventListener('pointerdown', e => { dragging = true; move(e); });
+    window.addEventListener('pointermove', e => { if (dragging) move(e); });
+    window.addEventListener('pointerup', () => { dragging = false; });
+    function move(e) {
+      const rect = S.canvas.getBoundingClientRect();
+      const cx = rect.left + S.w() / 2, cy = rect.top + S.h() * 0.42;
+      ang = Math.atan2(e.clientY - cy, e.clientX - cx);
+      draw();
+    }
+    function draw() {
+      const w = S.w(), h = S.h();
+      ctx.fillStyle = '#120D0A'; ctx.fillRect(0, 0, w, h);
+      const cx = w / 2, cy = h * 0.42;
+      const R = Math.min(w, h) * 0.32;
+      const sin = Math.sin(ang), cos = Math.cos(ang);
+      const px = cx + R * cos, py = cy - R * sin;
+      // axes
+      ctx.strokeStyle = 'rgba(237,228,214,0.28)'; ctx.lineWidth = 1;
+      ctx.beginPath(); ctx.moveTo(0, cy); ctx.lineTo(w, cy); ctx.moveTo(cx, 0); ctx.lineTo(cx, h); ctx.stroke();
+      // circle
+      ctx.strokeStyle = 'rgba(201,154,87,0.8)'; ctx.lineWidth = 2;
+      ctx.beginPath(); ctx.arc(cx, cy, R, 0, Math.PI * 2); ctx.stroke();
+      // radius line + labels
+      ctx.fillStyle = '#F6D76F';
+      ctx.beginPath(); ctx.arc(px, py, 6, 0, Math.PI * 2); ctx.fill();
+      ctx.fillStyle = '#120D0A';
+      ctx.beginPath(); ctx.arc(px, py, 2.5, 0, Math.PI * 2); ctx.fill();
+      ctx.strokeStyle = '#F6D76F'; ctx.lineWidth = 1.5;
+      ctx.beginPath(); ctx.moveTo(cx, cy); ctx.lineTo(px, py); ctx.stroke();
+      // cosine (x), sine (y) projection lines
+      ctx.setLineDash([4, 3]); ctx.lineWidth = 1;
+      ctx.strokeStyle = '#7FA8C9';
+      ctx.beginPath(); ctx.moveTo(px, py); ctx.lineTo(px, cy); ctx.stroke();
+      ctx.fillStyle = '#7FA8C9'; ctx.font = '12px IBM Plex Mono, monospace'; ctx.textAlign = 'center';
+      ctx.fillText('cos \u03B8 = ' + cos.toFixed(2), px, cy + 22);
+      ctx.strokeStyle = '#D97A46';
+      ctx.beginPath(); ctx.moveTo(px, py); ctx.lineTo(cx, py); ctx.stroke();
+      ctx.fillStyle = '#D97A46'; ctx.font = '12px IBM Plex Mono, monospace'; ctx.textAlign = 'left';
+      ctx.fillText('sin \u03B8 = ' + sin.toFixed(2), cx + 12, py + 4);
+      ctx.setLineDash([]);
+      // angle arc
+      ctx.strokeStyle = '#93A884'; ctx.lineWidth = 1.5;
+      ctx.beginPath(); ctx.arc(cx, cy, R * 0.3, 0, -ang, true); ctx.stroke();
+      ctx.fillStyle = '#93A884'; ctx.font = '11px IBM Plex Mono, monospace';
+      ctx.fillText((ang * 180 / Math.PI).toFixed(0) + '\u00B0', cx + R * 0.38, cy - R * 0.26);
+      // tan hint
+      const tan = Math.tan(ang);
+      ctx.fillStyle = '#8A7C68'; ctx.font = '10px IBM Plex Mono, monospace'; ctx.textAlign = 'center';
+      ctx.fillText('tan \u03B8 = sin/cos = ' + (isFinite(tan) ? tan.toFixed(2) : '\u221E'), w / 2, h - 10);
+      simStatus(statusEl, 'On the unit circle the radius is 1, so the point\u2019s coordinates ARE the cosine and sine of the angle. Drag it: at ' + (ang * 180 / Math.PI).toFixed(0) + '\u00B0, cos = ' + cos.toFixed(2) + ', sin = ' + sin.toFixed(2) + '.');
+    }
+    draw();
+    return { destroy() { S.destroy(); } };
+  }
+
+  /* ------------------------- tangent slope (the derivative) ------------------------- */
+
+  function tangentSlopeSim(shellEl, statusEl) {
+    const S = simCanvas(shellEl, statusEl);
+    const ctx = S.ctx;
+    const f = x => 0.35 * x * x + 0.15 * x + 0.25;
+    const df = x => 0.7 * x + 0.15;
+    let x = 0.5, h = 0.45, dragging = false, dragAxis = null;
+    const controls = simControls(shellEl,
+      '<label class="sim-slider">interval h' +
+        '<input data-a="h" type="range" min="0.02" max="0.9" step="0.01" value="0.45" aria-label="secant interval">' +
+        '<output data-o="h">0.45</output>' +
+      '</label>' +
+      '<button class="btn" data-a="reset">Reset</button><span class="sim-hint">drag the point along the curve</span>');
+    const hEl = controls.querySelector('[data-a="h"]');
+    const outEl = controls.querySelector('[data-o="h"]');
+    hEl.addEventListener('input', () => { h = parseFloat(hEl.value); outEl.value = h.toFixed(2); draw(); });
+    controls.querySelector('[data-a="reset"]').addEventListener('click', () => { x = 0.5; h = 0.45; hEl.value = h; outEl.value = h.toFixed(2); draw(); });
+    S.canvas.addEventListener('pointerdown', e => { dragging = true; move(e); });
+    window.addEventListener('pointermove', e => { if (dragging) move(e); });
+    window.addEventListener('pointerup', () => { dragging = false; });
+    function move(e) {
+      const rect = S.canvas.getBoundingClientRect();
+      const mX = 60, mY = S.h() - 44;
+      const dim = Math.min(S.w() - mX - 30, mY - 30);
+      const PX = t => mX + t * dim;
+      const PY = t => mY - t * dim;
+      x = Math.max(0.04, Math.min(0.96, (e.clientX - rect.left - mX) / dim));
+      draw();
+    }
+    function draw() {
+      const w = S.w(), h = S.h();
+      ctx.fillStyle = '#120D0A'; ctx.fillRect(0, 0, w, h);
+      const mX = 60, mY = h - 44;
+      const dim = Math.min(w - mX - 30, mY - 30);
+      const PX = t => mX + t * dim;
+      const PY = t => mY - t * dim;
+      // axes
+      ctx.strokeStyle = 'rgba(237,228,214,0.28)'; ctx.lineWidth = 1;
+      ctx.beginPath(); ctx.moveTo(mX, mY); ctx.lineTo(mX + dim, mY); ctx.moveTo(mX, mY); ctx.lineTo(mX, mY - dim); ctx.stroke();
+      // curve
+      ctx.strokeStyle = '#7FA8C9'; ctx.lineWidth = 2.5;
+      ctx.beginPath();
+      for (let t = 0; t <= 1.001; t += 0.01) {
+        const X = PX(t), Y = PY(f(t));
+        t === 0 ? ctx.moveTo(X, Y) : ctx.lineTo(X, Y);
+      }
+      ctx.stroke();
+      // secant endpoints
+      const x1 = Math.max(0.01, x - h / 2), x2 = Math.min(0.99, x + h / 2);
+      const y1 = f(x1), y2 = f(x2);
+      // secant
+      ctx.strokeStyle = '#D97A46'; ctx.lineWidth = 1.5;
+      ctx.beginPath(); ctx.moveTo(PX(x1), PY(y1)); ctx.lineTo(PX(x2), PY(y2)); ctx.stroke();
+      // rise/run triangle
+      ctx.strokeStyle = 'rgba(217,122,70,0.6)'; ctx.setLineDash([3, 3]);
+      ctx.beginPath(); ctx.moveTo(PX(x1), PY(y1)); ctx.lineTo(PX(x2), PY(y1)); ctx.lineTo(PX(x2), PY(y2)); ctx.stroke();
+      ctx.setLineDash([]);
+      // secant slope
+      const secSlope = (y2 - y1) / (x2 - x1);
+      // tangent at x
+      const tx = x, ty = f(x), mtan = df(x);
+      const tx2 = Math.max(0.01, x + 0.12), ty2 = ty + mtan * (tx2 - x);
+      ctx.strokeStyle = '#F6D76F'; ctx.lineWidth = 2;
+      ctx.beginPath(); ctx.moveTo(PX(x - 0.12), PY(ty - mtan * 0.12)); ctx.lineTo(PX(tx2), PY(ty2)); ctx.stroke();
+      ctx.fillStyle = '#F6D76F';
+      ctx.beginPath(); ctx.arc(PX(x), PY(ty), 6, 0, Math.PI * 2); ctx.fill();
+      ctx.fillStyle = '#120D0A';
+      ctx.beginPath(); ctx.arc(PX(x), PY(ty), 2.5, 0, Math.PI * 2); ctx.fill();
+      ctx.fillStyle = '#E6DAC4'; ctx.font = '10px IBM Plex Mono, monospace'; ctx.textAlign = 'left';
+      ctx.fillText('tangent slope = ' + mtan.toFixed(2) + '  (the derivative at x = ' + x.toFixed(2) + ')', mX + 4, 18);
+      ctx.fillStyle = '#D97A46';
+      ctx.fillText('secant slope = ' + secSlope.toFixed(2) + '  over [' + x1.toFixed(2) + ', ' + x2.toFixed(2) + ']', mX + 4, 34);
+      simStatus(statusEl, 'The secant (orange) cuts the curve at two points; its slope is the average rate of change. Shrink h and the secant tightens onto the tangent (gold) — whose slope is the instantaneous rate of change, the derivative. Secant slope ' + secSlope.toFixed(2) + ' vs tangent ' + mtan.toFixed(2) + '.');
+    }
+    draw();
+    return { destroy() { S.destroy(); } };
+  }
+
+  /* ------------------------- limit vision ------------------------- */
+
+  function limitVisionSim(shellEl, statusEl) {
+    const S = simCanvas(shellEl, statusEl);
+    const ctx = S.ctx;
+    const f = x => 0.35 * x * x + 0.15 * x + 0.25;
+    const df = x => 0.7 * x + 0.15;
+    const x = 0.5;
+    let h = 0.5, playing = false, raf = null, dir = -1;
+    const controls = simControls(shellEl,
+      '<button class="btn btn-accent" data-a="play">Approach the limit</button>' +
+      '<button class="btn" data-a="reset">Reset</button><span class="sim-hint">h shrinks toward zero — but never arrives</span>');
+    controls.querySelector('[data-a="play"]').addEventListener('click', () => {
+      playing = !playing;
+      if (playing) { dir = -1; loop(); }
+    });
+    controls.querySelector('[data-a="reset"]').addEventListener('click', () => { playing = false; h = 0.5; if (raf) cancelAnimationFrame(raf); draw(); });
+    function loop() {
+      if (!playing) return;
+      h = Math.max(0.01, h + dir * 0.004);
+      if (h <= 0.012) dir = 1;
+      if (h >= 0.5) dir = -1;
+      draw();
+      raf = requestAnimationFrame(loop);
+    }
+    function draw() {
+      const w = S.w(), hh = S.h();
+      ctx.fillStyle = '#120D0A'; ctx.fillRect(0, 0, w, hh);
+      const mX = 60, mY = hh - 44;
+      const dim = Math.min(w - mX - 30, mY - 30);
+      const PX = t => mX + t * dim;
+      const PY = t => mY - t * dim;
+      ctx.strokeStyle = 'rgba(237,228,214,0.28)'; ctx.lineWidth = 1;
+      ctx.beginPath(); ctx.moveTo(mX, mY); ctx.lineTo(mX + dim, mY); ctx.moveTo(mX, mY); ctx.lineTo(mX, mY - dim); ctx.stroke();
+      ctx.strokeStyle = '#7FA8C9'; ctx.lineWidth = 2.5;
+      ctx.beginPath();
+      for (let t = 0; t <= 1.001; t += 0.01) { const X = PX(t), Y = PY(f(t)); t === 0 ? ctx.moveTo(X, Y) : ctx.lineTo(X, Y); }
+      ctx.stroke();
+      const x1 = Math.max(0.01, x - h / 2), x2 = Math.min(0.99, x + h / 2);
+      const y1 = f(x1), y2 = f(x2);
+      const secSlope = (y2 - y1) / (x2 - x1);
+      const mtan = df(x);
+      ctx.strokeStyle = '#D97A46'; ctx.lineWidth = 1.5;
+      ctx.beginPath(); ctx.moveTo(PX(x1), PY(y1)); ctx.lineTo(PX(x2), PY(y2)); ctx.stroke();
+      // gap marker at x
+      ctx.strokeStyle = 'rgba(217,122,70,0.55)'; ctx.setLineDash([3, 3]);
+      ctx.beginPath(); ctx.moveTo(PX(x), PY(0)); ctx.lineTo(PX(x), PY(1)); ctx.stroke();
+      ctx.setLineDash([]);
+      ctx.strokeStyle = '#F6D76F'; ctx.lineWidth = 2;
+      ctx.beginPath(); ctx.moveTo(PX(x - 0.1), PY(f(x) - mtan * 0.1)); ctx.lineTo(PX(x + 0.1), PY(f(x) + mtan * 0.1)); ctx.stroke();
+      ctx.fillStyle = '#F6D76F'; ctx.font = '12px IBM Plex Mono, monospace'; ctx.textAlign = 'center';
+      ctx.fillText('h = ' + h.toFixed(3), w / 2, 18);
+      ctx.fillStyle = '#D97A46'; ctx.font = '11px IBM Plex Mono, monospace';
+      ctx.fillText('secant slope = ' + secSlope.toFixed(4), w / 2, 34);
+      ctx.fillStyle = '#F6D76F';
+      ctx.fillText('limit = ' + mtan.toFixed(4), w / 2, 50);
+      const gap = Math.abs(secSlope - mtan);
+      simStatus(statusEl, 'The limit is the number the secant slopes approach as h gets arbitrarily small. h = ' + h.toFixed(3) + ': secant ' + secSlope.toFixed(4) + ' vs the limit ' + mtan.toFixed(4) + ' — they are ' + gap.toFixed(4) + ' apart. h never reaches zero; the limit is where the chase is heading.');
+    }
+    draw();
+    return { destroy() { S.destroy(); cancelAnimationFrame(raf); } };
+  }
+
   /* ------------------------- dispatcher ------------------------- */
 
   function run(kind, shellEl, statusEl) {
@@ -1807,6 +2012,9 @@ statusText("The matrix shows years each side serves. The partner's choice is alr
       case 'generation-drift': return generationDriftSim(shellEl, statusEl);
       case 'contingency': return contingencySim(shellEl, statusEl);
       case 'period-place': return periodPlaceSim(shellEl, statusEl);
+      case 'unit-circle': return unitCircleSim(shellEl, statusEl);
+      case 'tangent-slope': return tangentSlopeSim(shellEl, statusEl);
+      case 'limit-vision': return limitVisionSim(shellEl, statusEl);
       default: return startSimulation(shellEl, statusEl);
     }
   }

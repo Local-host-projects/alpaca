@@ -95,7 +95,9 @@
       'dna-structure',
       'the-manhattan-project',
       'quantum-mechanics',
-      'lise-meitner'
+      'lise-meitner',
+      'trigonometry',
+      'the-tabulating-room'
     ];
     picks.forEach(id => {
       const node = A.nodeById(id);
@@ -279,11 +281,13 @@
     };
 
     function apply(w) {
-      const clamped = Math.max(minW, Math.min(w, maxW()));
+      const avail = Math.min(maxW(), window.innerWidth - (wrap.getBoundingClientRect().left || 0) - 8);
+      const clamped = Math.max(minW, Math.min(w, avail));
       frame.style.width = clamped + 'px';
     }
 
     handle.addEventListener('pointerdown', function (e) {
+      if (window.innerWidth < 720) return; // no drag-resize on phones; width is locked to 100%
       dragging = true;
       startX = e.clientX;
       startW = frame.getBoundingClientRect().width;
@@ -304,6 +308,10 @@
 
     // keep the player within bounds on rotation / viewport resize
     window.addEventListener('resize', function () {
+      if (window.innerWidth < 720) {
+        frame.style.width = '';
+        return;
+      }
       const w = frame.style.width ? parseFloat(frame.style.width) : NaN;
       if (!isNaN(w) && w > maxW()) apply(maxW());
     });

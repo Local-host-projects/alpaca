@@ -183,7 +183,15 @@
       "license",
       "kernel",
       "craft",
-      "module"
+      "module",
+      "triangle",
+      "angle",
+      "circle",
+      "sine",
+      "cosine",
+      "tangent",
+      "slope",
+      "rate"
     ]
   },
   "nodes": [
@@ -1633,7 +1641,12 @@
           "to": "relativity",
           "kind": "predicted"
         }
-      ]
+      ],
+      "sim": {
+        "id": "black-hole",
+        "label": "Simulation · nothing escapes",
+        "caption": "Drop matter past the event horizon and watch it vanish."
+      }
     },
     {
       "id": "oppenheimer-neutrons",
@@ -2625,7 +2638,12 @@
           "to": "cell-theory",
           "kind": "built"
         }
-      ]
+      ],
+      "sim": {
+        "id": "natural-selection",
+        "label": "Simulation · let the fit survive",
+        "caption": "The fittest phenotype fills the world — until the environment shifts."
+      }
     },
     {
       "id": "dna-structure",
@@ -3168,6 +3186,11 @@
         "date": "24 November 1859",
         "headline": "A NATURALIST DECLARES THE TREE OF LIFE IS BRANCHING",
         "body": "After two decades of hesitation, Charles Darwin has published the book his friends have long dreaded, arguing that species descend with modification and that no special creation need be invoked. Early reviews are angry, but the edition sold out on the first day."
+      },
+      "sim": {
+        "id": "natural-selection",
+        "label": "Simulation · let the fit survive",
+        "caption": "The fittest phenotype fills the world — until the environment shifts."
       }
     },
     {
@@ -3459,7 +3482,12 @@
           "to": "joseph-marr",
           "kind": "documented"
         }
-      ]
+      ],
+      "sim": {
+        "id": "ledger-balance",
+        "label": "Simulation · make both sides balance",
+        "caption": "Every credit wants a debit. Balance the books before the bell."
+      }
     },
     {
       "id": "the-ledger",
@@ -3487,7 +3515,12 @@
           "to": "double-entry-bookkeeping",
           "kind": "built"
         }
-      ]
+      ],
+      "sim": {
+        "id": "ledger-balance",
+        "label": "Simulation · make both sides balance",
+        "caption": "Every credit wants a debit. Balance the books before the bell."
+      }
     },
     {
       "id": "financial-statements",
@@ -4734,7 +4767,12 @@
           "to": "scarcity",
           "kind": "built"
         }
-      ]
+      ],
+      "sim": {
+        "id": "supply-demand",
+        "label": "Simulation · find the clearing price",
+        "caption": "Drag the price; watch buyers and sellers clear the market."
+      }
     },
     {
       "id": "markets-and-prices",
@@ -5418,7 +5456,12 @@
           "to": "john-von-neumann",
           "kind": "pioneered"
         }
-      ]
+      ],
+      "sim": {
+        "id": "best-response",
+        "label": "Simulation · react to your rival",
+        "caption": "Given what your rival does, what is your best move?"
+      }
     },
     {
       "id": "behavioral-economics",
@@ -9720,6 +9763,16 @@
           "quote": "A mathematician, like a painter or a poet, is a maker of patterns.",
           "said": "G. H. Hardy",
           "context": "A Mathematician's Apology, 1940"
+        },
+        {
+          "quote": "Numbers are free creations of the human mind.",
+          "said": "Richard Dedekind",
+          "context": "Was sind und was sollen die Zahlen?, 1888; from the German 'Die Zahlen sind freie Schöpfungen des menschlichen Geistes'"
+        },
+        {
+          "quote": "The essence of mathematics lies in its freedom.",
+          "said": "Georg Cantor",
+          "context": "Ueber unendliche, lineare Punktmannigfaltigkeiten, 1883; from the German 'Das Wesen der Mathematik liegt in ihrer Freiheit'"
         }
       ],
       "timeline": [
@@ -9746,6 +9799,18 @@
         {
           "year": "1889",
           "what": "Peano publishes his axioms for the natural numbers"
+        },
+        {
+          "year": "c. 2100 BC",
+          "what": "Sumerian scribes write numbers in base sixty, a legacy still ticking in our clocks and angles"
+        },
+        {
+          "year": "c. 300 BC",
+          "what": "Babylonian scribes mark an empty column in their positional notation, an early placeholder for nothing"
+        },
+        {
+          "year": "1703",
+          "what": "Leibniz publishes his account of binary arithmetic, the counting system computers would inherit"
         }
       ],
       "sources": [
@@ -9758,6 +9823,16 @@
           "title": "Number: The Language of Science",
           "by": "Tobias Dantzig",
           "year": "1930"
+        },
+        {
+          "title": "The Number Sense",
+          "by": "Stanislas Dehaene",
+          "year": "1997"
+        },
+        {
+          "title": "Number Words and Number Symbols",
+          "by": "Karl Menninger",
+          "year": "1969"
         }
       ]
     },
@@ -9950,6 +10025,21 @@
           "quote": "Ars magna ... artem quae plus quam fortuna valeat.",
           "said": "Girolamo Cardano",
           "context": "Opening of the Ars Magna, 1545 - 'a great art ... which prevails over fortune'"
+        },
+        {
+          "quote": "When I considered what people generally want in calculating, I found that it always is a number.",
+          "said": "al-Khwarizmi",
+          "context": "Opening of the Kitab al-jabr wal-muqabala, c. 820; translated by Frederic Rosen, 1831"
+        },
+        {
+          "quote": "Mathematics is the queen of the sciences and number theory is the queen of mathematics.",
+          "said": "Carl Friedrich Gauss",
+          "context": "Recorded by his biographer W. Sartorius von Waltershausen in Gauss zum Gedächtnis, 1856"
+        },
+        {
+          "quote": "Don't cry, Alfred! I need all my courage to die at twenty.",
+          "said": "Evariste Galois",
+          "context": "Last words to his younger brother Alfred on the night of the fatal duel, May 1832"
         }
       ],
       "timeline": [
@@ -9980,6 +10070,18 @@
         {
           "year": "1832",
           "what": "Galois answers the quintic question and founds group theory"
+        },
+        {
+          "year": "c. 1070",
+          "what": "Omar Khayyam solves cubic equations by geometric means"
+        },
+        {
+          "year": "1843",
+          "what": "Hamilton announces the quaternions, the first algebra to abandon commutativity"
+        },
+        {
+          "year": "1871",
+          "what": "Dedekind introduces the field concept in the second edition of his Zahlentheorie"
         }
       ],
       "sources": [
@@ -9992,6 +10094,21 @@
           "title": "Unknown Quantity: A Real and Imagined History of Algebra",
           "by": "John Derbyshire",
           "year": "2006"
+        },
+        {
+          "title": "The Algebra of Mohammed ben Musa",
+          "by": "al-Khwarizmi (trans. Frederic Rosen)",
+          "year": "1831"
+        },
+        {
+          "title": "The Great Art, or the Rules of Algebra (Ars Magna)",
+          "by": "Girolamo Cardano (trans. T. Richard Witmer)",
+          "year": "1968"
+        },
+        {
+          "title": "Galois' Theory of Algebraic Equations",
+          "by": "Jean-Pierre Tignol",
+          "year": "2001"
         }
       ]
     },
@@ -10063,6 +10180,41 @@
           "quote": "Geometry is the art of reasoning well from badly drawn figures.",
           "said": "Henri Poincare",
           "context": "From the memoir Analysis situs, 1895, which founded topology"
+        },
+        {
+          "quote": "Give him three obols, since he must needs make gain out of what he learns.",
+          "said": "Euclid",
+          "context": "Answer to a pupil who asked what he would gain from studying geometry; recorded by Stobaeus and cited in Thomas L. Heath, A History of Greek Mathematics (1921)."
+        },
+        {
+          "quote": "God ever geometrizes.",
+          "said": "attributed to Plato",
+          "context": "Reported by Plutarch in the Table Talk (Quaestiones convivales); a favourite maxim that geometry mirrors the divine order."
+        },
+        {
+          "quote": "Since geometry is co-eternal with the divine mind before the birth of things, God himself served as his own model in creating the world.",
+          "said": "Johannes Kepler",
+          "context": "Preface to Harmonices Mundi (1618), on geometry as the eternal archetype of the cosmos."
+        },
+        {
+          "quote": "The mathematical sciences particularly exhibit order, symmetry, and limitation; and these are the greatest forms of the beautiful.",
+          "said": "Aristotle",
+          "context": "Metaphysics, Book XIII."
+        },
+        {
+          "quote": "A point is that which has no part.",
+          "said": "Euclid",
+          "context": "Definition 1 of Book I of the Elements, the opening axiom of the Western deductive tradition"
+        },
+        {
+          "quote": "Pure mathematics is, in its way, the poetry of logical ideas.",
+          "said": "Albert Einstein",
+          "context": "Letter to The New York Times, May 1935, written on the death of Emmy Noether"
+        },
+        {
+          "quote": "As far as the laws of mathematics refer to reality, they are not certain; and as far as they are certain, they do not refer to reality.",
+          "said": "Albert Einstein",
+          "context": "Geometry and Experience, 1921, on the awkward marriage of Euclidean axioms to the physical world"
         }
       ],
       "timeline": [
@@ -10101,6 +10253,34 @@
         {
           "year": "1899",
           "what": "Hilbert's Grundlagen der Geometrie"
+        },
+        {
+          "year": "c. 1800 BC",
+          "what": "Babylonian scribes inscribe Plimpton 322, a table of Pythagorean triples"
+        },
+        {
+          "year": "c. 240 BC",
+          "what": "Eratosthenes measures the circumference of the Earth by the geometry of shadows"
+        },
+        {
+          "year": "1915",
+          "what": "Einstein completes general relativity, writing gravity as the curvature of spacetime"
+        },
+        {
+          "year": "c. 225 BC",
+          "what": "Apollonius compiles the Conics, the definitive ancient study of the conic sections"
+        },
+        {
+          "year": "1482",
+          "what": "the first printed edition of the Elements leaves Erhard Ratdolt's press in Venice"
+        },
+        {
+          "year": "1868",
+          "what": "Beltrami's models show non-Euclidean geometry to be as consistent as Euclid's"
+        },
+        {
+          "year": "1872",
+          "what": "Klein's Erlangen Programme recasts every geometry as the study of a group of transformations"
         }
       ],
       "sources": [
@@ -10113,6 +10293,31 @@
           "title": "The Non-Euclidean Revolution",
           "by": "Richard J. Trudeau",
           "year": "1987"
+        },
+        {
+          "title": "Mathematics and Its History",
+          "by": "John Stillwell",
+          "year": "2010"
+        },
+        {
+          "title": "Euclid's Window: The Story of Geometry from Parallel Lines to Hyperspace",
+          "by": "Leonard Mlodinow",
+          "year": "2001"
+        },
+        {
+          "title": "The Foundations of Geometry",
+          "by": "David Hilbert (trans. E. J. Townsend)",
+          "year": "1902"
+        },
+        {
+          "title": "On the Hypotheses which Lie at the Bases of Geometry",
+          "by": "Bernhard Riemann (trans. W. K. Clifford)",
+          "year": "1873"
+        },
+        {
+          "title": "Geometry and Experience",
+          "by": "Albert Einstein",
+          "year": "1921"
         }
       ]
     },
@@ -10157,6 +10362,184 @@
         {
           "to": "al-khwarizmi",
           "kind": "built"
+        }
+      ],
+      "story": "Curves had been tempting mathematicians for two thousand years before anyone could handle them. Archimedes found the area of a circle and the volume of a sphere by exhaustion, a limit in all but name. Fermat found tangents to curves by a near-miss of the same idea. The seventeenth century's indivisibles, Cavalieri's and Torricelli's, sliced areas into infinitely thin strips. The calculus was not conjured from nothing; it was the discovery that all these scattered tricks were one subject.\n\nTwo men found it at once, from different directions, in different notation. Isaac Newton, sent down from Cambridge in 1665 by the plague, invented his method of fluxions in the quiet of Woolsthorpe: quantities flow, and their velocities are fluxions. His mathematics was written for physics and delivered, in the Principia of 1687, with mechanics attached. Gottfried Leibniz, a diplomat and polymath in Paris from 1672, built the differential calculus instead: differences dy and dx, the integral sign as a stretched s, and in 1684 the first published paper on the subject, the Nova Methodus. The two knew of each other's work obliquely; each thought himself first.\n\nThe priority dispute did real damage. From 1699 the two camps bickered, and in 1712 the Royal Society, with Newton himself reviewing the evidence, declared for Newton. European mathematics split, and British mathematics, loyal to fluxions and Newton's dot, lagged for a century behind the Leibnizian mainland with its clearer notation. History now credits both men with independent discovery, and the feud reads as the cautionary tale of two great minds and one small vanity.\n\nThere remained the scandal of foundations. What, exactly, was an infinitesimal? Berkeley's Analyst of 1734 gave the answer that still stings: ghosts of departed quantities. The eighteenth century used the calculus magnificently while unable to say what it was. D'Alembert pointed to limits; Cauchy, in the Cours d'analyse of 1821, wrote the limit down rigorously; Weierstrass, in Berlin lectures of the 1850s and 60s, distilled it into the epsilon-delta form. The calculus became analysis, and the scandal became a science.\n\nToday the calculus is the working language of continuous change. It writes Newton's laws, Maxwell's equations, Einstein's field equations; it drives engineering optimisation and economics' marginal analysis; it is the spine of every differential equation, which is to say of almost every quantitative science. Its name, calculus, the Latin for counting pebbles, is an irony that would have amused its founders: the mathematics of the infinite began as a pebble, and became the grammar of motion.",
+      "mechanism": "The calculus is two operations with one underpinning. Differentiation measures the rate of change: the slope of the tangent, obtained as the limit of secant slopes as the interval shrinks to zero. If position is a function of time, the derivative is velocity. A worked example: for f(x) = x-squared, the derivative is 2x, found by taking the secant slope 2x + h and letting h vanish. This is The Derivative in one line.\n\nIntegration measures accumulation: the area under a curve. Slice the region into vertical strips, approximate each by a thin rectangle, and let the strips grow infinitely many and infinitely thin; the total area is the limit of the sums. Leibniz's integral sign, an elongated s for sum, records exactly this: a sum with infinitely many terms. If velocity is a function of time, the integral over an interval is the total distance travelled.\n\nThe Fundamental Theorem of Calculus binds the two. The derivative of the accumulated area function is the original curve: differentiating the integral gives back what you started with, and integrating a derivative recovers the change. Slope and area, rate and total, are inverse operations. This single discovery is why the calculus is one subject rather than two, and why the two halves of the subject always seemed to know about each other before anyone could say how.\n\nBoth operations rest on the limit, and the limit is what makes the whole thing rigorous. Newton and Leibniz had worked with infinitesimals, quantities smaller than any assignable size, which Berkeley mocked as ghosts of departed quantities. Cauchy and Weierstrass replaced the ghosts with the epsilon-delta condition: every instantaneous rate and every infinite sum is the limit of finite, checkable quantities. The machinery below The Derivative is the same machinery that defines the integral, and Limits is its load-bearing floor.",
+      "significance": "The calculus is the mathematics of change, and the world is mostly change. It writes the laws of physics, Newton's mechanics, Maxwell's electromagnetism, Einstein's general relativity, the equations of quantum mechanics, because those laws say how things change, and how things change is the derivative. It computes the areas and sums, the integrals, that turn those laws into predictions: orbits, fields, populations, prices. Any science that studies continuous processes is the calculus in a different uniform.\n\nInside mathematics, the calculus reshaped the discipline. From it grew analysis, differential equations, and the theory of functions; its rigorisation through limits gave modern mathematics its standard of proof. The concept of the Function became the calculus's main object, and the machinery of Limits became the foundation under everything. The calculus also exported its methods: economics adopted it for marginal analysis, engineering for optimisation and control, and statistics for the distribution of errors.\n\nIts story is the archetype of mathematics correcting itself. Two rival founders, a priority dispute that split Europe, a foundation so shaky that a bishop could mock it, and finally a rigorous rebuilding, the arc from genius through scandal to science is the subject's own autobiography. That a method born to measure tangents and areas should become the shared language of physics, engineering, and economics is the argument, if any were needed, that the mathematics of change is the mathematics of everything that matters.",
+      "keyfacts": [
+        {
+          "k": "founders",
+          "v": "Isaac Newton (fluxions, 1665-66) and Gottfried Leibniz (differentials, 1675), independently"
+        },
+        {
+          "k": "first paper",
+          "v": "Leibniz's Nova Methodus, Acta Eruditorum, 1684"
+        },
+        {
+          "k": "the two operations",
+          "v": "differentiation (rates) and integration (accumulation)"
+        },
+        {
+          "k": "fundamental theorem",
+          "v": "differentiation and integration are inverse operations"
+        },
+        {
+          "k": "notation",
+          "v": "Leibniz's dy/dx and the integral sign, an elongated s"
+        },
+        {
+          "k": "the scandal",
+          "v": "Berkeley's Analyst (1734) mocked its foundations"
+        },
+        {
+          "k": "rigor",
+          "v": "Cauchy (1821) and Weierstrass (1850s-60s) rebuilt it on limits"
+        }
+      ],
+      "quotes": [
+        {
+          "quote": "If I have seen further it is by standing on the shoulders of giants.",
+          "said": "Isaac Newton",
+          "context": "Letter to Robert Hooke, 1676."
+        },
+        {
+          "quote": "It is unworthy of excellent men to lose hours like slaves in the labour of calculation which could safely be relegated to anyone else if machines were used.",
+          "said": "Gottfried Wilhelm Leibniz",
+          "context": "On his calculating machine (1685); the computational spirit behind the calculus."
+        },
+        {
+          "quote": "And what are these fluxions? The velocities of evanescent increments? And what are these same evanescent increments? They are neither finite quantities, nor quantities infinitely small, nor yet nothing. May we not call them the ghosts of departed quantities?",
+          "said": "George Berkeley",
+          "context": "The Analyst (1734)."
+        },
+        {
+          "quote": "Go on, and faith will come to you.",
+          "said": "Jean le Rond d'Alembert",
+          "context": "Advice about the calculus, reported in his correspondence; in the original French, Allez en avant, la foi vous viendra."
+        },
+        {
+          "quote": "Calculemus!",
+          "said": "Gottfried Wilhelm Leibniz",
+          "context": "'Let us calculate.' His programme, announced from De arte combinatoria (1666) onward, for settling disputes by computation rather than debate"
+        },
+        {
+          "quote": "And what are these same evanescent increments? They are neither finite quantities, nor quantities infinitely small, nor yet nothing. May we not call them the ghosts of departed quantities?",
+          "said": "George Berkeley",
+          "context": "The Analyst, 1734, his attack on the foundations of the calculus"
+        },
+        {
+          "quote": "I do not know what I may appear to the world, but to myself I seem to have been only like a boy playing on the sea-shore, and diverting myself in now and then finding a smoother pebble or a prettier shell than ordinary, whilst the great ocean of truth lay all undiscovered before me.",
+          "said": "Isaac Newton",
+          "context": "Reported remark from his later years, recorded in Joseph Spence's Anecdotes"
+        }
+      ],
+      "timeline": [
+        {
+          "year": "1665-66",
+          "what": "Newton invents fluxions during the plague year at Woolsthorpe"
+        },
+        {
+          "year": "1675",
+          "what": "Leibniz develops the differential calculus and its notation"
+        },
+        {
+          "year": "1684",
+          "what": "Leibniz publishes the Nova Methodus, the first paper on the calculus"
+        },
+        {
+          "year": "1687",
+          "what": "Newton's Principia applies the calculus to mechanics"
+        },
+        {
+          "year": "1712",
+          "what": "the Royal Society's priority report splits European mathematics"
+        },
+        {
+          "year": "1734",
+          "what": "Berkeley's Analyst attacks the foundations"
+        },
+        {
+          "year": "1821",
+          "what": "Cauchy's Cours d'analyse puts the calculus on limits"
+        },
+        {
+          "year": "1850s-1860s",
+          "what": "Weierstrass's epsilon-delta rigor in Berlin lectures"
+        },
+        {
+          "year": "1665-66",
+          "what": "Newton develops the method of fluxions at Woolsthorpe during the plague years"
+        },
+        {
+          "year": "1675",
+          "what": "Leibniz begins using his differential (d) and integral (s) notation"
+        },
+        {
+          "year": "1684",
+          "what": "Leibniz publishes the first calculus paper, Nova Methodus, in Acta Eruditorum"
+        },
+        {
+          "year": "1687",
+          "what": "Newton's Principia, fluxional methods presented in geometric dress"
+        },
+        {
+          "year": "1734",
+          "what": "Berkeley's The Analyst attacks the foundations; Newton's priority campaign darkens the years before Leibniz's death in 1716"
+        },
+        {
+          "year": "1821",
+          "what": "Cauchy's Cours d'Analyse builds the calculus on the notion of the limit"
+        },
+        {
+          "year": "1854",
+          "what": "Riemann defines the definite integral as a limit of sums"
+        },
+        {
+          "year": "1902",
+          "what": "Lebesgue's integral extends the theory to far wilder curves"
+        }
+      ],
+      "sources": [
+        {
+          "title": "The Historical Development of the Calculus",
+          "by": "C. H. Edwards",
+          "year": "1979"
+        },
+        {
+          "title": "The History of the Calculus and its Conceptual Development",
+          "by": "Carl B. Boyer",
+          "year": "1949"
+        },
+        {
+          "title": "Never at Rest: A Biography of Isaac Newton",
+          "by": "Richard S. Westfall",
+          "year": "1980"
+        },
+        {
+          "title": "The Origins of Cauchy's Rigorous Calculus",
+          "by": "Judith V. Grabiner",
+          "year": "1981"
+        },
+        {
+          "title": "The History of the Calculus and Its Conceptual Development",
+          "by": "Carl B. Boyer",
+          "year": "1949"
+        },
+        {
+          "title": "The Mathematical Papers of Isaac Newton, Volume I",
+          "by": "ed. D. T. Whiteside",
+          "year": "1967"
+        },
+        {
+          "title": "Cours d'analyse de l'École Royale Polytechnique",
+          "by": "Augustin-Louis Cauchy",
+          "year": "1821"
+        },
+        {
+          "title": "A Course of Pure Mathematics",
+          "by": "G. H. Hardy",
+          "year": "1908"
         }
       ]
     },
@@ -10233,6 +10616,21 @@
           "quote": "If you win, you win everything; if you lose, you lose nothing.",
           "said": "Blaise Pascal",
           "context": "The wager on God's existence, Pensees"
+        },
+        {
+          "quote": "The most fundamental principle of all in gambling is simply equal conditions, e.g. of opponents, of bystanders, of money, of situation, of the dice box, and of the die itself.",
+          "said": "Girolamo Cardano",
+          "context": "Liber de Ludo Aleae, written c. 1560s, printed 1663; translated in Oystein Ore, Cardano: The Gambling Scholar"
+        },
+        {
+          "quote": "Even the most stupid of men, by some instinct of nature, by himself and without any instruction, is convinced that the more observations have been made, the less danger there is of wandering from one's goal.",
+          "said": "Jacob Bernoulli",
+          "context": "Ars Conjectandi, Part 4, 1713, on the law of large numbers"
+        },
+        {
+          "quote": "The heart has its reasons, which reason knows nothing of.",
+          "said": "Blaise Pascal",
+          "context": "Pensees; the same author of the mathematical wager on God, that celebrated early application of the newborn arithmetic to uncertainty"
         }
       ],
       "timeline": [
@@ -10263,6 +10661,18 @@
         {
           "year": "1933",
           "what": "Kolmogorov sets probability on measure-theoretic axioms"
+        },
+        {
+          "year": "1738",
+          "what": "Daniel Bernoulli tackles the St Petersburg paradox and introduces utility"
+        },
+        {
+          "year": "1837",
+          "what": "Poisson publishes the distribution that bears his name for rare events"
+        },
+        {
+          "year": "1900",
+          "what": "Bachelier's doctoral thesis applies probability to stock-market prices"
         }
       ],
       "sources": [
@@ -10275,6 +10685,21 @@
           "title": "The Emergence of Probability",
           "by": "Ian Hacking",
           "year": "1975"
+        },
+        {
+          "title": "Cardano: The Gambling Scholar",
+          "by": "Oystein Ore",
+          "year": "1953"
+        },
+        {
+          "title": "A History of the Mathematical Theory of Probability",
+          "by": "Isaac Todhunter",
+          "year": "1865"
+        },
+        {
+          "title": "Théorie analytique des probabilités",
+          "by": "Pierre-Simon Laplace",
+          "year": "1812"
         }
       ]
     },
@@ -10371,6 +10796,16 @@
           "quote": "There are three kinds of lies: lies, damned lies, and statistics.",
           "said": "attributed by Mark Twain to Benjamin Disraeli",
           "context": "Twain popularised the line in his autobiography; the attribution to Disraeli is traditional rather than certain"
+        },
+        {
+          "quote": "Whenever you can, count.",
+          "said": "Francis Galton",
+          "context": "His lifelong maxim, quoted in James R. Newman, The World of Mathematics, 1956"
+        },
+        {
+          "quote": "Statistics is the grammar of science.",
+          "said": "Karl Pearson",
+          "context": "The Grammar of Science, 1892"
         }
       ],
       "timeline": [
@@ -10405,6 +10840,18 @@
         {
           "year": "1933",
           "what": "Neyman-Pearson theory of hypothesis testing"
+        },
+        {
+          "year": "1805",
+          "what": "Legendre publishes the method of least squares"
+        },
+        {
+          "year": "1901",
+          "what": "Galton, Pearson and Weldon found the journal Biometrika"
+        },
+        {
+          "year": "1948",
+          "what": "the Medical Research Council's streptomycin trial, the first randomised controlled trial, sets the modern standard"
         }
       ],
       "sources": [
@@ -10422,6 +10869,21 @@
           "title": "Statistical Methods for Research Workers",
           "by": "Ronald A. Fisher",
           "year": "1925"
+        },
+        {
+          "title": "Natural Inheritance",
+          "by": "Francis Galton",
+          "year": "1889"
+        },
+        {
+          "title": "The Grammar of Science",
+          "by": "Karl Pearson",
+          "year": "1892"
+        },
+        {
+          "title": "Statistical Methods and Scientific Inference",
+          "by": "R. A. Fisher",
+          "year": "1956"
         }
       ]
     },
@@ -13737,14 +14199,9 @@
         }
       ],
       "sim": {
-        "id": "period-place",
-        "label": "Simulation · place the moment in time",
-        "caption": "A period hides a moment. Drag the marker to where you think it happened, then reveal.",
-        "vector": {
-          "time": 0.8,
-          "history": 0.7,
-          "calendar": 0.6
-        }
+        "id": "chain-reaction",
+        "label": "Simulation · split the atom",
+        "caption": "One neutron splits a nucleus, liberating more neutrons."
       }
     },
     {
@@ -13780,14 +14237,9 @@
         }
       ],
       "sim": {
-        "id": "period-place",
-        "label": "Simulation · place the moment in time",
-        "caption": "A period hides a moment. Drag the marker to where you think it happened, then reveal.",
-        "vector": {
-          "time": 0.8,
-          "history": 0.7,
-          "calendar": 0.6
-        }
+        "id": "chain-reaction",
+        "label": "Simulation · split the atom",
+        "caption": "One neutron splits a nucleus, liberating more neutrons."
       }
     },
     {
@@ -14821,7 +15273,12 @@
           "by": "Paul Sweezy",
           "year": "1939"
         }
-      ]
+      ],
+      "sim": {
+        "id": "price-war",
+        "label": "Simulation · slash prices, watch the floor",
+        "caption": "Cut the price and your rival cuts back. Who blinks first?"
+      }
     },
     {
       "id": "cournot-competition",
@@ -14905,7 +15362,12 @@
           "by": "von Neumann & Morgenstern",
           "year": "1944"
         }
-      ]
+      ],
+      "sim": {
+        "id": "price-war",
+        "label": "Simulation · slash prices, watch the floor",
+        "caption": "Cut the price and your rival cuts back. Who blinks first?"
+      }
     },
     {
       "id": "bertrand-competition",
@@ -14973,7 +15435,12 @@
           "by": "Joseph Bertrand, Journal des Savants",
           "year": "1883"
         }
-      ]
+      ],
+      "sim": {
+        "id": "price-war",
+        "label": "Simulation · slash prices, watch the floor",
+        "caption": "Cut the price and your rival cuts back. Who blinks first?"
+      }
     },
     {
       "id": "kinked-demand-curve",
@@ -15110,7 +15577,12 @@
           "by": "Jean Tirole",
           "year": "1988"
         }
-      ]
+      ],
+      "sim": {
+        "id": "price-war",
+        "label": "Simulation · slash prices, watch the floor",
+        "caption": "Cut the price and your rival cuts back. Who blinks first?"
+      }
     },
     {
       "id": "nash-equilibrium",
@@ -15194,7 +15666,12 @@
           "by": "Sylvia Nasar",
           "year": "1998"
         }
-      ]
+      ],
+      "sim": {
+        "id": "best-response",
+        "label": "Simulation · react to your rival",
+        "caption": "Given what your rival does, what is your best move?"
+      }
     },
     {
       "id": "mathematics-for-economics",
@@ -16987,7 +17464,12 @@
           "by": "Scott Chacon & Ben Straub",
           "year": "2014"
         }
-      ]
+      ],
+      "sim": {
+        "id": "version-control",
+        "label": "Simulation · commit, branch, merge",
+        "caption": "Commit history as a tree — branching is cheap, merging is not."
+      }
     },
     {
       "id": "git",
@@ -17074,7 +17556,12 @@
           "by": "Scott Chacon & Ben Straub",
           "year": "2014"
         }
-      ]
+      ],
+      "sim": {
+        "id": "version-control",
+        "label": "Simulation · commit, branch, merge",
+        "caption": "Commit history as a tree — branching is cheap, merging is not."
+      }
     },
     {
       "id": "debugging",
@@ -17163,7 +17650,12 @@
           "by": "Eric S. Raymond",
           "year": "2003"
         }
-      ]
+      ],
+      "sim": {
+        "id": "bisect",
+        "label": "Simulation · hunt the bug with binary search",
+        "caption": "A bug hides in one of 16 commits. Cut the range in half every probe."
+      }
     },
     {
       "id": "testing",
@@ -17253,7 +17745,12 @@
           "by": "Kent Beck",
           "year": "2002"
         }
-      ]
+      ],
+      "sim": {
+        "id": "tdd-loop",
+        "label": "Simulation · red, green, refactor",
+        "caption": "Write the failing test first, then the smallest code that passes it."
+      }
     },
     {
       "id": "compilers",
@@ -17422,7 +17919,12 @@
           "by": "Winston W. Royce",
           "year": "1970"
         }
-      ]
+      ],
+      "sim": {
+        "id": "phases-vs-iterations",
+        "label": "Simulation · waterfall versus sprints",
+        "caption": "The waterfall ships once, late. The sprints ship small, often."
+      }
     },
     {
       "id": "agile",
@@ -17505,7 +18007,12 @@
           "by": "Kent Beck",
           "year": "1999"
         }
-      ]
+      ],
+      "sim": {
+        "id": "phases-vs-iterations",
+        "label": "Simulation · waterfall versus sprints",
+        "caption": "The waterfall ships once, late. The sprints ship small, often."
+      }
     },
     {
       "id": "open-source",
@@ -18589,14 +19096,9 @@
         }
       ],
       "sim": {
-        "id": "idea-spread",
-        "label": "Simulation · how an idea takes a crowd",
-        "caption": "One voice, a network, a threshold. Seed the idea and watch openness decide whether it dies or sweeps.",
-        "vector": {
-          "network": 0.8,
-          "society": 0.7,
-          "debate": 0.6
-        }
+        "id": "tdd-loop",
+        "label": "Simulation · red, green, refactor",
+        "caption": "Write the failing test first, then the smallest code that passes it."
       },
       "story": "Kent Beck was born in 1961 near San Francisco and grew up on the California coast, arriving at programming just as small computers stopped needing to be explained to their owners. He belongs to the generation that learned by doing, and his early work at Tektronix in the 1980s put him inside the Smalltalk community — the group, around Ward Cunningham and others, that treated programming as a craft of culture rather than a feat of autocracy. With Cunningham, who had been keeping \"pattern\" notebooks, Beck helped import into programming the same attention to usable, repeatable solutions that architecture was then rediscovering, and the two of them made testing a subject programmers could talk about without blushing.\n\nHis conversion experience was the Chrysler Comprehensive Compensation project, known as C3, in 1996. The payroll system was failing, and Beck proposed not a bigger plan but a set of smaller, radical practices pushed — as he later teased the word \"extreme\" — to their logical extremes: test first, work in pairs, integrate continuously, let the customer sit in the room, keep the design honest and the release frequent. He named the set Extreme Programming, and in 1999 published Extreme Programming Explained with the subtitle \"Embrace Change,\" which remains one of the founding texts of the practice now known as agile software development.\n\nIn February 2001 he was one of seventeen signatories of the Agile Manifesto, drafted at a ski lodge in Snowbird, Utah, whose four values prized working software, individuals, collaboration, and responsiveness to change over the artefacts and rituals of the old waterfall process. His own contribution to the movement, Test-Driven Development, was codified in 2002 as Test-Driven Development: By Example, a book famous for its plain style and its working method: first, a failing test; then the smallest repair that passes it; then the refactoring that leaves it clean. The loop has a foul-mouthed sceptic's charm, and Beck has spent the rest of his career persuading ever larger organisations to keep it short.\n\nHe has worked as a coach and troubleshooter inside big companies, including a long stint at Facebook, and he has never stopped writing — his later book Software Design: Tidy First? asks whether the tidy-up is a doll's house or a lantern, and answers with a working method built on decades of evidence. He resists the guru's robe with real awkwardness; asked once how he would like to be remembered, he said he would prefer people simply to say he was right, conveniently, at the right time. His neighbours in the software craft — testing, agile, code-review — all carry the fingerprints of his habits, and his phrase about the occupational hazard of programming is the discipline's most quoted aphorism.",
       "mechanism": "Test-driven development works by inverting the emotional economy of programming. Instead of writing code and later writing tests to verify it, you write the test first: state the behaviour you want, watch it fail — the red phase — write the smallest amount of code that stops it failing — the green phase — and then refactor, improving the design while the tests stay green, which is the safety net that makes refactoring safe. Beck's own maxim states the rule flatly: \"make it work, make it right, make it fast.\" Because every requirement is expressed as an executable assertion, the tests become a specification nobody can forget and a guard no regression can bypass; the feedback loop is the whole point, since, as Beck writes, optimism is an occupational hazard of programming and feedback is the treatment.\n\nExtreme Programming stretches the same principle across a team: pair programming keeps two sets of eyes on every line and the reviewer's chair never empty; continuous integration merges everyone's work all day, so the merge pain arrives daily and small rather than weekly and fatal; collective ownership means no heroics, no bottlenecks; on-site customers and planning games compress the gap between what is asked and what is delivered; and a sustainable pace cuts the overtime that only makes the design rot faster. The heuristic underneath is short feedback cycles everywhere — from keystroke to test, from commit to integration, from release to customer. Stripped of slogans, it is an engineering discipline about reducing the distance between deciding and learning, which is also, quietly, the whole argument of agile and the reason his name sits beside version-control and continuous-delivery culture on the modern engineering shelf.",
@@ -19782,6 +20284,1165 @@
           "year": "1984"
         }
       ]
+    },
+    {
+      "id": "trigonometry",
+      "type": "concept",
+      "label": "Trigonometry",
+      "tag": "Mathematics",
+      "dates": [
+        -200
+      ],
+      "location": "Greece, India and the medieval Islamic world",
+      "summary": "The mathematics of angles: ratios between the sides of a right triangle that unlock circles, waves, and the height of anything you can stand away from.",
+      "vector": {
+        "triangle": 1,
+        "angle": 1,
+        "sine": 0.95,
+        "circle": 0.9,
+        "function": 0.85,
+        "measurement": 0.8,
+        "geometry": 0.9,
+        "calculus": 0.7
+      },
+      "community": "counting",
+      "related": [
+        {
+          "to": "geometry",
+          "kind": "extends"
+        },
+        {
+          "to": "the-pythagorean-theorem",
+          "kind": "founded on"
+        },
+        {
+          "to": "the-calculus",
+          "kind": "feeds into"
+        },
+        {
+          "to": "function",
+          "kind": "prefigures"
+        },
+        {
+          "to": "euclid",
+          "kind": "inherits from"
+        }
+      ],
+      "sim": {
+        "id": "unit-circle",
+        "label": "Simulation · the unit circle",
+        "caption": "Spin a point around the circle and read the sine and cosine off the axes."
+      },
+      "story": "Trigonometry began as a way to measure what you could not reach. A surveyor on flat ground wants the height of a mountain or a temple; an astronomer wants the distance to the Moon; a navigator wants a position at sea. All of them face the same trick: from a safe distance you cannot measure the far object directly, but you can measure an angle and a short baseline, and let a triangle do the reaching. The Babylonians and Egyptians used the trick; the Greeks turned it into a science.\n\nThe science needed numbers attached to angles. Around 150 BC, Hipparchus of Nicaea, the greatest of Greek astronomers, constructed a table of chords, the length of the straight segment joining two points on a circle, so that angles could be converted to lengths and back. His work is lost, but it survives in substance in Ptolemy's Almagest of about 150 AD, which refines the chord table and proves the addition formulas that let you combine angles. Ptolemy's epigram boasted that when he traced the windings of the stars he no longer touched the earth with his feet; trigonometry was already the astronomer's wings.\n\nIndia changed the shape of the idea. Aryabhata, writing around 500 AD, used the half-chord, half the chord subtending a central angle, and called it jya. The word travelled: Arabic translators wrote jiba, the vowel points were dropped, and later European readers mistook it for jaib, a bay or fold, which became the Latin sinus, a bosom or fold. Our sine is a name born of a misreading. Islamic astronomers built the finest tables: al-Khwarizmi, al-Battani, and al-Biruni, who around 1020 measured the Earth's circumference from the top of a mountain by trigonometry alone.\n\nThe name came late. Bartholomaeus Pitiscus coined trigonometry in 1595, and Regionontanus's De triangulis (1464) had already freed the subject from astronomy. But the modern version is Leonhard Euler's: in his Introductio of 1748 he defined sine and cosine as functions of a real angle on the unit circle and connected them to the exponential, giving Euler's formula, which Richard Feynman, in his Lectures, called the most remarkable formula in mathematics. Trigonometry, born as a table of chords for stargazing, became a function in the calculus and the grammar of every wave.",
+      "mechanism": "The three ratios live in a right triangle. Label an angle theta; the side opposite it is the opposite, the side beside it and not the hypotenuse is the adjacent, and the longest side is the hypotenuse. Then, by definition, the sine of theta is opposite over hypotenuse, the cosine of theta is adjacent over hypotenuse, and the tangent of theta is opposite over adjacent. SOH-CAH-TOA is the memory rhyme. Because all right triangles with the same angle are similar, stretched or shrunk copies of one another, the ratios depend only on the angle, not on the triangle's size. In a 3-4-5 triangle, for instance, the sine of the angle opposite the side 3 is 3 over 5, that is 0.6, no matter how large the triangle is.\n\nThe unit circle frees the ratios from triangles. Draw a circle of radius 1 centred at the origin, and take a point on it that makes angle theta with the positive x-axis. Its coordinates are exactly cosine of theta and sine of theta: the x-coordinate is the cosine, the y-coordinate the sine. As theta sweeps from 0 to 360 degrees, the point walks once around the circle, and sine and cosine trace out the smooth, endlessly repeating wave shapes that carry radio, sound, and light. Because the point sits on a circle of radius 1, the Pythagorean theorem gives the identity: cosine-squared theta plus sine-squared theta equals 1. Trigonometry is the Pythagorean theorem standing on a circle.\n\nThe use is a two-part measurement. Stand a distance d from the base of a tree and measure the angle theta from your eye to the treetop. The tree's height above your eye is d times the tangent of theta, opposite over adjacent, and adding your eye height gives the height of the tree without climbing it. Replace the tree with a mountain or a star, the measuring stick with the Earth's curvature or the celestial sphere, and you have the whole history of surveying and astronomy, from al-Biruni's measurement of the Earth to the triangulation inside a phone's GPS.",
+      "significance": "Trigonometry is the hinge between the straight and the round. It lets you compute with angles, to turn a direction into coordinates and a bearing into a distance, which makes it the working mathematics of navigation, surveying, and astronomy for two thousand years. The chord tables of Hipparchus and Ptolemy were the GPS of antiquity; the sine and tangent tables of the Islamic astronomers let al-Biruni measure the Earth. Whenever something must be measured without touching it, trigonometry is standing at a sensible distance.\n\nIts second life is as the parent of the wave. Sine and cosine were among the first true functions, the concept Functions was still two centuries from a name when the chord tables began, and Euler's unit-circle definitions made them the calculus's favourite citizens, with derivatives that cycle neatly among themselves. Fourier's discovery that any periodic signal is a sum of sine waves made trigonometry the grammar of sound, light and radio: every oscilloscope trace, every audio file, every image format is trigonometric underneath.\n\nNamed late and practised early, trigonometry illustrates how a craft becomes a science becomes a language. The right-triangle ratios taught to schoolchildren as SOH-CAH-TOA are the same ratios that fly spacecraft and encode phone calls; the identity cosine-squared plus sine-squared equals one is the Pythagorean theorem wearing a circle. Geometry gave it right triangles, The Calculus gave it functions, and the modern world gave it an audience of billions.",
+      "keyfacts": [
+        {
+          "k": "name",
+          "v": "coined by Bartholomaeus Pitiscus, 1595, from the Latin trigonometria, measuring triangles"
+        },
+        {
+          "k": "roots",
+          "v": "Hipparchus's chord table, c. 150 BC; refined by Ptolemy's Almagest, c. 150 AD"
+        },
+        {
+          "k": "the ratios",
+          "v": "sine, cosine, tangent: SOH-CAH-TOA"
+        },
+        {
+          "k": "unit circle",
+          "v": "cosine theta and sine theta are the x and y coordinates of a point on the circle of radius 1"
+        },
+        {
+          "k": "identity",
+          "v": "cosine-squared theta plus sine-squared theta equals 1, the Pythagorean theorem in disguise"
+        },
+        {
+          "k": "the word sine",
+          "v": "from Aryabhata's jya, via a Latin misreading of the Arabic for bay or fold"
+        },
+        {
+          "k": "uses",
+          "v": "surveying, navigation, astronomy, waves, signal processing, GPS"
+        }
+      ],
+      "quotes": [
+        {
+          "quote": "I know that I am mortal by nature, and ephemeral; but when I trace the windings of the heavenly bodies at my pleasure, I no longer touch the earth with my feet, but stand in the presence of Zeus himself and take my fill of ambrosia.",
+          "said": "Claudius Ptolemy",
+          "context": "Epigram preserved in the Greek Anthology, the astronomer's celebrated statement of his craft."
+        },
+        {
+          "quote": "We summarize with this, the most remarkable formula in mathematics: e to the i theta equals cosine theta plus i sine theta. This is our jewel.",
+          "said": "Richard Feynman",
+          "context": "The Feynman Lectures on Physics, Vol. I, Chapter 22 (1963), on Euler's formula."
+        },
+        {
+          "quote": "Philosophy is written in this grand book, the universe... It is written in the language of mathematics, and its characters are triangles, circles, and other geometric figures.",
+          "said": "Galileo Galilei",
+          "context": "Il Saggiatore (The Assayer), 1623."
+        }
+      ],
+      "timeline": [
+        {
+          "year": "c. 1900 BC",
+          "what": "Egyptian and Babylonian triangle measurement by side ratios"
+        },
+        {
+          "year": "c. 150 BC",
+          "what": "Hipparchus constructs the first known chord table for astronomy"
+        },
+        {
+          "year": "c. 150 AD",
+          "what": "Ptolemy's Almagest refines chord tables and proves the addition formulas"
+        },
+        {
+          "year": "c. 500 AD",
+          "what": "Aryabhata uses half-chords (jya), the ancestor of the sine"
+        },
+        {
+          "year": "c. 830 AD",
+          "what": "al-Khwarizmi's zij includes sine tables; tangent and cotangent develop in Islamic astronomy"
+        },
+        {
+          "year": "c. 1020",
+          "what": "al-Biruni measures the circumference of the Earth using angles"
+        },
+        {
+          "year": "1595",
+          "what": "Pitiscus coins the word trigonometry"
+        },
+        {
+          "year": "1748",
+          "what": "Euler's Introductio makes sine and cosine functions on the unit circle"
+        }
+      ],
+      "sources": [
+        {
+          "title": "The Mathematics of the Heavens and the Earth: The Early History of Trigonometry",
+          "by": "Glen Van Brummelen",
+          "year": "2009"
+        },
+        {
+          "title": "Ptolemy's Almagest",
+          "by": "trans. G. J. Toomer",
+          "year": "1984"
+        },
+        {
+          "title": "A History of Greek Mathematics",
+          "by": "Thomas L. Heath",
+          "year": "1921"
+        },
+        {
+          "title": "A History of Mathematics: An Introduction",
+          "by": "Victor J. Katz",
+          "year": "2009"
+        }
+      ]
+    },
+    {
+      "id": "the-pythagorean-theorem",
+      "type": "concept",
+      "label": "The Pythagorean Theorem",
+      "tag": "Mathematics",
+      "dates": [
+        -600
+      ],
+      "location": "Mesopotamia to Greece",
+      "summary": "For any right triangle, the square on the hypotenuse equals the sum of the squares on the other two sides. The oldest result in mathematics that is still taught first.",
+      "vector": {
+        "triangle": 1,
+        "geometry": 0.95,
+        "proof": 0.9,
+        "number": 0.85,
+        "equation": 0.8,
+        "measurement": 0.7
+      },
+      "community": "counting",
+      "related": [
+        {
+          "to": "geometry",
+          "kind": "proves"
+        },
+        {
+          "to": "trigonometry",
+          "kind": "founds"
+        },
+        {
+          "to": "euclid",
+          "kind": "demonstrated in"
+        },
+        {
+          "to": "number-and-counting",
+          "kind": "connects"
+        }
+      ],
+      "story": "The theorem outlives its name. Long before Pythagoras of Samos (c. 570-495 BC) was born, Babylonian scribes were writing down right-triangle facts. The clay tablet Plimpton 322, dated to around 1800 BC, lists whole-number triples, sets like 3, 4, 5 where the square of the largest equals the sum of the squares of the other two. The Egyptians, rebuilding boundaries after the Nile's floods, used a rope knotted in the ratio 3-4-5 to stake out right angles, and the Indian Sulba Sutras, composed between 800 and 500 BC, state the rule for laying out altars. The theorem was known before anyone thought of proving it; it was a fact of surveying before it was a fact of mathematics.\n\nPythagoras gave it a cult. His brotherhood at Croton, in southern Italy, taught that number was the essence of reality, and its members cherished proofs, not just recipes. Later writers, including the fifth-century commentator Proclus, report that the Pythagoreans attributed the theorem to their master and, on its discovery, sacrificed an ox. Historians are less sure what exactly Pythagoras proved; the story is better evidence of the school's devotion than of any single discovery.\n\nEuclid made it bulletproof. In the Elements, composed at Alexandria around 300 BC, Book I ends with Proposition 47: in right-angled triangles the square on the side subtending the right angle is equal to the squares on the sides containing the right angle. The proof proceeds by the careful machinery of the earlier propositions, and Proclus, generous to Pythagoras, reserved his greater admiration for Euclid's very lucid proof. For two thousand years this was the theorem's home address.\n\nThe theorem then revealed an uncomfortable secret. A right triangle with both legs of length 1 has a hypotenuse equal to the square root of 2, and the Pythagoreans found, so the legend runs, that this length cannot be written as a ratio of whole numbers. Proclus records that the man who publicised the discovery perished in a shipwreck, so that the inexpressible and unimaginable should ever remain veiled. Number, the essence of reality, was incomplete: some lengths refuse to be numbers in the ordinary sense.\n\nThe theorem's afterlife is everywhere. It is the foundation of Trigonometry, whose ratios live inside right triangles; it becomes the distance formula of coordinate geometry; and it is the seed of the modern idea of a metric, the notion of distance on which Geometry and even general relativity depend. Fermat's Last Theorem, that no integer powers beyond squares obey the same rule, is its haunting three-century-old cousin, settled by Andrew Wiles in 1995. The oldest result in mathematics is still the first thing every student proves.",
+      "mechanism": "The theorem is easiest met with numbers. Take a right triangle whose legs are 3 and 4. Draw a square on each leg and on the hypotenuse. The square on the leg of length 3 has area 9; the square on 4 has area 16. The theorem says these two together equal the area of the square on the hypotenuse, so that square has area 25, and its side is 5. Hence 9 plus 16 equals 25, and the hypotenuse is 5. This is the theorem's most famous servant, the 3-4-5 triangle.\n\nThe general statement is the same with letters. If a right triangle has legs a and b and hypotenuse c, then a-squared plus b-squared equals c-squared. The hypotenuse, the side opposite the right angle, is always the longest side, so c-squared is the biggest of the three squares; the theorem says it is exactly as big as the other two put together. Square on the side can be read literally: the area argument is about physical squares, and it is why the proposition is stated in the language of squares.\n\nEuclid's proof in Book I, Proposition 47, shows the equality by cutting the square on the hypotenuse into two rectangles, then proving by congruent triangles that each rectangle matches one of the squares on the legs in area. Simpler dissections exist: cut the two smaller squares along suitable lines and the pieces rearrange to tile the large one. The point of a proof, for Euclid, is that the equality is forced by reasoning rather than by measuring; a measurement can only show one triangle, a proof shows all of them.\n\nThe theorem works backwards too, and that is the surveyor's trick. If the three sides of a triangle satisfy a-squared plus b-squared equals c-squared, the angle opposite c is a right angle. A rope with knots at 3, 4 and 5 units, stretched into a triangle, yields a perfect corner; the harpedonaptai, the Egyptian rope-stretchers, built right angles this way. Modern descendants include the distance formula of coordinate geometry, where the separation between two points is the hypotenuse of a right triangle, and the whole idea of measuring by perpendicular steps.",
+      "significance": "The Pythagorean theorem is the archetype of a mathematical proof, the first theorem most people ever prove, and the standard against which proof is defined. It shows what Geometry is for: a statement about all right triangles, earned by reasoning and not by measurement, stands firm for two thousand years. When Euclid built his Elements, he ended the first book with it, a deliberate climax: the book that taught the world what proved means is anchored on a theorem that began as a rope trick.\n\nIt is also the founding stone of the mathematics of measurement. Trigonometry lives inside right triangles, its sine, cosine and tangent are ratios of the theorem's sides, so every height, distance and angle ever measured is an echo of a-squared plus b-squared equals c-squared. Coordinate geometry reads the theorem as the distance formula, and the modern idea of a metric, the way Geometry measures nearness and the way general relativity measures spacetime, is the theorem generalised.\n\nThe theorem's shadow is the discovery that some lengths are not ratios of whole numbers. The hypotenuse of a 1-by-1 right triangle, the square root of 2, is irrational, and the legend that its discoverer was drowned is the oldest warning that mathematics contains truths that offend intuition. That same incommensurability seeded the rigorous theory of real numbers, and its distant cousin Fermat's Last Theorem kept number theory busy for three and a half centuries until Andrew Wiles proved it in 1995. From a right triangle to the foundations of analysis and the summit of number theory, all in one equality.",
+      "keyfacts": [
+        {
+          "k": "statement",
+          "v": "a-squared plus b-squared equals c-squared for a right triangle, c the hypotenuse"
+        },
+        {
+          "k": "worked example",
+          "v": "the 3-4-5 triangle: 9 + 16 = 25"
+        },
+        {
+          "k": "antiquity",
+          "v": "known in Babylon (Plimpton 322, c. 1800 BC) and used by Egyptian rope-stretchers"
+        },
+        {
+          "k": "Pythagoras",
+          "v": "c. 570-495 BC; his school at Croton credited with the first proof"
+        },
+        {
+          "k": "Euclid",
+          "v": "Elements, Book I, Proposition 47, c. 300 BC"
+        },
+        {
+          "k": "dark companion",
+          "v": "the square root of 2 is irrational, not a ratio of whole numbers"
+        },
+        {
+          "k": "cousin",
+          "v": "Fermat's Last Theorem, proved by Andrew Wiles in 1995"
+        }
+      ],
+      "quotes": [
+        {
+          "quote": "In right-angled triangles the square on the side subtending the right angle is equal to the squares on the sides containing the right angle.",
+          "said": "Euclid",
+          "context": "Elements, Book I, Proposition 47; trans. Thomas L. Heath."
+        },
+        {
+          "quote": "If we listen to those who like to record antiquities, we shall find them attributing this theorem to Pythagoras and saying that he sacrificed an ox on its discovery. For my part, though I marvel at those who first noted the truth of this theorem, I admire more the author of the Elements for the very lucid proof by which he made it fast.",
+          "said": "Proclus",
+          "context": "Commentary on the First Book of Euclid's Elements, trans. Glenn R. Morrow."
+        },
+        {
+          "quote": "It is well known that the man who first made public the theory of irrationals perished in a shipwreck, in order that the inexpressible and unimaginable should ever remain veiled.",
+          "said": "Proclus",
+          "context": "Commentary on Euclid, on the discovery of irrational magnitudes."
+        },
+        {
+          "quote": "I have discovered a truly marvellous proof of this, which this margin is too narrow to contain.",
+          "said": "Pierre de Fermat",
+          "context": "Marginal note in his copy of Diophantus's Arithmetica (c. 1637), on the claim that no integer powers beyond squares satisfy the rule."
+        }
+      ],
+      "timeline": [
+        {
+          "year": "c. 1800 BC",
+          "what": "Babylonian tablet Plimpton 322 lists Pythagorean triples"
+        },
+        {
+          "year": "c. 800-500 BC",
+          "what": "Indian Sulba Sutras use the theorem to lay out altars"
+        },
+        {
+          "year": "c. 570-495 BC",
+          "what": "life of Pythagoras of Samos; his school credited with the first proof"
+        },
+        {
+          "year": "c. 300 BC",
+          "what": "Euclid proves it as Elements, Book I, Proposition 47"
+        },
+        {
+          "year": "c. 100 BC",
+          "what": "Chinese Zhou Bi Suan Jing records the Gougu theorem"
+        },
+        {
+          "year": "c. 1637",
+          "what": "Fermat's marginal note on the Last Theorem"
+        },
+        {
+          "year": "1995",
+          "what": "Andrew Wiles completes the proof of Fermat's Last Theorem"
+        }
+      ],
+      "sources": [
+        {
+          "title": "The Pythagorean Theorem: A 4,000-Year History",
+          "by": "Eli Maor",
+          "year": "2007"
+        },
+        {
+          "title": "The Pythagorean Proposition",
+          "by": "Elisha S. Loomis",
+          "year": "1968"
+        },
+        {
+          "title": "The Thirteen Books of Euclid's Elements",
+          "by": "trans. Thomas L. Heath",
+          "year": "1908"
+        },
+        {
+          "title": "Words and Pictures: New Light on Plimpton 322",
+          "by": "Eleanor Robson, Historia Mathematica",
+          "year": "2002"
+        },
+        {
+          "title": "Pythagoras: His Life, Teaching, and Influence",
+          "by": "Christoph Riedweg",
+          "year": "2005"
+        }
+      ]
+    },
+    {
+      "id": "limits",
+      "type": "concept",
+      "label": "Limits",
+      "tag": "Mathematics",
+      "dates": [
+        1821
+      ],
+      "location": "France",
+      "summary": "The precise answer to what a quantity approaches: the formal idea that turned the calculus from a scandal into a science.",
+      "vector": {
+        "limit": 1,
+        "function": 0.95,
+        "infinite": 0.9,
+        "proof": 0.85,
+        "calculus": 0.9,
+        "equation": 0.7
+      },
+      "community": "counting",
+      "related": [
+        {
+          "to": "the-calculus",
+          "kind": "formalises"
+        },
+        {
+          "to": "derivative",
+          "kind": "defines"
+        },
+        {
+          "to": "function",
+          "kind": "acts on"
+        },
+        {
+          "to": "topology",
+          "kind": "feeds into"
+        }
+      ],
+      "sim": {
+        "id": "limit-vision",
+        "label": "Simulation · approaching the limit",
+        "caption": "Watch the slope converge as the interval shrinks toward nothing."
+      },
+      "story": "For more than a century after Newton and Leibniz, the calculus worked brilliantly and rested on a confession. Its infinitesimals were quantities smaller than any assignable quantity yet not zero, the foundation, as George Berkeley pointed out in 1734, of ghosts of departed quantities. The results were magnificent; the reasons were fog. D'Alembert, who insisted the calculus be founded on limits, nevertheless counselled the young to go on and trust that faith would come.\n\nThe fog lifted in 1821. Augustin-Louis Cauchy, professor at the Ecole Polytechnique in Paris, published the Cours d'analyse, which opened with a definition of limit: a variable approaches a fixed value when its successive values differ from it by as little as one could wish. No ghosts, no tiny quantities, just a statement about how close you can get. On this base Cauchy rebuilt continuity, the derivative, and the convergence of series, and analysis became a science.\n\nCauchy's words still leaned on approaching and wishing. Karl Weierstrass, lecturing in Berlin from the 1850s, scrubbed the intuition out. In his formulation, a limit is a challenge you must always be able to answer: name any tolerance, however small, and there is a range of inputs narrow enough that every output falls inside the tolerance. No motion, no approaching, only distances and inequalities. This epsilon-delta form is the version taught today, and it is entirely static: the approach was replaced by a check.\n\nThe idea, once made precise, became load-bearing. The derivative is a limit; infinite sums are limits; continuity is defined by them. To make limits trustworthy, the real number line itself had to be completed, the work of Dedekind and Cantor in the 1870s, and the notion of nearness without any distance at all grew into Topology. A scandal that had embarrassed mathematics for 150 years turned out to be a definition waiting to be written.",
+      "mechanism": "In plain words, the limit of a function at a point is the value the outputs get close to as the inputs get close to that point, whether or not the value is ever actually reached. A worked example shows the point. Take f(x) = (x-squared minus 1) divided by (x minus 1). At x = 1 the formula becomes 0 over 0, which is undefined. But for x near 1, the numerator factorises: x-squared minus 1 is (x minus 1) times (x plus 1), the (x minus 1) cancels, and f(x) equals x plus 1 for every x other than 1. So when x is close to 1, the outputs are close to 2. The limit as x approaches 1 is 2, even though the function never quite gets there.\n\nThe precise version, Weierstrass's epsilon-delta definition, is best read as a game. Someone challenges you with a tiny number epsilon, the tolerance: keep every output within epsilon of the target. You must answer with a small number delta, a radius around the input point, such that every input within delta of the point produces an output within epsilon of the target. If you can answer every challenge, if no matter how small epsilon is set a suitable delta exists, the limit exists. The challenger shrinks the target; you shrink the window; the game is won only when your answer works for every epsilon.\n\nThe definition is deliberately static. There is no motion, no approaching, no infinitesimal, only distances and the assurance that a smaller input window forces a smaller output error. Because it is a statement about ordinary numbers, it can be proved and combined with other such statements, and on it the whole machinery of the calculus rests: the derivative is a limit of secant slopes, an infinite sum is the limit of its partial sums, and continuity is the claim that f of the limit equals the limit of f. Cauchy supplied the words; Weierstrass supplied the challenge game; together they turned a phrase into a proof.",
+      "significance": "Limits did what the founders could not: they made the calculus provable. Newton and Leibniz had produced results of astonishing power on foundations that George Berkeley exposed as ghosts of departed quantities, and for 150 years the most successful mathematics in history could not say what it was about. Cauchy's 1821 definition and Weierstrass's epsilon-delta refinement replaced intuition with a check, and the calculus became analysis, the standard of rigor that all later mathematics would imitate.\n\nThe concept also rebuilt the number line. A limit needs somewhere to land, and the rational numbers turn out to have holes, the very incommensurability the Pythagoreans found in the square root of 2. Dedekind and Cantor in the 1870s filled the holes, constructing the real numbers so that every converging sequence finds its target. In doing so they founded modern analysis and set the stage for the notion of nearness without distance, the neighborhoods and open sets that are the seed of Topology.\n\nPractically, the limit is the promise behind every approximation. Numerical methods converge or they do not; integrals, square roots, and weather forecasts are all computed as limits, and knowing that a sequence converges is what lets an engineer trust a simulation. The limit is the idea that a process that never quite arrives can still have a definite destination, and that, once checked, the destination can be used as if it were an ordinary number.",
+      "keyfacts": [
+        {
+          "k": "plain meaning",
+          "v": "the value a quantity approaches, whether or not it ever arrives"
+        },
+        {
+          "k": "verbal definition",
+          "v": "Cauchy, Cours d'analyse, 1821"
+        },
+        {
+          "k": "precise form",
+          "v": "the epsilon-delta condition, Weierstrass, Berlin lectures from the 1850s"
+        },
+        {
+          "k": "worked example",
+          "v": "(x-squared minus 1) over (x minus 1) approaches 2 as x approaches 1"
+        },
+        {
+          "k": "uses",
+          "v": "defines the derivative, continuity, and infinite sums"
+        },
+        {
+          "k": "scandal",
+          "v": "Berkeley's ghosts of departed quantities, 1734"
+        },
+        {
+          "k": "legacy",
+          "v": "foundation of topology's notion of nearness"
+        }
+      ],
+      "quotes": [
+        {
+          "quote": "When the values successively attributed to the same variable approach indefinitely a fixed value, eventually differing from it by as little as one could wish, that fixed value is called the limit of all the others.",
+          "said": "Augustin-Louis Cauchy",
+          "context": "Cours d'analyse (1821); trans. Robert E. Bradley and C. Edward Sandifer."
+        },
+        {
+          "quote": "And what are these fluxions? The velocities of evanescent increments? And what are these same evanescent increments? They are neither finite quantities, nor quantities infinitely small, nor yet nothing. May we not call them the ghosts of departed quantities?",
+          "said": "George Berkeley",
+          "context": "The Analyst (1734), attacking the foundations of the calculus."
+        },
+        {
+          "quote": "Go on, and faith will come to you.",
+          "said": "Jean le Rond d'Alembert",
+          "context": "Advice about the calculus, reported in his correspondence; in the original French, Allez en avant, la foi vous viendra."
+        }
+      ],
+      "timeline": [
+        {
+          "year": "c. 250 BC",
+          "what": "Archimedes uses the method of exhaustion for areas and volumes, a geometric ancestor of limits"
+        },
+        {
+          "year": "1734",
+          "what": "Berkeley's Analyst mocks fluxions and infinitesimals"
+        },
+        {
+          "year": "1760s",
+          "what": "d'Alembert argues the calculus should be founded on the notion of limit"
+        },
+        {
+          "year": "1821",
+          "what": "Cauchy's Cours d'analyse gives a verbal definition of limit and rebuilds analysis on it"
+        },
+        {
+          "year": "1850s-1860s",
+          "what": "Weierstrass refines the epsilon-delta definition in Berlin lectures"
+        },
+        {
+          "year": "1872",
+          "what": "Dedekind and Cantor construct the real numbers so limits have somewhere to land"
+        }
+      ],
+      "sources": [
+        {
+          "title": "Cours d'analyse",
+          "by": "Augustin-Louis Cauchy",
+          "year": "1821"
+        },
+        {
+          "title": "The Origins of Cauchy's Rigorous Calculus",
+          "by": "Judith V. Grabiner",
+          "year": "1981"
+        },
+        {
+          "title": "The History of the Calculus and its Conceptual Development",
+          "by": "Carl B. Boyer",
+          "year": "1949"
+        },
+        {
+          "title": "The Historical Development of the Calculus",
+          "by": "C. H. Edwards",
+          "year": "1979"
+        }
+      ]
+    },
+    {
+      "id": "derivative",
+      "type": "concept",
+      "label": "The Derivative",
+      "tag": "Mathematics",
+      "dates": [
+        1684
+      ],
+      "location": "Newton and Leibniz",
+      "summary": "How fast something is changing at a single instant: the slope of a curve at a point, and the engine of the calculus.",
+      "vector": {
+        "derivative": 1,
+        "function": 0.95,
+        "calculus": 0.95,
+        "slope": 0.9,
+        "rate": 0.85,
+        "limit": 0.9,
+        "motion": 0.8,
+        "equation": 0.7
+      },
+      "community": "counting",
+      "related": [
+        {
+          "to": "the-calculus",
+          "kind": "is the heart of"
+        },
+        {
+          "to": "limits",
+          "kind": "defined by"
+        },
+        {
+          "to": "function",
+          "kind": "acts on"
+        },
+        {
+          "to": "gottfried-leibniz",
+          "kind": "invented by"
+        },
+        {
+          "to": "isaac-newton",
+          "kind": "invented by"
+        },
+        {
+          "to": "trigonometry",
+          "kind": "differentiates"
+        }
+      ],
+      "sim": {
+        "id": "tangent-slope",
+        "label": "Simulation · the tangent slope",
+        "caption": "Drag the point; watch the secant tighten into the tangent."
+      },
+      "story": "The question is the one your speedometer answers: how fast are you moving, right now, this instant? Average speeds are easy, distance divided by time, but an instant has no duration, so the arithmetic of averages cannot reach it. In the plague year 1665-66, Isaac Newton, working alone at Woolsthorpe, invented the mathematics that reaches it. He thought of quantities as flowing, called them fluents, and their instantaneous rates of change fluxions. His Method of Fluxions, written in 1671 though published only in 1736, was built for motion.\n\nGottfried Leibniz reached the same mathematics from a different door. Working in Paris from 1675, he developed the differential calculus: quantities sliced into infinitely small differences, which he called differentials. His Nova Methodus of 1684, published in Acta Eruditorum, was the first printed paper on the subject, and its notation, dy and dx, the ratio of two differentials, was so good that we still use it. Two men, two styles, one subject: Newton's flowing quantities, Leibniz's tiny differences. Their followers would spend half a century arguing over which came first.\n\nThe eighteenth century used the derivative brilliantly and could not justify it. Berkeley's Analyst (1734) mocked the foundation, calling fluxions ghosts of departed quantities, and mathematicians scrambled. Lagrange tried to rescue the subject with algebra, and in 1797 coined the very name: the new function obtained from f is the fonction derivee, the derived function, written f'(x). Cauchy in 1823 finally gave the modern definition: the derivative is the limit of the ratio of differences, and when the ratio settles on a value, that value is f'(x). Weierstrass's epsilon-delta formulation made even that airtight.\n\nNewton's and Leibniz's notations still coexist, the fluxion's dot surviving as the physicist's d with respect to time, and the concept they both found is now the engine of The Calculus: the slope of the tangent, the instantaneous rate of change, the local answer to how fast, right now.",
+      "mechanism": "The derivative is the slope of a curve at a single point, and slopes are ratios. The slope of a straight line is the rise divided by the run. For a curve, take a point and a second point nearby, and draw the straight line through them, the secant. Its slope is an average rate of change. Now let the second point slide toward the first: the secant turns, tightening onto the tangent line, and its slope approaches the derivative. In symbols, the slope of the secant is (f(x+h) minus f(x)) over h, where h is the horizontal gap, and the derivative is the limit of this ratio as h shrinks to zero. The limit, see Limits, is what makes instantaneous honest.\n\nA worked example makes it concrete. Let f(x) = x-squared, the squaring machine. The rise from x to x+h is (x+h) squared minus x-squared, which expands to 2xh plus h-squared. Dividing by h, the run, gives the secant slope 2x plus h. Now let h shrink to zero: the secant slope approaches 2x. So the derivative of x-squared is 2x. Check at x = 3: the curve rises 6 units per unit across, and indeed (3+h) squared equals 9 plus 6h plus h-squared, so for small h the height changes by about 6h.\n\nThe derivative is a rate, and rates have names everywhere. If f is position over time, f' is velocity and its own derivative is acceleration. If f is a cost as a function of quantity, f' is the marginal cost that economics worries over. Leibniz wrote the ratio as dy over dx, Newton as a dot over the flowing quantity; the power rule, the derivative of x to the n is n times x to the n minus one, turns the whole business into arithmetic. And because the sine and cosine from Trigonometry are functions too, their derivatives, cosine and negative sine, run in a closed cycle, which is why oscillation, waves and alternating current all obey calculus.",
+      "significance": "The derivative turned change into arithmetic. Before it, how fast, right now, was philosophy; after it, the question is a computation. The entire modern world of continuous change runs on the answer: Newton's laws are equations of derivatives, and Maxwell's equations and Einstein's field equations are written in the same tongue. Wherever something varies, a signal, a population, a price, the derivative is the instrument that measures the variation.\n\nIt is also the tool of the optimum. A curve's highest and lowest points occur where the tangent is horizontal, and the tangent is horizontal precisely where the derivative is zero. Optimisation, maximum profit, minimum cost, fastest route, best fit, is therefore the art of setting a derivative to zero, and it is why the derivative sits inside economics' marginal analysis as well as engineering's design. The derivative is also the local microscope: near any smooth point a curve looks exactly like its tangent, so the simplest linear approximation of a system is its derivative, and every engineering estimate begins there.\n\nIts history is the calculus's history in miniature: two inventors, one concept, two notations, and a century of argument about foundations. Newton's fluxions and Leibniz's differentials were different languages for the same rate; Lagrange named the derived function in 1797; Cauchy defined it by limits in 1823. The disputes settled, the notations survived, we teach both, and the derivative stands as the proof that a good idea can be born twice, argued over, and end up indispensable.",
+      "keyfacts": [
+        {
+          "k": "meaning",
+          "v": "instantaneous rate of change; the slope of the tangent at a point"
+        },
+        {
+          "k": "definition",
+          "v": "the limit of secant slopes as the interval shrinks to zero"
+        },
+        {
+          "k": "worked example",
+          "v": "f(x) = x-squared has derivative 2x"
+        },
+        {
+          "k": "notation",
+          "v": "Leibniz's dy/dx; Newton's fluxion dot; Lagrange's f'(x)"
+        },
+        {
+          "k": "named",
+          "v": "fonction derivee (derived function) by Lagrange, 1797"
+        },
+        {
+          "k": "physics",
+          "v": "velocity is the derivative of position; acceleration of velocity"
+        },
+        {
+          "k": "economics",
+          "v": "marginal cost and marginal revenue are derivatives"
+        }
+      ],
+      "quotes": [
+        {
+          "quote": "In order to indicate this dependence, one gives the new function the name derived function, and designates it with the aid of an accent by the notation y' or f'(x).",
+          "said": "Augustin-Louis Cauchy",
+          "context": "Resume des lecons sur le calcul infinitesimal (1823), defining the derivative as a limit."
+        },
+        {
+          "quote": "I call those quantities which I consider as gradually and indefinitely increasing, fluents; and their velocities, fluxions.",
+          "said": "Isaac Newton",
+          "context": "The Method of Fluxions and Infinite Series (1671); trans. John Colson, 1736."
+        },
+        {
+          "quote": "I do not feign hypotheses.",
+          "said": "Isaac Newton",
+          "context": "Principia, General Scholium (1713 edition); the original Latin, hypotheses non fingo."
+        }
+      ],
+      "timeline": [
+        {
+          "year": "1665-66",
+          "what": "Newton develops fluxions during the plague year at Woolsthorpe"
+        },
+        {
+          "year": "1675",
+          "what": "Leibniz begins his differential calculus and its notation"
+        },
+        {
+          "year": "1684",
+          "what": "Leibniz publishes the Nova Methodus, the first calculus paper"
+        },
+        {
+          "year": "1687",
+          "what": "Newton's Principia uses the calculus for mechanics"
+        },
+        {
+          "year": "1734",
+          "what": "Berkeley's Analyst attacks the foundations of fluxions"
+        },
+        {
+          "year": "1797",
+          "what": "Lagrange introduces the term derived function (fonction derivee)"
+        },
+        {
+          "year": "1823",
+          "what": "Cauchy defines the derivative as a limit"
+        },
+        {
+          "year": "1860s",
+          "what": "Weierstrass gives the epsilon-delta form"
+        }
+      ],
+      "sources": [
+        {
+          "title": "The Historical Development of the Calculus",
+          "by": "C. H. Edwards",
+          "year": "1979"
+        },
+        {
+          "title": "Never at Rest: A Biography of Isaac Newton",
+          "by": "Richard S. Westfall",
+          "year": "1980"
+        },
+        {
+          "title": "The Origins of Cauchy's Rigorous Calculus",
+          "by": "Judith V. Grabiner",
+          "year": "1981"
+        },
+        {
+          "title": "Nova Methodus pro Maximis et Minimis",
+          "by": "Gottfried Wilhelm Leibniz, Acta Eruditorum",
+          "year": "1684"
+        }
+      ]
+    },
+    {
+      "id": "function",
+      "type": "concept",
+      "label": "Functions",
+      "tag": "Mathematics",
+      "dates": [
+        1673
+      ],
+      "location": "Leibniz",
+      "summary": "A machine that takes an input and gives an output: the shared language of algebra, trigonometry, calculus, and computer science.",
+      "vector": {
+        "function": 1,
+        "input": 0.9,
+        "output": 0.9,
+        "equation": 0.85,
+        "algebra": 0.8,
+        "model": 0.85,
+        "calculus": 0.8
+      },
+      "community": "counting",
+      "related": [
+        {
+          "to": "algebra",
+          "kind": "generalises"
+        },
+        {
+          "to": "trigonometry",
+          "kind": "uses"
+        },
+        {
+          "to": "derivative",
+          "kind": "acts on"
+        },
+        {
+          "to": "algorithms",
+          "kind": "shares its shape"
+        },
+        {
+          "to": "the-calculus",
+          "kind": "is about"
+        },
+        {
+          "to": "programming-languages",
+          "kind": "inspired"
+        }
+      ],
+      "story": "That one thing depends on another is old. Tables of squares, of shadows, of chords for every angle, all of these are functions in everything but name. What was missing was the name, and the realisation that dependence itself deserved study. It arrived in 1673, when Gottfried Leibniz used the word function for quantities connected to a curve: the ordinates, the tangents, the normals, each performing its office with respect to the curve. He was so pleased when Johann Bernoulli adopted the term that he wrote to say so.\n\nThe definition then relaxed by stages. Johann Bernoulli, in a 1694 letter to Leibniz, called a function a quantity somehow formed from indeterminate and constant quantities. Euler tightened the notation, introducing f(x) in 1734, and in his Introductio (1748) declared a function to be an analytic expression composed in any way whatsoever of the variable quantity and numbers or constant quantities. Still, a function meant a formula. Dirichlet in 1837 delivered the modern idea: a function is any rule that assigns to each input a unique output, whether the rule is a formula or not. His own example, the function that is 1 at rational numbers and 0 at irrational numbers, is calculated nowhere and defined everywhere.\n\nSet theory made it official. By the time Bourbaki formalised mathematics in the 1930s, a function was a mapping between sets: a relation in which each input has exactly one partner. Frege had already insisted, decades earlier, that a function was a complete thing in itself, as much a function as x-squared, an insight that gave logic its machinery.\n\nThen the idea escaped into machines. In computing, the function is the unit of procedure: a named block that takes inputs and returns outputs, the spine of every programming language. Alonzo Church's lambda calculus of 1936 made functions themselves the objects of computation, functions that take functions as arguments and return functions as results, and from it grew the functional programming languages that still carry the name. Euler's f and the lambda are the same move: treat the machine of dependence as a thing. The concept of a function is the shared grammar of Algebra, Trigonometry, The Calculus, Algorithms, and Programming Languages, and it is hard to say which field can claim it.",
+      "mechanism": "A function is a rule with two rules of its own: one input, one output, and every allowed input gets an output. Think of a machine with a slot. Feed in 3 and the machine named square returns 9; feed in 4, it returns 16; feed in minus 3, it returns 9 again. Two different inputs may share an output, that is allowed, but a single input can never yield two outputs; the moment it does, the machine is not a function. The notation is Euler's: f(x) = x-squared names the machine, the letter x is the slot, and f(3) = 9 records a single working.\n\nThe machine has a visible face. Feed it the whole set of allowed inputs, the domain, and the outputs form the range. Plot the pairs (x, f(x)) on a plane, and the points trace the graph, the shape of the machine. For f(x) = x-squared, the graph is the parabola: it is defined for every real x, but its outputs are never negative, so the range is the non-negative numbers. The domain is part of the definition; change it and you change the function, even if the formula looks the same.\n\nFunctions also connect to one another. They compose: f(g(x)) means feed x to g, then feed g's output to f. They nest inside the calculus, which studies functions rather than plain numbers: the derivative is a machine that eats a function and returns its slope. And in computing the same idea wears a different coat: a function is a named procedure with parameters and a return value, and in modern languages functions are first-class objects, passed around like numbers. The lambda calculus of 1936 made the rule itself the thing under study, and functional programming built on that. The machine, it turns out, is the point.",
+      "significance": "The function is the subject of the calculus and the verb of mathematics. Before it, y depends on x was a gesture; after Euler and Dirichlet it is an object that can be studied, differentiated, integrated, and compared. Most of modern mathematics is a conversation about functions: the calculus is the science of functions and their rates, Algebra studies classes of functions, and Trigonometry supplied the first genuinely important examples.\n\nIn the sciences a function is a model, position as a function of time, temperature as a function of position, demand as a function of price. Every physical law is an equation relating functions and their derivatives, which is why the function concept and the calculus grew up together and why The Calculus is the language in which the laws are written. In economics, marginal cost and marginal revenue are functions of quantity; the optimisation of every firm is a question about functions.\n\nIts most surprising career is in computation. The function is the atom of program structure, the named procedure with inputs and outputs, and the lambda calculus of 1936 showed that functions alone are enough to express all computation. Functional programming languages, first-class functions, and the theory of Algorithms all descend from the same move Euler made with f(x): treat the rule as a thing. No other mathematical object straddles the sciences, the humanities, and the machine quite so completely.",
+      "keyfacts": [
+        {
+          "k": "first use of the word",
+          "v": "Gottfried Leibniz, 1673, for quantities connected to a curve"
+        },
+        {
+          "k": "early definition",
+          "v": "Johann Bernoulli, 1694: a quantity somehow formed from indeterminate and constant quantities"
+        },
+        {
+          "k": "notation",
+          "v": "Euler's f(x), first used in 1734"
+        },
+        {
+          "k": "modern definition",
+          "v": "any rule assigning each input a unique output (Dirichlet, 1837)"
+        },
+        {
+          "k": "example",
+          "v": "f(x) = x-squared; f(3) = 9, f(-3) = 9"
+        },
+        {
+          "k": "in computing",
+          "v": "the function is the unit of procedure in every programming language"
+        },
+        {
+          "k": "formal",
+          "v": "Bourbaki defined functions as mappings between sets (Theorie des ensembles, 1939)"
+        }
+      ],
+      "quotes": [
+        {
+          "quote": "A quantity somehow formed from indeterminate and constant quantities.",
+          "said": "Johann Bernoulli",
+          "context": "Definition of a function in a letter to Gottfried Leibniz, 1694."
+        },
+        {
+          "quote": "A function of a variable quantity is an analytic expression composed in any way whatsoever of the variable quantity and numbers or constant quantities.",
+          "said": "Leonhard Euler",
+          "context": "Introductio in analysin infinitorum (1748)."
+        },
+        {
+          "quote": "I am pleased that you use the term function in my sense.",
+          "said": "Gottfried Wilhelm Leibniz",
+          "context": "Letter to Johann Bernoulli, quoted in the MacTutor History of Mathematics archive."
+        }
+      ],
+      "timeline": [
+        {
+          "year": "1673",
+          "what": "Leibniz first uses the word function in a mathematical sense"
+        },
+        {
+          "year": "1694",
+          "what": "Johann Bernoulli's definition in a letter to Leibniz"
+        },
+        {
+          "year": "1718",
+          "what": "Bernoulli: a function is any expression made from a variable and constants"
+        },
+        {
+          "year": "1734",
+          "what": "Euler introduces the f(x) notation"
+        },
+        {
+          "year": "1748",
+          "what": "Euler's Introductio builds analysis around functions"
+        },
+        {
+          "year": "1837",
+          "what": "Dirichlet gives the arbitrary-rule definition and a function discontinuous everywhere"
+        },
+        {
+          "year": "1936",
+          "what": "Church's lambda calculus makes functions the objects of computation"
+        },
+        {
+          "year": "1939",
+          "what": "Bourbaki formalises functions as mappings between sets"
+        }
+      ],
+      "sources": [
+        {
+          "title": "A History of Mathematical Notations",
+          "by": "Florian Cajori",
+          "year": "1929"
+        },
+        {
+          "title": "Introductio in analysin infinitorum",
+          "by": "Leonhard Euler",
+          "year": "1748"
+        },
+        {
+          "title": "A History of Mathematics: An Introduction",
+          "by": "Victor J. Katz",
+          "year": "2009"
+        },
+        {
+          "title": "The History of the Concept of Function and Some Educational Implications",
+          "by": "Joao Pedro Ponte, The Mathematics Educator",
+          "year": "1992"
+        }
+      ]
+    },
+    {
+      "id": "etymology-trigonometry",
+      "type": "etymology",
+      "label": "The Word: trigonometry",
+      "term": "trigonometry",
+      "dates": [
+        1595
+      ],
+      "location": "Pitiscus, Heidelberg",
+      "coinedBy": "Bartholomaeus Pitiscus (Latin trigonum, ‘triangle’ + metria, ‘measurement’)",
+      "coinYear": "1595",
+      "origin": "Trigonometria — the measuring of triangles",
+      "summary": "Trigonometry is the measuring of triangles, named in 1595 by Bartholomaeus Pitiscus — though the craft of it is as old as the pyramids and the stars.",
+      "vector": {
+        "triangle": 1,
+        "angle": 1,
+        "measurement": 0.9,
+        "sine": 0.85,
+        "circle": 0.8,
+        "geometry": 0.7
+      },
+      "community": "counting",
+      "sim": {
+        "id": "generation-drift",
+        "label": "Simulation · the word, whispered down",
+        "caption": "Pass a word through six generations of careless ears and watch its meaning drift from the root."
+      },
+      "story": "Trigonometry is a young name for an ancient craft. The word is a Latin marriage — trigonum, triangle, and metria, measurement — and it was written down for the first time in 1595 by Bartholomaeus Pitiscus, a German theologian who titled one of his books Trigonometria. He meant literally the measuring of triangles, and he was naming something mathematicians had been doing, under other names, for two thousand years.\n\nThe sine itself was not born Latin but Sanskrit. Indian astronomers of the Gupta age knew the jya, the chord of an arc, and half of it they called ardha-jya; Arabic translators carried the word through jiba to Arabic writing, where an unvowelled script left readers to guess, and the guess that stuck was jaib, a pocket or fold — from which Latin took sinus, a fold of a cloak, and English took sine. The word arrived crooked and settled into its shape. The tangent was a touching line, from Latin tangere, to touch; the secant cut, from secare, to cut; and the cosine, originally co-sine, was simply the sine of the complementary angle.\n\nBy the time Pitiscus gave the whole enterprise its modern name, the craft had already surveyed the world. Eratosthenes had measured the circumference of the Earth with a well and a shadow; Hipparchus had built the chord tables that let sailors find latitude; Ptolemy had written a trigonometry inside his Almagest. What was new in 1595 was not the triangles but the discipline of them — a named subject with tables and methods, ready for logarithms and for the calculus that would inherit its functions.\n\nSo trigonometry is a word that says plainly what it does: it measures triangles. And because the triangle hides inside every circle, every wave, and every angle of sight, the plain name came to govern a mathematics far wider than its title.",
+      "mechanism": "Trigonometry works by fixing the ratios inside a right triangle and then letting those ratios stand for the angles. In a right triangle with an angle θ, the three primary ratios are sine, cosine and tangent — SOH-CAH-TOA: sine is opposite over hypotenuse, cosine is adjacent over hypotenuse, tangent is opposite over adjacent. These ratios depend only on the angle, never on the size of the triangle, which is why a single table of values can measure a mountain from a safe distance.\n\nThe unit circle turns the same ratios into a coordinate machine. A circle of radius 1 is drawn around the origin; a point on it, at angle θ from the positive x-axis, has coordinates (cos θ, sin θ). Swing the point all the way around and the sine and cosine trace smooth waves — the basis of every wave, from sound to alternating current to the orbit of a planet viewed edge-on.\n\nTwo results make the subject practical. The law of sines relates the sides and opposite angles of any triangle; the law of cosines generalises Pythagoras. Together they let a surveyor, a sailor, or a satellite triangulate positions and distances from angles alone, which is why the measuring of triangles became the measuring of the world.",
+      "significance": "Trigonometry is the quiet engine behind navigation, astronomy, architecture and signal processing. Every time a phone locks onto a satellite or a pilot lands in low visibility, angles are being resolved through sine and cosine. The subject turned the abstract shapes of geometry into tools you could hold up to the sky.\n\nIts greatest heir is the calculus. The derivative of sine is cosine, the derivative of cosine is minus sine — two functions that generate each other, which is why trigonometry sits at the heart of every differential equation describing motion, waves, and alternating current. Fourier showed that any repeating signal is a sum of sines and cosines, a result that makes modern audio, image compression and radio possible.\n\nAnd its name tells a story about how mathematics moves: a craft practised for millennia under many names, finally given a label in 1595, and the label lending the subject a shape it never quite had before. Trigonometry is the bridge in Alpaca’s web between geometry, the calculus and the functions that run the world.",
+      "keyfacts": [
+        {
+          "k": "root",
+          "v": "Latin trigonum (triangle) + metria (measurement)"
+        },
+        {
+          "k": "coined",
+          "v": "Bartholomaeus Pitiscus, 1595, in his Trigonometria"
+        },
+        {
+          "k": "sine",
+          "v": "From Sanskrit jya through Arabic jaib (fold) to Latin sinus — a word that changed meaning in transit"
+        },
+        {
+          "k": "ancient craft",
+          "v": "Hipparchus (c. 150 BC) built the first chord tables; Ptolemy extended them in the Almagest"
+        },
+        {
+          "k": "unit circle",
+          "v": "A radius-1 circle where a point at angle θ has coordinates (cos θ, sin θ)"
+        },
+        {
+          "k": "SOH-CAH-TOA",
+          "v": "The mnemonic for sine, cosine and tangent in a right triangle"
+        }
+      ],
+      "quotes": [
+        {
+          "quote": "Let no one enter here who does not know geometry.",
+          "said": "Attributed to Pythagoras (inscription over his school)",
+          "context": "The apocryphal motto long attached to the Pythagorean school, apt for a subject that grew out of the measuring of triangles"
+        }
+      ],
+      "timeline": [
+        {
+          "year": "c. 150 BC",
+          "what": "Hipparchus produces the earliest chord table, the ancestor of the sine"
+        },
+        {
+          "year": "c. 150 AD",
+          "what": "Ptolemy’s Almagest codifies chord mathematics for astronomy"
+        },
+        {
+          "year": "5th century",
+          "what": "Indian mathematicians use the jya, the half-chord that becomes the sine"
+        },
+        {
+          "year": "c. 830",
+          "what": "Al-Khwarizmi’s astronomical tables carry the Arabic jaib into wider use"
+        },
+        {
+          "year": "1595",
+          "what": "Bartholomaeus Pitiscus coins the word trigonometry in Trigonometria"
+        },
+        {
+          "year": "c. 1660",
+          "what": "Sinus, tangent and secant take their modern Latin names in European textbooks"
+        },
+        {
+          "year": "18th century",
+          "what": "Euler fixes the notation sin, cos, tan and ties trigonometry to complex numbers"
+        }
+      ],
+      "sources": [
+        {
+          "title": "The History of Trigonometry",
+          "by": "Glen Van Brummelen",
+          "year": "2009"
+        },
+        {
+          "title": "Heavenly Mathematics: The Forgotten Art of Spherical Trigonometry",
+          "by": "Glen Van Brummelen",
+          "year": "2013"
+        },
+        {
+          "title": "Ptolemy’s Almagest",
+          "by": "G. J. Toomer (translator)",
+          "year": "1984"
+        }
+      ]
+    },
+    {
+      "id": "elias-carver",
+      "type": "perspective",
+      "label": "Elias Carver",
+      "tag": "Systems programmer, 1970s",
+      "dates": [
+        1972
+      ],
+      "location": "A university computing centre",
+      "gift": "fl. 1970s",
+      "community": "computation",
+      "summary": "Before the mouse, the screen was a paper trail: you typed, the machine answered in letters, and you were never more than one keystroke from the void.",
+      "related": [
+        {
+          "to": "operating-systems",
+          "kind": "used"
+        },
+        {
+          "to": "the-personal-computer",
+          "kind": "doubted"
+        },
+        {
+          "to": "human-computer-interaction",
+          "kind": "questioned"
+        },
+        {
+          "to": "the-mother-of-all-demos",
+          "kind": "foresaw"
+        },
+        {
+          "to": "programming-languages",
+          "kind": "used"
+        },
+        {
+          "to": "the-stored-program-computer",
+          "kind": "inherited"
+        }
+      ],
+      "vector": {
+        "computer": 1,
+        "machine": 0.9,
+        "software": 0.9,
+        "programming": 0.95,
+        "code": 0.8,
+        "language": 0.7,
+        "data": 0.7,
+        "interface": 0.85,
+        "input": 0.9,
+        "output": 0.9,
+        "human": 0.75,
+        "interaction": 0.7,
+        "operating": 0.8,
+        "memory": 0.7,
+        "algorithm": 0.6,
+        "craft": 0.7,
+        "debug": 0.8,
+        "bug": 0.7,
+        "system": 0.6
+      },
+      "story": "Before the mouse, the screen was a paper trail: you typed, the machine answered in letters, and you were never more than one keystroke from the void. My desk at the university computing centre holds a machine the size of a suitcase, and the machine's face is a roll of paper. The paper is the display. Everything anyone does with a computer this year, we do with a keyboard, a printing mechanism, and a great deal of patience.\n\nIn 1972 I am twenty-six years old and I have a relationship with a machine, and like most relationships it is mostly listening. The teletype has a whirr that is half conversation and half confession: the motor settles, the carriage hums, and you know the answer is coming before you can read it, the way you know from the weight of an envelope that a letter is bad news. I type the name of a program and press RETURN; somewhere across the campus the mainframe, which I have never touched and which lives in a room I am not encouraged to enter, turns its attention to my request the way a lighthouse turns its beam. It does not hurry. If the run is a big one I submit it on cards in the afternoon and the line printer screams it out in the corridor at two in the morning, a thousand lines of results for four o'clock of the previous day. This is what we call turn-around time, and the children of the future will find it quaint.\n\nI am suspicious of the future. There are men in California, so I have read in the mimeographs and heard at a conference in Boston, who believe the machine should be governed by a pointer, and that you should not have to tell it what you want but show it, the way you show a dog a stick. Windows, they call them, as if the machine were a house. As if, instead of typing a name and trusting the machine to remember what the name means, you would reach out and physically put your hand on the thing you wanted. I have seen the sketches. They are beautiful in the way a painting of a horse is beautiful: entirely convincing, and of no use to anyone who has ever had to ride one. The machine is not a horse. It is a servant that answers only to names, and I have spent six years learning its names.\n\nAnd yet, and this is the part I do not tell the men in the machine room, I believe them. I believe it is coming. The man in California proved it in 1968 to a hall full of people: a machine that edits text while you watch, that keeps several works open on the table at once like a clerk with too many ledgers, that does not require you to believe that a file is a thing with an address. The beauty of the command line is that it is honest; it never pretends to be anything but a machine. The beauty of their windows is that they are dishonest in exactly the right direction, because they pretend the machine is a desk. I think the desk will win, because the desk is what people understand. And when it does, something will be lost that I cannot name. Not the skill, which is already obsolete. Something smaller. The pleasure of being the only person in the building who could make the machine do what it did, by saying the exact right words to it, in the exact right order, at two in the morning, alone with the paper.",
+      "mechanism": "The system Elias works through rests on a division of labour that was, in 1972, still brand new. His terminal is a teletype, an electromechanical typewriter that prints on paper and reads and punches paper tape, connected by wire to a shared mainframe. He types a line and presses RETURN; the characters travel one at a time, about ten per second on an ASR-33, and the machine answers line by line, printing each reply before he has fully formed the next question. Because the terminal prints on paper, the conversation is not a screen but a scroll: permanent, physical, and impossible to erase. There is no cursor to lose and no window to close. There is only the roll of paper and what the machine chose to say.\n\nPrograms usually do not travel over the wire at all. A program is a deck of eighty-column cards, each hole a choice and each column a character, submitted to the machine room with a few control cards of its own. The card reader swallows the deck; the operating system schedules the job among all the others waiting; and when the machine reaches it, the program runs alone, unattended, possibly in the middle of the night. A single mistake costs the day: a dropped card, a punched-in column, a FORTRAN line with its comment mark in the wrong column, and the whole run fails with a message no more helpful than the one he typed. The results, when they come, come by line printer, hundreds of lines a minute, which is why Elias reads his failures by the yard. Time-sharing is the relieving mercy: on the terminal he can edit, debug interactively, and run small jobs at once, sharing the mainframe with twenty other people who each believe they have it to themselves.",
+      "significance": "Elias stands on the command-line side of the hinge between computing's two ages, and he can name everything the command line was: a discipline of address, a private language, a machine that answered only to names. He can also, with an accuracy that feels like prophecy, describe everything it was about to lose. His teletype, his card deck, his overnight printout, his two-o'clock relationship with a machine, none of it is nostalgia in his telling; it is a working technology, and his account of it is testimony from inside a world the interface revolution was about to delete.\n\nHis value to the archive is double. Technically, he documents the real machinery of the 1970s, the punched-card job deck, the line printer, the time-shared mainframe, the substrate on which the operating system, the stored-program computer, and the programming language actually met ordinary people. Culturally, he is the first voice here to meet the graphical future and refuse it while believing it. He does not sneer at the desk; he concedes the desk will win, and he is still grieving. The archive's own case for human-computer interaction is that the interface was always the real bottleneck. Elias is the living evidence of what that interface replaced, and of what, in his phrase, was lost that he could not name.",
+      "keyfacts": [
+        {
+          "k": "terminal",
+          "v": "an ASR-33 Teletype, 10 characters a second, printing on paper, with a paper-tape reader and punch"
+        },
+        {
+          "k": "the display",
+          "v": "paper was the screen; CRT glass-teletype terminals were appearing but hard copy was still the rule"
+        },
+        {
+          "k": "submission",
+          "v": "programs went in on punched cards, an eighty-column deck that must never be bent or folded"
+        },
+        {
+          "k": "batch computing",
+          "v": "jobs were queued and run unattended, often overnight; turnaround was measured in hours"
+        },
+        {
+          "k": "line printer",
+          "v": "the workhorse printer could produce more than a thousand lines a minute"
+        },
+        {
+          "k": "time-sharing",
+          "v": "systems like CTSS (1961) and Unix (1969) let many people share one mainframe from terminals"
+        }
+      ],
+      "quotes": [
+        {
+          "quote": "The beauty of the command line is that it is honest: it never pretends to be anything but a machine.",
+          "said": "Elias Carver"
+        },
+        {
+          "quote": "The machine is not a horse. It is a servant that answers only to names, and I have spent six years learning its names.",
+          "said": "Elias Carver"
+        },
+        {
+          "quote": "I think the desk will win, because the desk is what people understand.",
+          "said": "Elias Carver",
+          "context": "on the coming of windows and the pointing machine"
+        },
+        {
+          "quote": "Something will be lost that I cannot name. Not the skill, which is already obsolete. Something smaller.",
+          "said": "Elias Carver"
+        }
+      ],
+      "timeline": [
+        {
+          "year": "1968",
+          "what": "Engelbart's Mother of All Demos shows windows, a mouse, and hypertext to a San Francisco auditorium"
+        },
+        {
+          "year": "1969",
+          "what": "the ARPANET's first four nodes go live, linking computers across the country"
+        },
+        {
+          "year": "1971",
+          "what": "Ray Tomlinson sends the first network email, choosing the @ sign"
+        },
+        {
+          "year": "1973",
+          "what": "the Xerox Alto at PARC, the first computer built around windows, icons, and a mouse"
+        },
+        {
+          "year": "1975",
+          "what": "the MITS Altair 8800 kit puts the personal computer on magazine covers"
+        }
+      ],
+      "sources": [
+        {
+          "title": "Hackers: Heroes of the Computer Revolution",
+          "by": "Steven Levy",
+          "year": "1984"
+        },
+        {
+          "title": "The C Programming Language",
+          "by": "Brian W. Kernighan and Dennis M. Ritchie",
+          "year": "1978"
+        },
+        {
+          "title": "The Soul of a New Machine",
+          "by": "Tracy Kidder",
+          "year": "1981"
+        }
+      ]
+    },
+    {
+      "id": "the-tabulating-room",
+      "type": "perspective",
+      "label": "The Tabulating Room",
+      "tag": "Punched-card clerk, 1920s",
+      "dates": [
+        1924
+      ],
+      "location": "A national statistics office",
+      "gift": "fl. 1920s",
+      "community": "the machine",
+      "summary": "The card is a punched fact. Feed it to the machine and the machine never forgets, never blinks, and never argues, and a room full of clerks can count a nation.",
+      "related": [
+        {
+          "to": "eniac",
+          "kind": "foreshadowed"
+        },
+        {
+          "to": "the-stored-program-computer",
+          "kind": "foreshadowed"
+        },
+        {
+          "to": "number-and-counting",
+          "kind": "applied"
+        },
+        {
+          "to": "operating-systems",
+          "kind": "preceded"
+        },
+        {
+          "to": "the-personal-computer",
+          "kind": "contrasted"
+        },
+        {
+          "to": "the-transistor",
+          "kind": "succeeded"
+        }
+      ],
+      "vector": {
+        "machine": 1,
+        "number": 0.95,
+        "data": 0.9,
+        "statistics": 0.85,
+        "computer": 0.8,
+        "system": 0.7,
+        "labor": 0.8,
+        "society": 0.6,
+        "human": 0.6,
+        "industry": 0.6,
+        "ledger": 0.6,
+        "bookkeeping": 0.5,
+        "accounting": 0.5,
+        "balance": 0.4,
+        "model": 0.4
+      },
+      "story": "We feed the nation into the machine card by card, and the machine never forgets and never blinks. The room where I work is called, without irony, the Tabulating Room, and it is the nearest thing a government has to a verdict. I am the clerk who reads the cards before they go in; I am not supposed to read them, I am supposed to check them, but after ten years the two things have become the same. I have learned to see a whole life in forty-five holes: a birth, a trade, a marriage, a death, an address, a column of figures that says what a man is worth and what he owes. It is an intimate business, tabulation. We simply conduct it with the door closed.\n\nThe card is a piece of stiff paper, and it is also a fact. That is the trick of the whole profession. A hole punched in the third position of the twelfth column is not a hole; it is a man's age, or his occupation, or his district, depending on how the panel is wired, and the machine believes it completely. You cannot argue with a card. You cannot persuade it, you cannot tell it your circumstances have changed, you cannot ask it to see things from your point of view. It is a fact, and the machine reads it the way a judge reads a statute, which is to say without mercy and without error.\n\nWe count a nation. The census of 1890, they say, took the old way eight years and the machines less than three, and since then no government in its right mind has gone back to the pens. So the whole of the country files past my table in the form of cards, and the machines, six of them, tall and black and patient, each with its great pool of mercury and its forest of pins, stand in a row like six well-behaved butlers. Opposite them the women who feed them stand in a row, one card at a time, hour after hour. The counters click. The sorted cards fall into their pockets. And at the end of the week a report climbs out of the machine that no one in the building could have written and everyone in the building must sign.\n\nI will tell you what unsettles me, and it is not the machine. The machine is honest in the way that arithmetic is honest. What unsettles me is that the machine never forgets, and I am paid to forget. I am the one who has been taught to look away. I check the card, I do not keep it. The machine keeps everything. It holds the whole country in a set of drawers, and when the Minister wants a number, the Minister does not ask the people; the Minister asks the drawers. We have taught the machine to remember so that we may be permitted to forget. I have decided, after long consideration, that this is either the triumph of the age or a bargain we will one day regret, and that the two things are probably the same.",
+      "mechanism": "A punched-card tabulator is an electrical filing clerk. The card carries its data in the pattern of its holes: a card is divided into columns, each column one field, and the position of a hole within a column is the value, so a hole punched in one row makes the card say 4, and in another row the same column says 40. The card passes over a bed of small pins, one pin for each possible hole. Where the card is perforated, the pin drops through and dips into a pool of mercury, closing an electrical circuit; where the card is solid, the pin is blocked and nothing happens. Each completed circuit advances a counter, so as a hundred cards run past, the machine accumulates totals: the number of men in a district, the number of widows, the number of hands employed in a trade.\n\nThe tabulator only adds; the sorter is what divides. A sorter reads one column at a time and drops each card into one of twelve pockets according to the position of its hole, men here, women there, each age group into its own pocket, until the whole nation is filed by whatever column the clerk chooses. To count combinations, a weaver who is also a widow, say, the operator wires a control panel, plugging jacks so that two counters run only when both conditions are true at once. It is a logic of relays and mercury and paper, which is why the machine can be trusted with sixty million facts without blinking once. A human ledger-keeper must balance each page against the last; the tabulating room balances a whole country against itself, and the machine, unlike the clerk, does not grow tired at four in the afternoon.",
+      "significance": "The Tabulating Room is the archive's witness to the decades when the word computer still meant a person and the machine had another name. Its clerks, the women feeding cards and the men wiring panels, were the unrecognised workforce behind every great count of the early twentieth century: the census, the draft, the insurance ledger, the payroll, the actuarial table. The room is where data first became a mass industrial product, produced by a small army of hands feeding stiff paper into machines that could not be argued with. When ENIAC's builders rewired their own machine in the 1940s, and when the stored-program computer made its programs live in memory rather than in card decks, they were standing on the tabulating room's shoulders.\n\nIts deeper significance is moral, and it is the same point Joseph Marr makes about the ledger and Clara Bennett about the thinking machines: a device that cannot be argued with cannot be forgiven. The card remembered what the clerk was trained to forget. The same Hollerith lineage, the company renamed IBM in 1924, later supplied tabulating machinery to the German censuses of the 1930s and to the administration of the camps, a documented chapter of punch-card history that no honest telling of the machine can skip. The room teaches the archive a lesson that runs all the way to the personal computer: counting people is the first step either to serving them or to sorting them, and the machine has never once expressed an opinion about which is which. Only the people around it ever choose, and they always had to be taught to look away.",
+      "keyfacts": [
+        {
+          "k": "the card",
+          "v": "stiff paper, forty-five columns through the 1920s; each hole a punched fact, never to be bent, folded, or mutilated"
+        },
+        {
+          "k": "1890 census",
+          "v": "Hollerith's machines tallied more than 62 million Americans in about two and a half years; the old hand-count had taken nearly eight"
+        },
+        {
+          "k": "1896",
+          "v": "Herman Hollerith founds the Tabulating Machine Company in New York"
+        },
+        {
+          "k": "1911",
+          "v": "the Tabulating Machine Company merges into CTR, the Computing-Tabulating-Recording Company"
+        },
+        {
+          "k": "1924",
+          "v": "CTR is renamed International Business Machines (IBM) under Thomas J. Watson"
+        },
+        {
+          "k": "1928",
+          "v": "IBM standardises the 80-column punched card, the format that would outlive the century"
+        }
+      ],
+      "quotes": [
+        {
+          "quote": "The card is a piece of stiff paper, and it is also a fact.",
+          "said": "A tabulating-room clerk"
+        },
+        {
+          "quote": "You cannot argue with a card. You cannot persuade it, you cannot tell it your circumstances have changed.",
+          "said": "A tabulating-room clerk"
+        },
+        {
+          "quote": "We have taught the machine to remember so that we may be permitted to forget.",
+          "said": "A tabulating-room clerk"
+        }
+      ],
+      "timeline": [
+        {
+          "year": "1890",
+          "what": "Hollerith's electric tabulating machines process the United States census"
+        },
+        {
+          "year": "1896",
+          "what": "the Tabulating Machine Company is founded in New York"
+        },
+        {
+          "year": "1911",
+          "what": "the company merges with two rivals to form CTR"
+        },
+        {
+          "year": "1924",
+          "what": "CTR is renamed International Business Machines (IBM)"
+        },
+        {
+          "year": "1928",
+          "what": "the 80-column IBM card sets the standard for punched-card data"
+        }
+      ],
+      "sources": [
+        {
+          "title": "The Development of Punch Card Tabulation in the Bureau of the Census 1890-1940",
+          "by": "Leon E. Truesdell",
+          "year": "1965"
+        },
+        {
+          "title": "When Computers Were Human",
+          "by": "David Alan Grier",
+          "year": "2005"
+        },
+        {
+          "title": "IBM's Early Computers",
+          "by": "Emerson W. Pugh",
+          "year": "1986"
+        },
+        {
+          "title": "The Nazi Census",
+          "by": "Götz Aly and Karl Heinz Roth",
+          "year": "2004"
+        }
+      ]
     }
   ],
   "pages": {
@@ -20202,14 +21863,14 @@
         },
         {
           "kind": "simulation",
-          "id": "bisect",
-          "label": "Simulation · the bisection method",
-          "caption": "A monotone hunt, halving the search space each time — pre-calculus numerics in action.",
+          "id": "tangent-slope",
+          "label": "Simulation · the tangent slope",
+          "caption": "Watch the secant tighten into the tangent as the interval shrinks — the derivative, live.",
           "vector": {
-            "number": 0.8,
-            "equation": 0.8,
-            "function": 0.8,
-            "limit": 0.7
+            "derivative": 1,
+            "function": 0.9,
+            "limit": 0.9,
+            "slope": 0.9
           }
         }
       ]
