@@ -392,9 +392,9 @@ window.ALPACA_DB = {
         }
       ],
       "sim": {
-        "id": "idea-spread",
-        "label": "Simulation · how an idea takes a crowd",
-        "caption": "One voice, a network, a threshold. Seed the idea and watch openness decide whether it dies or sweeps.",
+        "id": "orbit-jumps",
+        "label": "Simulation · Bohr's atom",
+        "caption": "Disturb the atom; each jump emits or demands a photon of exactly one colour.",
         "vector": {
           "network": 0.8,
           "society": 0.7,
@@ -582,7 +582,12 @@ window.ALPACA_DB = {
           "year": "1920",
           "what": "in his Bakerian Lecture speculates on a neutral particle of about the proton's mass — the neutron, found at the Cavendish by Chadwick in 1932"
         }
-      ]
+      ],
+      "sim": {
+        "id": "rutherford-scatter",
+        "label": "Simulation · the gold-foil experiment",
+        "caption": "Most alphas pass straight through; a handful bounce back — the nucleus is tiny."
+      }
     },
     {
       "id": "albert-einstein",
@@ -792,9 +797,9 @@ window.ALPACA_DB = {
         }
       ],
       "sim": {
-        "id": "idea-spread",
-        "label": "Simulation · how an idea takes a crowd",
-        "caption": "One voice, a network, a threshold. Seed the idea and watch openness decide whether it dies or sweeps.",
+        "id": "photoelectric",
+        "label": "Simulation · the photoelectric effect",
+        "caption": "Below a threshold frequency, brighter light cannot shake a single electron loose.",
         "vector": {
           "network": 0.8,
           "society": 0.7,
@@ -920,7 +925,12 @@ window.ALPACA_DB = {
           "by": "Reidun Renstrøm & Nils-Erik Bomark (arXiv)",
           "year": "2022"
         }
-      ]
+      ],
+      "sim": {
+        "id": "rutherford-scatter",
+        "label": "Simulation · the gold-foil experiment",
+        "caption": "Most alphas pass straight through; a handful bounce back — the nucleus is tiny."
+      }
     },
     {
       "id": "quantum-quanta",
@@ -1038,7 +1048,12 @@ window.ALPACA_DB = {
           "by": "Abraham Pais",
           "year": "1982"
         }
-      ]
+      ],
+      "sim": {
+        "id": "double-slit",
+        "label": "Simulation · the double slit",
+        "caption": "Fire particles one at a time and still the interference stripes build up."
+      }
     },
     {
       "id": "gold-foil-apparatus",
@@ -1148,7 +1163,12 @@ window.ALPACA_DB = {
           "by": "David Wilson",
           "year": "1983"
         }
-      ]
+      ],
+      "sim": {
+        "id": "rutherford-scatter",
+        "label": "Simulation · the gold-foil experiment",
+        "caption": "Most alphas pass straight through; a handful bounce back — the nucleus is tiny."
+      }
     },
     {
       "id": "july-1913",
@@ -1178,9 +1198,9 @@ window.ALPACA_DB = {
         }
       ],
       "sim": {
-        "id": "period-place",
-        "label": "Simulation · place the moment in time",
-        "caption": "A period hides a moment. Drag the marker to where you think it happened, then reveal.",
+        "id": "orbit-jumps",
+        "label": "Simulation · Bohr's atom",
+        "caption": "Disturb the atom; each jump emits or demands a photon of exactly one colour.",
         "vector": {
           "time": 0.8,
           "history": 0.7,
@@ -1219,7 +1239,12 @@ window.ALPACA_DB = {
           "to": "ernest-rutherford",
           "kind": "discovered"
         }
-      ]
+      ],
+      "sim": {
+        "id": "rutherford-scatter",
+        "label": "Simulation · the gold-foil experiment",
+        "caption": "Most alphas pass straight through; a handful bounce back — the nucleus is tiny."
+      }
     },
     {
       "id": "solvay-conference",
@@ -1250,9 +1275,9 @@ window.ALPACA_DB = {
         }
       ],
       "sim": {
-        "id": "period-place",
-        "label": "Simulation · place the moment in time",
-        "caption": "A period hides a moment. Drag the marker to where you think it happened, then reveal.",
+        "id": "blackbody",
+        "label": "Simulation · the blackbody spectrum",
+        "caption": "Heat a furnace and the glow follows one curve — the one Planck had to quantise to draw.",
         "vector": {
           "time": 0.8,
           "history": 0.7,
@@ -1387,9 +1412,9 @@ window.ALPACA_DB = {
         }
       ],
       "sim": {
-        "id": "contingency",
-        "label": "Simulation · the turning point",
-        "caption": "One moment, two roads, a weighted coin. Tilt the scale and roll the history.",
+        "id": "double-slit",
+        "label": "Simulation · the double slit",
+        "caption": "Fire particles one at a time and still the interference stripes build up.",
         "vector": {
           "decision": 0.7,
           "chance": 0.8,
@@ -1686,9 +1711,9 @@ window.ALPACA_DB = {
         }
       ],
       "sim": {
-        "id": "idea-spread",
-        "label": "Simulation · how an idea takes a crowd",
-        "caption": "One voice, a network, a threshold. Seed the idea and watch openness decide whether it dies or sweeps.",
+        "id": "chain-reaction",
+        "label": "Simulation · split the atom",
+        "caption": "One neutron splits a nucleus, liberating more neutrons.",
         "vector": {
           "network": 0.8,
           "society": 0.7,
@@ -1886,7 +1911,12 @@ window.ALPACA_DB = {
           "by": "E. J. Dijksterhuis",
           "year": "1961"
         }
-      ]
+      ],
+      "sim": {
+        "id": "inclined-plane",
+        "label": "Simulation · Galileo's inclined plane",
+        "caption": "Heavy and light roll together; distance grows as the square of time."
+      }
     },
     {
       "id": "electromagnetism",
@@ -2011,7 +2041,12 @@ window.ALPACA_DB = {
           "by": "Basil Mahon",
           "year": "2003"
         }
-      ]
+      ],
+      "sim": {
+        "id": "oersted",
+        "label": "Simulation · Oersted's compass",
+        "caption": "A current bends a compass needle into a ring around the wire."
+      }
     },
     {
       "id": "thermodynamics",
@@ -2265,7 +2300,12 @@ window.ALPACA_DB = {
           "by": "Abraham Pais",
           "year": "1982"
         }
-      ]
+      ],
+      "sim": {
+        "id": "michelson-morley",
+        "label": "Simulation · the Michelson–Morley experiment",
+        "caption": "The fringes refuse to shift — light needs no medium, whatever wind you assume."
+      }
     },
     {
       "id": "quantum-mechanics",
@@ -2316,7 +2356,12 @@ window.ALPACA_DB = {
           "to": "particle-physics",
           "kind": "built"
         }
-      ]
+      ],
+      "sim": {
+        "id": "double-slit",
+        "label": "Simulation · the double slit",
+        "caption": "Fire particles one at a time and still the interference stripes build up."
+      }
     },
     {
       "id": "particle-physics",
@@ -2440,7 +2485,12 @@ window.ALPACA_DB = {
           "by": "ATLAS Collaboration, Physics Letters B",
           "year": "2012"
         }
-      ]
+      ],
+      "sim": {
+        "id": "cloud-chamber",
+        "label": "Simulation · the cloud chamber",
+        "caption": "Read a particle's mass and charge from the trail it leaves."
+      }
     },
     {
       "id": "big-bang",
@@ -2565,7 +2615,12 @@ window.ALPACA_DB = {
           "by": "Helge Kragh",
           "year": "2007"
         }
-      ]
+      ],
+      "sim": {
+        "id": "hubble-redshift",
+        "label": "Simulation · Hubble expansion",
+        "caption": "Space stretches; farther galaxies recede faster, their light redder."
+      }
     },
     {
       "id": "cell-theory",
@@ -2681,7 +2736,12 @@ window.ALPACA_DB = {
           "to": "natural-selection",
           "kind": "modelled"
         }
-      ]
+      ],
+      "sim": {
+        "id": "x-ray-diffraction",
+        "label": "Simulation · photo 51",
+        "caption": "X-rays scattered off DNA expose the helix's pitch as a cross of spots."
+      }
     },
     {
       "id": "periodic-table",
@@ -2931,7 +2991,12 @@ window.ALPACA_DB = {
           "year": "1705",
           "what": "knighted"
         }
-      ]
+      ],
+      "sim": {
+        "id": "inclined-plane",
+        "label": "Simulation · Galileo's inclined plane",
+        "caption": "Heavy and light roll together; distance grows as the square of time."
+      }
     },
     {
       "id": "james-clerk-maxwell",
@@ -3094,7 +3159,12 @@ window.ALPACA_DB = {
           "year": "1879",
           "what": "dies of abdominal cancer at 48, the same disease that had killed his mother"
         }
-      ]
+      ],
+      "sim": {
+        "id": "oersted",
+        "label": "Simulation · Oersted's compass",
+        "caption": "A current bends a compass needle into a ring around the wire."
+      }
     },
     {
       "id": "charles-darwin",
@@ -3190,9 +3260,9 @@ window.ALPACA_DB = {
         "body": "After two decades of hesitation, Charles Darwin has published the book his friends have long dreaded, arguing that species descend with modification and that no special creation need be invoked. Early reviews are angry, but the edition sold out on the first day."
       },
       "sim": {
-        "id": "natural-selection",
-        "label": "Simulation · let the fit survive",
-        "caption": "The fittest phenotype fills the world — until the environment shifts."
+        "id": "peppered-moth",
+        "label": "Simulation · peppered moths",
+        "caption": "Each generation, the bark quietly decides which moths survive to breed."
       }
     },
     {
@@ -3438,7 +3508,12 @@ window.ALPACA_DB = {
       },
       "story": "Marie Curie was born Maria Skłodowska in Warsaw in 1867, the youngest of five children of two schoolteachers who lost everything in failed investments. Russian-ruled Poland barred women from university, so she worked as a governess for six years, saving every zloty to join her sister in Paris, where she arrived in 1891 - at age 24, her hair cut short, her purse nearly empty - to study at the Sorbonne, taking her degree in physics in 1893 (first in her class) and mathematics in 1894. She began a quietly obsessive collaboration with the physicist Pierre Curie, whom she married in 1895; in 1897, their first daughter Irène was born, and Marie, needing a doctoral subject, chose the mysterious 'uranium rays' that Becquerel had discovered the year before. She found that the radiation was an atomic property of the element, not a chemical reaction - and concluded in a flash of insight that there must be more elements, much more radioactive, hiding in the pitchblende ore she used.\n\nWhat followed is legend. In a leaking, icy shed at the School of Physics in Paris, the Curies processed tons of pitchblende residue, boiling, filtering and crystallizing by hand, to isolate the two new elements they found: polonium, named after Marie's Poland, and radium, separated in December 1898 and finally crystallized in 1902. In 1903 the Curies and Becquerel shared the Nobel Prize in Physics - Marie the first woman ever to win a Nobel. After Pierre's sudden death in 1906, struck by a horse-drawn carriage, she took his chair at the Sorbonne, the first woman professor there, and in 1911 she won the Nobel Prize in Chemistry, becoming the first person to win Nobels in two sciences. During the First World War she equipped and helped drive mobile X-ray units - 'petites Curies' - to field hospitals, training radiology staff on the front. Her refusal to take radium's dangers seriously - she did not believe in shielding, used to carry vials in her pocket - cost her life: she died of aplastic anemia in 1934, likely radiation-induced, and her papers remain radioactive today. Both her daughter Irène and son-in-law Frédéric later won the Nobel in Chemistry. She remains the only woman buried, on her own terms and by her own wishes, in the Panthéon.",
       "mechanism": "Curie's great discovery was methodological: that radioactivity is an atomic property. She measured the ionization produced by radioactive substances (with Pierre's electrometer) and found that the strength of radiation from uranium compounds depended only on the quantities of uranium present - and that thorium behaved likewise. This forced the conclusion that the source of energy is inside the atom's structure itself, and led her to hunt for unknown elements by their extreme activity. She isolated polonium and radium by fractional crystallization, exploiting the tiny chemical differences that larger radioactivity revealed, and she remains the only person to have extracted two elements from ore by pure patient chemistry.",
-      "significance": "Marie Curie discovered that atoms are not inert matter but carry internal energy, and she extracted and named two new elements - polonium and radium - establishing the physics of radioactivity as a field; radium became the first medical source of radiation, founding the discipline of radiotherapy. She demonstrated that women could lead research at the highest level, and her double Nobel, her wartime mobile X-rays, and her endlessly copied laboratory make her the most iconic scientist in history."
+      "significance": "Marie Curie discovered that atoms are not inert matter but carry internal energy, and she extracted and named two new elements - polonium and radium - establishing the physics of radioactivity as a field; radium became the first medical source of radiation, founding the discipline of radiotherapy. She demonstrated that women could lead research at the highest level, and her double Nobel, her wartime mobile X-rays, and her endlessly copied laboratory make her the most iconic scientist in history.",
+      "sim": {
+        "id": "radioactive-decay",
+        "label": "Simulation · radioactive decay",
+        "caption": "Every nucleus has the same chance to decay; watch a population halve and halve again."
+      }
     },
     {
       "id": "double-entry-bookkeeping",
@@ -5864,9 +5939,9 @@ window.ALPACA_DB = {
         }
       ],
       "sim": {
-        "id": "idea-spread",
-        "label": "Simulation · how an idea takes a crowd",
-        "caption": "One voice, a network, a threshold. Seed the idea and watch openness decide whether it dies or sweeps.",
+        "id": "supply-demand",
+        "label": "Simulation · find the clearing price",
+        "caption": "Drag the price; watch buyers and sellers clear the market.",
         "vector": {
           "network": 0.8,
           "society": 0.7,
@@ -6099,9 +6174,9 @@ window.ALPACA_DB = {
         }
       ],
       "sim": {
-        "id": "idea-spread",
-        "label": "Simulation · how an idea takes a crowd",
-        "caption": "One voice, a network, a threshold. Seed the idea and watch openness decide whether it dies or sweeps.",
+        "id": "supply-demand",
+        "label": "Simulation · find the clearing price",
+        "caption": "Drag the price; watch buyers and sellers clear the market.",
         "vector": {
           "network": 0.8,
           "society": 0.7,
@@ -6227,16 +6302,6 @@ window.ALPACA_DB = {
           "kind": "observed"
         }
       ],
-      "sim": {
-        "id": "contingency",
-        "label": "Simulation · the turning point",
-        "caption": "One moment, two roads, a weighted coin. Tilt the scale and roll the history.",
-        "vector": {
-          "decision": 0.7,
-          "chance": 0.8,
-          "history": 0.7
-        }
-      },
       "clipping": {
         "newspaper": "The New York Herald Tribune",
         "date": "29 October 1929",
@@ -8121,16 +8186,6 @@ window.ALPACA_DB = {
           "what": "posthumously receives the Presidential Medal of Freedom"
         }
       ],
-      "sim": {
-        "id": "idea-spread",
-        "label": "Simulation · how an idea takes a crowd",
-        "caption": "One voice, a network, a threshold. Seed the idea and watch openness decide whether it dies or sweeps.",
-        "vector": {
-          "network": 0.8,
-          "society": 0.7,
-          "debate": 0.6
-        }
-      },
       "clipping": {
         "newspaper": "The Philadelphia Inquirer",
         "date": "1952",
@@ -8253,16 +8308,6 @@ window.ALPACA_DB = {
           "year": "1843"
         }
       ],
-      "sim": {
-        "id": "idea-spread",
-        "label": "Simulation · how an idea takes a crowd",
-        "caption": "One voice, a network, a threshold. Seed the idea and watch openness decide whether it dies or sweeps.",
-        "vector": {
-          "network": 0.8,
-          "society": 0.7,
-          "debate": 0.6
-        }
-      },
       "clipping": {
         "newspaper": "The Illustrated London News",
         "date": "1843",
@@ -8824,16 +8869,6 @@ window.ALPACA_DB = {
           "kind": "built"
         }
       ],
-      "sim": {
-        "id": "idea-spread",
-        "label": "Simulation · how an idea takes a crowd",
-        "caption": "One voice, a network, a threshold. Seed the idea and watch openness decide whether it dies or sweeps.",
-        "vector": {
-          "network": 0.8,
-          "society": 0.7,
-          "debate": 0.6
-        }
-      },
       "clipping": {
         "newspaper": "The Los Angeles Times",
         "date": "29 October 1969",
@@ -9679,16 +9714,6 @@ window.ALPACA_DB = {
           "kind": "pioneered"
         }
       ],
-      "sim": {
-        "id": "contingency",
-        "label": "Simulation · the turning point",
-        "caption": "One moment, two roads, a weighted coin. Tilt the scale and roll the history.",
-        "vector": {
-          "decision": 0.7,
-          "chance": 0.8,
-          "history": 0.7
-        }
-      },
       "clipping": {
         "newspaper": "The San Francisco Chronicle",
         "date": "9 December 1968",
@@ -10703,7 +10728,12 @@ window.ALPACA_DB = {
           "by": "Pierre-Simon Laplace",
           "year": "1812"
         }
-      ]
+      ],
+      "sim": {
+        "id": "galton-board",
+        "label": "Simulation · Galton's board",
+        "caption": "Coin flips pile up into the bell curve."
+      }
     },
     {
       "id": "statistics",
@@ -10887,7 +10917,12 @@ window.ALPACA_DB = {
           "by": "R. A. Fisher",
           "year": "1956"
         }
-      ]
+      ],
+      "sim": {
+        "id": "galton-board",
+        "label": "Simulation · Galton's board",
+        "caption": "Coin flips pile up into the bell curve."
+      }
     },
     {
       "id": "abstract-algebra",
@@ -11552,16 +11587,6 @@ window.ALPACA_DB = {
           "year": "1986"
         }
       ],
-      "sim": {
-        "id": "idea-spread",
-        "label": "Simulation · how an idea takes a crowd",
-        "caption": "One voice, a network, a threshold. Seed the idea and watch openness decide whether it dies or sweeps.",
-        "vector": {
-          "network": 0.8,
-          "society": 0.7,
-          "debate": 0.6
-        }
-      },
       "clipping": {
         "newspaper": "The Baghdad Courier",
         "date": "c. 830",
@@ -11853,16 +11878,6 @@ window.ALPACA_DB = {
           "year": "1998"
         }
       ],
-      "sim": {
-        "id": "idea-spread",
-        "label": "Simulation · how an idea takes a crowd",
-        "caption": "One voice, a network, a threshold. Seed the idea and watch openness decide whether it dies or sweeps.",
-        "vector": {
-          "network": 0.8,
-          "society": 0.7,
-          "debate": 0.6
-        }
-      },
       "clipping": {
         "newspaper": "Göttinger Tageblatt",
         "date": "1918",
@@ -12027,9 +12042,9 @@ window.ALPACA_DB = {
         }
       ],
       "sim": {
-        "id": "idea-spread",
-        "label": "Simulation · how an idea takes a crowd",
-        "caption": "One voice, a network, a threshold. Seed the idea and watch openness decide whether it dies or sweeps.",
+        "id": "best-response",
+        "label": "Simulation · react to your rival",
+        "caption": "Given what your rival does, what is your best move?",
         "vector": {
           "network": 0.8,
           "society": 0.7,
@@ -12395,7 +12410,12 @@ window.ALPACA_DB = {
           "by": "Max Planck (translated)",
           "year": "1936"
         }
-      ]
+      ],
+      "sim": {
+        "id": "blackbody",
+        "label": "Simulation · the blackbody spectrum",
+        "caption": "Heat a furnace and the glow follows one curve — the one Planck had to quantise to draw."
+      }
     },
     {
       "id": "j-j-thomson",
@@ -12559,7 +12579,12 @@ window.ALPACA_DB = {
           "year": "1908",
           "what": "knighted for his services to science"
         }
-      ]
+      ],
+      "sim": {
+        "id": "cathode-ray",
+        "label": "Simulation · Thomson's cathode ray",
+        "caption": "Balance the electric and magnetic fields and read the electron's charge-to-mass ratio."
+      }
     },
     {
       "id": "wilhelm-roentgen",
@@ -12712,7 +12737,12 @@ window.ALPACA_DB = {
           "by": "George F. Barker (translator)",
           "year": "1899"
         }
-      ]
+      ],
+      "sim": {
+        "id": "x-ray-tube",
+        "label": "Simulation · Roentgen's X-ray tube",
+        "caption": "Electrons slam into the target; the plate darkens where bones block the rays."
+      }
     },
     {
       "id": "henri-becquerel",
@@ -12865,7 +12895,12 @@ window.ALPACA_DB = {
           "by": "Henri Becquerel",
           "year": "1900"
         }
-      ]
+      ],
+      "sim": {
+        "id": "radioactive-decay",
+        "label": "Simulation · radioactive decay",
+        "caption": "Every nucleus has the same chance to decay; watch a population halve and halve again."
+      }
     },
     {
       "id": "werner-heisenberg",
@@ -13057,7 +13092,12 @@ window.ALPACA_DB = {
           "by": "Werner Heisenberg",
           "year": "1974"
         }
-      ]
+      ],
+      "sim": {
+        "id": "double-slit",
+        "label": "Simulation · the double slit",
+        "caption": "Fire particles one at a time and still the interference stripes build up."
+      }
     },
     {
       "id": "erwin-schrodinger",
@@ -13247,7 +13287,12 @@ window.ALPACA_DB = {
           "by": "Erwin Schrödinger",
           "year": "1958"
         }
-      ]
+      ],
+      "sim": {
+        "id": "double-slit",
+        "label": "Simulation · the double slit",
+        "caption": "Fire particles one at a time and still the interference stripes build up."
+      }
     },
     {
       "id": "paul-dirac",
@@ -13443,7 +13488,12 @@ window.ALPACA_DB = {
           "by": "Robert Jungk",
           "year": "1958"
         }
-      ]
+      ],
+      "sim": {
+        "id": "double-slit",
+        "label": "Simulation · the double slit",
+        "caption": "Fire particles one at a time and still the interference stripes build up."
+      }
     },
     {
       "id": "lise-meitner",
@@ -13575,9 +13625,9 @@ window.ALPACA_DB = {
         }
       ],
       "sim": {
-        "id": "idea-spread",
-        "label": "Simulation · how an idea takes a crowd",
-        "caption": "One voice, a network, a threshold. Seed the idea and watch openness decide whether it dies or sweeps.",
+        "id": "chain-reaction",
+        "label": "Simulation · split the atom",
+        "caption": "One neutron splits a nucleus, liberating more neutrons.",
         "vector": {
           "network": 0.8,
           "society": 0.7,
@@ -13810,7 +13860,12 @@ window.ALPACA_DB = {
           "by": "Charles Frank (ed.)",
           "year": "1993"
         }
-      ]
+      ],
+      "sim": {
+        "id": "chain-reaction",
+        "label": "Simulation · split the atom",
+        "caption": "One neutron splits a nucleus, liberating more neutrons."
+      }
     },
     {
       "id": "enrico-fermi",
@@ -13942,9 +13997,9 @@ window.ALPACA_DB = {
         }
       ],
       "sim": {
-        "id": "idea-spread",
-        "label": "Simulation · how an idea takes a crowd",
-        "caption": "One voice, a network, a threshold. Seed the idea and watch openness decide whether it dies or sweeps.",
+        "id": "chain-reaction",
+        "label": "Simulation · split the atom",
+        "caption": "One neutron splits a nucleus, liberating more neutrons.",
         "vector": {
           "network": 0.8,
           "society": 0.7,
@@ -14026,9 +14081,9 @@ window.ALPACA_DB = {
         }
       ],
       "sim": {
-        "id": "period-place",
-        "label": "Simulation · place the moment in time",
-        "caption": "A period hides a moment. Drag the marker to where you think it happened, then reveal.",
+        "id": "x-ray-tube",
+        "label": "Simulation · Roentgen's X-ray tube",
+        "caption": "Electrons slam into the target; the plate darkens where bones block the rays.",
         "vector": {
           "time": 0.8,
           "history": 0.7,
@@ -14075,9 +14130,9 @@ window.ALPACA_DB = {
         }
       ],
       "sim": {
-        "id": "contingency",
-        "label": "Simulation · the turning point",
-        "caption": "One moment, two roads, a weighted coin. Tilt the scale and roll the history.",
+        "id": "radioactive-decay",
+        "label": "Simulation · radioactive decay",
+        "caption": "Every nucleus has the same chance to decay; watch a population halve and halve again.",
         "vector": {
           "decision": 0.7,
           "chance": 0.8,
@@ -14119,9 +14174,9 @@ window.ALPACA_DB = {
         }
       ],
       "sim": {
-        "id": "period-place",
-        "label": "Simulation · place the moment in time",
-        "caption": "A period hides a moment. Drag the marker to where you think it happened, then reveal.",
+        "id": "cathode-ray",
+        "label": "Simulation · Thomson's cathode ray",
+        "caption": "Balance the electric and magnetic fields and read the electron's charge-to-mass ratio.",
         "vector": {
           "time": 0.8,
           "history": 0.7,
@@ -14155,9 +14210,9 @@ window.ALPACA_DB = {
         }
       ],
       "sim": {
-        "id": "period-place",
-        "label": "Simulation · place the moment in time",
-        "caption": "A period hides a moment. Drag the marker to where you think it happened, then reveal.",
+        "id": "blackbody",
+        "label": "Simulation · the blackbody spectrum",
+        "caption": "Heat a furnace and the glow follows one curve — the one Planck had to quantise to draw.",
         "vector": {
           "time": 0.8,
           "history": 0.7,
@@ -14274,9 +14329,9 @@ window.ALPACA_DB = {
         }
       ],
       "sim": {
-        "id": "contingency",
-        "label": "Simulation · the turning point",
-        "caption": "One moment, two roads, a weighted coin. Tilt the scale and roll the history.",
+        "id": "chain-reaction",
+        "label": "Simulation · split the atom",
+        "caption": "One neutron splits a nucleus, liberating more neutrons.",
         "vector": {
           "decision": 0.7,
           "chance": 0.8,
@@ -15366,9 +15421,9 @@ window.ALPACA_DB = {
         }
       ],
       "sim": {
-        "id": "price-war",
-        "label": "Simulation · slash prices, watch the floor",
-        "caption": "Cut the price and your rival cuts back. Who blinks first?"
+        "id": "best-response",
+        "label": "Simulation · react to your rival",
+        "caption": "Given what your rival does, what is your best move?"
       }
     },
     {
@@ -15505,7 +15560,12 @@ window.ALPACA_DB = {
           "by": "Paul Sweezy",
           "year": "1939"
         }
-      ]
+      ],
+      "sim": {
+        "id": "price-war",
+        "label": "Simulation · slash prices, watch the floor",
+        "caption": "Cut the price and your rival cuts back. Who blinks first?"
+      }
     },
     {
       "id": "cartel",
@@ -15978,7 +16038,12 @@ window.ALPACA_DB = {
           "year": "1877",
           "what": "dies in Paris, March 31"
         }
-      ]
+      ],
+      "sim": {
+        "id": "best-response",
+        "label": "Simulation · react to your rival",
+        "caption": "Given what your rival does, what is your best move?"
+      }
     },
     {
       "id": "joseph-bertrand",
@@ -16122,7 +16187,12 @@ window.ALPACA_DB = {
           "year": "1900",
           "what": "dies in Paris"
         }
-      ]
+      ],
+      "sim": {
+        "id": "price-war",
+        "label": "Simulation · slash prices, watch the floor",
+        "caption": "Cut the price and your rival cuts back. Who blinks first?"
+      }
     },
     {
       "id": "paul-sweezy",
@@ -16261,7 +16331,12 @@ window.ALPACA_DB = {
           "year": "2004",
           "what": "dies, still editor of Monthly Review"
         }
-      ]
+      ],
+      "sim": {
+        "id": "price-war",
+        "label": "Simulation · slash prices, watch the floor",
+        "caption": "Cut the price and your rival cuts back. Who blinks first?"
+      }
     },
     {
       "id": "etymology-oligopoly",
@@ -16411,9 +16486,9 @@ window.ALPACA_DB = {
         }
       ],
       "sim": {
-        "id": "contingency",
-        "label": "Simulation · the turning point",
-        "caption": "One moment, two roads, a weighted coin. Tilt the scale and roll the history.",
+        "id": "best-response",
+        "label": "Simulation · react to your rival",
+        "caption": "Given what your rival does, what is your best move?",
         "vector": {
           "decision": 0.7,
           "chance": 0.8,
@@ -16519,9 +16594,9 @@ window.ALPACA_DB = {
         }
       ],
       "sim": {
-        "id": "period-place",
-        "label": "Simulation · place the moment in time",
-        "caption": "A period hides a moment. Drag the marker to where you think it happened, then reveal.",
+        "id": "price-war",
+        "label": "Simulation · slash prices, watch the floor",
+        "caption": "Cut the price and your rival cuts back. Who blinks first?",
         "vector": {
           "time": 0.8,
           "history": 0.7,
@@ -16623,9 +16698,9 @@ window.ALPACA_DB = {
         }
       ],
       "sim": {
-        "id": "period-place",
-        "label": "Simulation · place the moment in time",
-        "caption": "A period hides a moment. Drag the marker to where you think it happened, then reveal.",
+        "id": "price-war",
+        "label": "Simulation · slash prices, watch the floor",
+        "caption": "Cut the price and your rival cuts back. Who blinks first?",
         "vector": {
           "time": 0.8,
           "history": 0.7,
@@ -16763,9 +16838,9 @@ window.ALPACA_DB = {
         }
       ],
       "sim": {
-        "id": "contingency",
-        "label": "Simulation · the turning point",
-        "caption": "One moment, two roads, a weighted coin. Tilt the scale and roll the history.",
+        "id": "price-war",
+        "label": "Simulation · slash prices, watch the floor",
+        "caption": "Cut the price and your rival cuts back. Who blinks first?",
         "vector": {
           "decision": 0.7,
           "chance": 0.8,
@@ -18144,16 +18219,6 @@ window.ALPACA_DB = {
           "year": "2005"
         }
       ],
-      "sim": {
-        "id": "idea-spread",
-        "label": "Simulation · how an idea takes a crowd",
-        "caption": "One voice, a network, a threshold. Seed the idea and watch openness decide whether it dies or sweeps.",
-        "vector": {
-          "network": 0.8,
-          "society": 0.7,
-          "debate": 0.6
-        }
-      },
       "clipping": {
         "newspaper": "The Mercury News",
         "date": "1998",
@@ -18532,9 +18597,9 @@ window.ALPACA_DB = {
         }
       ],
       "sim": {
-        "id": "period-place",
-        "label": "Simulation · place the moment in time",
-        "caption": "A period hides a moment. Drag the marker to where you think it happened, then reveal.",
+        "id": "phases-vs-iterations",
+        "label": "Simulation · waterfall versus sprints",
+        "caption": "The waterfall ships once, late. The sprints ship small, often.",
         "vector": {
           "time": 0.8,
           "history": 0.7,
@@ -18663,9 +18728,9 @@ window.ALPACA_DB = {
         }
       ],
       "sim": {
-        "id": "period-place",
-        "label": "Simulation · place the moment in time",
-        "caption": "A period hides a moment. Drag the marker to where you think it happened, then reveal.",
+        "id": "phases-vs-iterations",
+        "label": "Simulation · waterfall versus sprints",
+        "caption": "The waterfall ships once, late. The sprints ship small, often.",
         "vector": {
           "time": 0.8,
           "history": 0.7,
@@ -18786,16 +18851,6 @@ window.ALPACA_DB = {
           "year": "1952"
         }
       ],
-      "sim": {
-        "id": "contingency",
-        "label": "Simulation · the turning point",
-        "caption": "One moment, two roads, a weighted coin. Tilt the scale and roll the history.",
-        "vector": {
-          "decision": 0.7,
-          "chance": 0.8,
-          "history": 0.7
-        }
-      },
       "story": "In the early 1950s, programming a computer meant speaking its language, and its language was numbers. A UNIVAC program was a sequence of machine instructions - numeric codes for operations, numeric addresses for storage - beautifully suited to the machine and purgatory for the programmer, who had to translate every intention through a lens of digits and scattering chances of a keypunch error. Into this arithmetic world stepped Grace Hopper, with the immodest proposal that the machine should do the translating. Hopper had learned the machine's patience the hard way: she had programmed the Harvard Mark I during the war, writing the 500-page Manual of Operation for the Automatic Sequence Controlled Calculator, and she had watched human computing become the bottleneck. When she joined the Eckert-Mauchly Computer Corporation in 1949 to work on the UNIVAC, the fix was obvious to her and invisible to everyone else.\n\nHopper's team built a series of systems - a short code for expressing operations symbolically, then the A-0, the A-1, the A-2 - of which the A-0 was the first to be demonstrated, in 1952. The A-0 was a program that accepted instructions written in symbolic form and turned them into machine code, drawing its subroutines from a library; in modern terms it was a rudimentary compiler, and Hopper liked to call what it did \"automatic programming.\" The reception was not heroic. Computers, the wiseacres explained, could do arithmetic; they could not be asked to program themselves. Hopper, with the directness that became her legend, answered with a demonstration, a great deal of persuasion, and the career-defining observation that it is easier to ask forgiveness than to get permission.\n\nThe idea survived its critics, as good ideas do when they are right. Hopper and her cohort built the compiler into a business proposition - the B-0 (later FLOW-MATIC) language of 1955 was explicitly designed for business users, and it fed directly into COBOL, the business language of 1959-60 that still runs much of the world's banking. The compiler pipeline she opened - human intent in, machine code out, with the translator as the intellectual worker - became the entire shape of programming. Every high-level language since, from FORTRAN's arithmetic to Python's prose, is standing on the same decision Hopper made when nobody wanted to talk to a machine in its own language.",
       "mechanism": "A compiler is a program whose input is a program. It reads text written in a high-level language - symbols, words, arithmetic - and, in several mechanical stages, produces the machine instructions that actually run. First it lexes: it breaks the stream of characters into tokens, the vocabulary of the language. Then it parses: it arranges the tokens into a tree according to the language's grammar, deciding that a + b * c means one operation nested inside another. Then it checks and translates, turning the tree into instructions for the target machine, assigning registers, calculating addresses, and finally emitting an executable program the machine can run directly.\n\nThe A-0 of 1952 worked more simply, but the principle was identical: take a symbolic instruction - effectively a request like \"compute the sine\" - and turn it into the machine's numeric code, pulling the needed subroutine out of a library and arranging the calls. The key architectural insight, present from the start, was the library of reusable subroutines: the compiler did not translate by magic but by assembly, linking together pieces of already-written machine code under the symbolic names a programmer had used. The machine had been doing arithmetic; now it was doing bookkeeping about arithmetic - the translator's work.\n\nThis is why the compiler is a different object from an interpreter, though the two are cousins: a compiler does all its work first, producing a finished program; an interpreter reads and executes the source line by line, at run time. Hopper's insistence on compilation - preparation ahead of execution - is one of the reasons the resulting programs ran fast enough to be believed, and the distinction survives to this day, quietly deciding how quickly, and how flexibly, each language is put to work.",
       "significance": "The first compiler is the event on which every programming language sits, because it established the division of labor that defines the profession: humans think at the level of intention, and machines execute at the level of instruction, and a translator program stands between them making the two dialects legible to each other. Without it, programming would have remained a numerical priesthood, the machine would have stayed the specialist's instrument, and the explosion of software that now runs the world would have been impossible. The compiler is the reason software is written once in FORTRAN or C and reborn on every machine since - an act of translation that made programs portable in principle and eternal in practice.\n\nIts significance is also personal and social. The A-0 was built by a woman in a corporate computing division, in the 1950s, against the direct skepticism of her colleagues, and it required exactly the combination of technical nerve and diplomatic armor that Hopper possessed in abundance. Her style - demonstrate, persuade, and, if necessary, ask for forgiveness later - turned a demoralizing moment into the seed of an industry, and her insistence that users should not have to speak the machine's language widened the gate of computing to everyone who followed. When the designers of COBOL and FORTRAN and every language after chose user-friendliness as a goal, they were taking Hopper's advice, delivered at a time when it had cost her blood to stay patient: the machine is supposed to suit the person, not the other way around.",
@@ -18992,9 +19047,9 @@ window.ALPACA_DB = {
         }
       ],
       "sim": {
-        "id": "idea-spread",
-        "label": "Simulation · how an idea takes a crowd",
-        "caption": "One voice, a network, a threshold. Seed the idea and watch openness decide whether it dies or sweeps.",
+        "id": "version-control",
+        "label": "Simulation · commit, branch, merge",
+        "caption": "Commit history as a tree — branching is cheap, merging is not.",
         "vector": {
           "network": 0.8,
           "society": 0.7,
@@ -21482,6 +21537,12 @@ window.ALPACA_DB = {
           }
         },
         {
+          "kind": "simulation",
+          "id": "rutherford-scatter",
+          "label": "Simulation · the gold-foil experiment",
+          "caption": "Most alphas pass straight through; a handful bounce back — the nucleus is tiny."
+        },
+        {
           "kind": "quiz",
           "id": "quiz-orbit",
           "question": "If an electron obeyed classical physics and radiated energy continuously as it circled the nucleus, what should eventually happen to the atom?",
@@ -21724,15 +21785,9 @@ window.ALPACA_DB = {
         },
         {
           "kind": "simulation",
-          "id": "version-control",
-          "label": "Simulation · commits, branches, merges",
-          "caption": "A program is a history. Commit, branch, and merge — then find the change that broke it.",
-          "vector": {
-            "software": 0.8,
-            "code": 0.8,
-            "version": 1,
-            "memory": 0.6
-          }
+          "id": "fetch-execute",
+          "label": "fetch-execute",
+          "caption": ""
         }
       ]
     },
@@ -21790,19 +21845,6 @@ window.ALPACA_DB = {
             "usability": 0.75,
             "interactive": 0.9,
             "computer": 0.7
-          }
-        },
-        {
-          "kind": "simulation",
-          "id": "phases-vs-iterations",
-          "label": "Simulation · waterfall against agile",
-          "caption": "The same change request arrives late. Watch waterfall choke on it and agile absorb it.",
-          "vector": {
-            "lifecycle": 0.9,
-            "agile": 0.9,
-            "waterfall": 0.9,
-            "software": 0.7,
-            "interface": 0.6
           }
         }
       ]
@@ -21942,6 +21984,12 @@ window.ALPACA_DB = {
             "quantum": 0.85,
             "energy": 0.7
           }
+        },
+        {
+          "kind": "simulation",
+          "id": "double-slit",
+          "label": "Simulation · the double slit",
+          "caption": "Fire particles one at a time and still the interference stripes build up."
         }
       ]
     },
@@ -22055,16 +22103,9 @@ window.ALPACA_DB = {
         },
         {
           "kind": "simulation",
-          "id": "natural-selection",
-          "label": "Simulation · heredity in action",
-          "caption": "A population under a fitness gradient: variation, selection, and the slow drift toward fit.",
-          "vector": {
-            "evolution": 0.9,
-            "gene": 0.9,
-            "species": 0.8,
-            "cell": 0.6,
-            "dna": 0.7
-          }
+          "id": "x-ray-diffraction",
+          "label": "Simulation · photo 51",
+          "caption": "X-rays scattered off DNA expose the helix's pitch as a cross of spots."
         }
       ]
     },
