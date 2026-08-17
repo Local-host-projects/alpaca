@@ -4168,20 +4168,24 @@ statusText("The matrix shows years each side serves. The partner's choice is alr
       ctx.fillStyle = 'rgba(237,228,214,0.5)'; ctx.font = '9px IBM Plex Mono, monospace';
       ctx.fillText('account              debit   credit   (click a row then test)', 14, 50);
       const y0 = 64, rh = 22;
+      const cX = 16;                       // name column
+      const dX = Math.max(cX, w * 0.46);   // debit column
+      const c2X = Math.max(dX + 52, w * 0.66); // credit column
+      const okX = Math.max(c2X + 52, w * 0.86); // checkmark column
       ACCTS.forEach((a, i) => {
         const y = y0 + i * rh;
-        if (selected === i) { ctx.fillStyle = 'rgba(127,168,201,0.2)'; ctx.fillRect(12, y - 14, w - 150, rh); }
-        if (checked[i]) { ctx.fillStyle = 'rgba(93,168,132,0.15)'; ctx.fillRect(12, y - 14, w - 150, rh); }
+        if (selected === i) { ctx.fillStyle = 'rgba(127,168,201,0.2)'; ctx.fillRect(12, y - 14, w - 24, rh); }
+        if (checked[i]) { ctx.fillStyle = 'rgba(93,168,132,0.15)'; ctx.fillRect(12, y - 14, w - 24, rh); }
         ctx.fillStyle = i === bad && found ? '#F6D76F' : '#C99A57';
-        ctx.fillText(a.name.padEnd(18), 16, y + 4);
+        ctx.fillText(a.name.padEnd(10), cX, y + 4);
         const shownD = i === bad ? Math.max(a.d, a.c) : a.d;
         const shownC = i === bad ? Math.max(a.d, a.c) : a.c;
         ctx.fillStyle = found && i === bad ? '#F6D76F' : '#E6DAC4';
-        ctx.fillText(String(shownD).padStart(7), 150, y + 4);
-        ctx.fillText(String(shownC).padStart(9), 220, y + 4);
+        ctx.fillText(String(shownD).padStart(7), dX, y + 4);
+        ctx.fillText(String(shownC).padStart(9), c2X, y + 4);
         if (checked[i] && i !== bad) {
           ctx.fillStyle = '#93A884';
-          ctx.fillText('✓ checks out', 300, y + 4);
+          ctx.fillText('✓', okX, y + 4);
         }
       });
       const t = totals();

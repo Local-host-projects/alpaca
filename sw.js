@@ -4,7 +4,7 @@
    library can be refreshed while still working offline.
    ============================================================ */
 
-const VERSION = 'alpaca-v7';
+const VERSION = 'alpaca-v8';
 const CACHE = VERSION + '-cache';
 
 const SHELL = [

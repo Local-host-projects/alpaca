@@ -383,7 +383,7 @@ h1, h2, h3 { font-family: var(--serif); font-weight: 600; line-height: 1.15; }
   border-bottom: 1px solid var(--line);
 }
 .sim-head .eyebrow { color: var(--ink-faint); }
-.sim-controls { display: flex; gap: 0.5rem; }
+.sim-controls { display: flex; gap: 0.5rem; flex-wrap: wrap; }
 .sim-canvas { display: block; width: 100%; height: 340px; background: #120D0A; }
 .sim-status {
   padding: 0.7rem 1.1rem;
@@ -844,6 +844,18 @@ h1, h2, h3 { font-family: var(--serif); font-weight: 600; line-height: 1.15; }
   .clipping { padding: 1.1rem 1.05rem; }
   .clipping .masthead { flex-direction: column; gap: 0.3rem; }
 
+  /* keep every box inside the viewport: nothing may force a wider page */
+  .facts-grid, .facts-main, .panel, .sim-shell, .quiz, .clipping,
+  .etymology-card, .paywall, .viewbar, .keyfacts, .prose, .shelf-head,
+  .shelf-section, .placeholder-box { min-width: 0; max-width: 100%; }
+  .prose p, .clipping p, .sim-status, .kf-row dd, .ec-origin,
+  .etymology-card p, .shelf .s-label, .vb-lbl, .result p {
+    overflow-wrap: anywhere;
+    word-break: break-word;
+  }
+  .sim-status { white-space: normal; }
+  canvas, img, video { max-width: 100%; }
+
   .prose h3 { font-size: 1.2rem; }
 
   /* shelf is a right-side drawer on phones; slides in from the edge */
@@ -892,11 +904,18 @@ h1, h2, h3 { font-family: var(--serif); font-weight: 600; line-height: 1.15; }
 
   /* sims */
   .sim-head { flex-direction: column; align-items: flex-start; gap: 0.6rem; }
-  .sim-controls { width: 100%; }
+  .sim-controls { width: 100%; flex-wrap: wrap; }
+  .sim-controls .btn { white-space: normal; text-align: center; }
+  .sim-hint { margin-left: 0; width: 100%; margin-top: 0.1rem; }
   .sim-canvas { height: 240px; }
   .pd-matrix { grid-template-columns: 1fr 1fr; }
   .pd-corner, .pd-colh { display: none; }
   .pd-cell { font-size: 0.78rem; }
+  .pd-actions, .tdd-actions { flex-wrap: wrap; }
+  .ledger-grand, .ledger-row { flex-wrap: wrap; row-gap: 0.35rem; }
+  .ledger-form select { min-width: 0; width: 100%; }
+  .ledger-form input { width: 100%; }
+  .viewbar { flex-wrap: wrap; }
 
   .page-actions { gap: 0.5rem; }
 
